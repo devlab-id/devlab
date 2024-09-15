@@ -34,15 +34,15 @@ class PullHelperImageJob implements ShouldBeEncrypted, ShouldQueue
     public function handle(): void
     {
         try {
-            $response = Http::retry(3, 1000)->get('https://cdn.coollabs.io/coolify/versions.json');
+            $response = Http::retry(3, 1000)->get('https://cdn.coollabs.io/devlab/versions.json');
             if ($response->successful()) {
                 $versions = $response->json();
                 $settings = InstanceSettings::get();
-                $latest_version = data_get($versions, 'coolify.helper.version');
+                $latest_version = data_get($versions, 'devlab.helper.version');
                 $current_version = $settings->helper_version;
                 if (version_compare($latest_version, $current_version, '>')) {
                     // New version available
-                    $helperImage = config('coolify.helper_image');
+                    $helperImage = config('devlab.helper_image');
                     instant_remote_process(["docker pull -q {$helperImage}:{$latest_version}"], $this->server);
                     $settings->update(['helper_version' => $latest_version]);
                 }

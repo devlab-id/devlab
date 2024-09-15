@@ -22,7 +22,7 @@
         </div>
         <div class="pb-4">Persistent storage to preserve data between deployments.</div>
         @if ($resource?->build_pack === 'dockercompose')
-            <span class="dark:text-warning text-coollabs">Please modify storage layout in your Docker Compose
+            <span class="dark:text-warning text-devlab">Please modify storage layout in your Docker Compose
                 file or reload the compose file to reread the storage layout.</span>
         @else
             @if ($resource->persistentStorages()->get()->count() === 0 && $fileStorage->count() == 0)

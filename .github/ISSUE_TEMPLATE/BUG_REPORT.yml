@@ -32,13 +32,13 @@ body:
   - type: input
     attributes:
       label: Version
-      description: Coolify's version (see top of your screen).
+      description: Devlab's version (see top of your screen).
     validations:
       required: true
   - type: checkboxes
     attributes:
       label: Cloud?
-      description: "Are you using the cloud version of Coolify?"
+      description: "Are you using the cloud version of Devlab?"
       options:
         - label: 'Yes'
           required: false

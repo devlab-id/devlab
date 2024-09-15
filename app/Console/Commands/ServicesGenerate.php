@@ -63,9 +63,9 @@ class ServicesGenerate extends Command
         $documentation = collect(preg_grep('/^# documentation:/', explode("\n", $content)))->values();
         if ($documentation->count() > 0) {
             $documentation = str($documentation[0])->after('# documentation:')->trim()->value();
-            $documentation = str($documentation)->append('?utm_source=coolify.io');
+            $documentation = str($documentation)->append('?utm_source=devlab.id');
         } else {
-            $documentation = 'https://coolify.io/docs';
+            $documentation = 'https://devlab.id/docs';
         }
 
         $slogan = collect(preg_grep('/^# slogan:/', explode("\n", $content)))->values();

@@ -9,7 +9,7 @@
             @endif
         </label>
     @endif
-    <select {{ $attributes->merge(['class' => $defaultClass]) }} @required($required) wire:dirty.class.remove='dark:focus:ring-coolgray-300 dark:ring-coolgray-300'
+    <select {{ $attributes->merge(['class' => $defaultClass]) }} @required($required) wire:dirty.class.remove='dark:focus:ring-devgray-300 dark:ring-devgray-300'
         wire:dirty.class="dark:focus:ring-warning dark:ring-warning" wire:loading.attr="disabled" name={{ $id }}
         @if ($attributes->whereStartsWith('wire:model')->first()) {{ $attributes->whereStartsWith('wire:model')->first() }} @else wire:model={{ $id }} @endif>
         {{ $slot }}

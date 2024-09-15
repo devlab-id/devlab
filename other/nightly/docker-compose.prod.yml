@@ -1,17 +1,17 @@
 services:
-  coolify:
+  devlab:
     image: "ghcr.io/coollabsio/coolify:${LATEST_IMAGE:-latest}"
     volumes:
       - type: bind
-        source: /data/coolify/source/.env
+        source: /data/devlab/source/.env
         target: /var/www/html/.env
         read_only: true
-      - /data/coolify/ssh:/var/www/html/storage/app/ssh
-      - /data/coolify/applications:/var/www/html/storage/app/applications
-      - /data/coolify/databases:/var/www/html/storage/app/databases
-      - /data/coolify/services:/var/www/html/storage/app/services
-      - /data/coolify/backups:/var/www/html/storage/app/backups
-      - /data/coolify/webhooks-during-maintenance:/var/www/html/storage/app/webhooks-during-maintenance
+      - /data/devlab/ssh:/var/www/html/storage/app/ssh
+      - /data/devlab/applications:/var/www/html/storage/app/applications
+      - /data/devlab/databases:/var/www/html/storage/app/databases
+      - /data/devlab/services:/var/www/html/storage/app/services
+      - /data/devlab/backups:/var/www/html/storage/app/backups
+      - /data/devlab/webhooks-during-maintenance:/var/www/html/storage/app/webhooks-during-maintenance
     environment:
       - APP_ENV=production
       - APP_NAME
@@ -87,13 +87,13 @@ services:
         condition: service_healthy
   postgres:
     volumes:
-      - coolify-db:/var/lib/postgresql/data
+      - devlab-db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "${DB_USERNAME}"
       POSTGRES_PASSWORD: "${DB_PASSWORD}"
-      POSTGRES_DB: "${DB_DATABASE:-coolify}"
+      POSTGRES_DB: "${DB_DATABASE:-devlab}"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${DB_USERNAME}", "-d", "${DB_DATABASE:-coolify}" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USERNAME}", "-d", "${DB_DATABASE:-devlab}" ]
       interval: 5s
       retries: 10
       timeout: 2s
@@ -102,7 +102,7 @@ services:
     environment:
       REDIS_PASSWORD: "${REDIS_PASSWORD}"
     volumes:
-      - coolify-redis:/data
+      - devlab-redis:/data
     healthcheck:
       test: redis-cli ping
       interval: 5s
@@ -122,11 +122,11 @@ services:
       retries: 10
       timeout: 2s
 volumes:
-  coolify-db:
-    name: coolify-db
-  coolify-redis:
-    name: coolify-redis
+  devlab-db:
+    name: devlab-db
+  devlab-redis:
+    name: devlab-redis
 
 networks:
-  coolify:
+  devlab:
     external: true

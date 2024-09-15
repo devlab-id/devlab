@@ -19,7 +19,7 @@
             </div>
         @endif
         @if ($resource->type() === 'service' || $resource?->build_pack === 'dockercompose')
-            <div class="flex items-center gap-1 pt-4 dark:text-warning text-coollabs">
+            <div class="flex items-center gap-1 pt-4 dark:text-warning text-devlab">
                 <svg class="hidden w-4 h-4 dark:text-warning lg:block" viewBox="0 0 256 256"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill="currentColor"
@@ -28,7 +28,7 @@
                 </svg>
                 Hardcoded variables are not shown here.
             </div>
-            {{-- <div class="pb-4 dark:text-warning text-coollabs">If you would like to add a variable, you must add it to
+            {{-- <div class="pb-4 dark:text-warning text-devlab">If you would like to add a variable, you must add it to
                 your compose file.</div> --}}
         @endif
     </div>

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Notifications | Coolify
+        Notifications | Devlab
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">
@@ -54,7 +54,7 @@
             </x-forms.button>
         </form>
         <div class="flex flex-col gap-4">
-            <div class="p-4 border dark:border-coolgray-300">
+            <div class="p-4 border dark:border-devgray-300">
                 <h3>SMTP Server</h3>
                 <div class="w-32">
                     <x-forms.checkbox instantSave id="team.smtp_enabled" label="Enabled" />
@@ -81,7 +81,7 @@
                     </div>
                 </form>
             </div>
-            <div class="p-4 border dark:border-coolgray-300">
+            <div class="p-4 border dark:border-devgray-300">
                 <h3>Resend</h3>
                 <div class="w-32">
                     <x-forms.checkbox instantSave='instantSaveResend' id="team.resend_enabled" label="Enabled" />

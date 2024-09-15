@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        API Tokens | Coolify
+        API Tokens | Devlab
     </x-slot>
     <x-security.navbar />
     <div class="pb-4 ">
@@ -44,7 +44,7 @@
     <h3 class="py-4">Issued Tokens</h3>
     <div class="grid gap-2 lg:grid-cols-1">
         @forelse ($tokens as $token)
-            <div class="flex flex-col gap-1 p-2 border dark:border-coolgray-200 hover:no-underline">
+            <div class="flex flex-col gap-1 p-2 border dark:border-devgray-200 hover:no-underline">
                 <div>Description: {{ $token->name }}</div>
                 <div>Last used: {{ $token->last_used_at ? $token->last_used_at->diffForHumans() : 'Never' }}</div>
                 <div class="flex gap-1">

@@ -1,7 +1,7 @@
 <template>
     <Transition name="fade">
         <div>
-            <div class="flex items-center p-1 px-2 overflow-hidden transition-all transform rounded cursor-pointer bg-coolgray-100"
+            <div class="flex items-center p-1 px-2 overflow-hidden transition-all transform rounded cursor-pointer bg-devgray-100"
                 @click="showCommandPalette = true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 icon" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -13,11 +13,11 @@
                 <span class="ml-2 kbd-custom">/</span>
             </div>
             <div class="relative" role="dialog" aria-modal="true" v-if="showCommandPalette" @keyup.esc="resetState">
-                <div class="fixed inset-0 transition-opacity bg-opacity-90 bg-coolgray-100" @click.self="resetState">
+                <div class="fixed inset-0 transition-opacity bg-opacity-90 bg-devgray-100" @click.self="resetState">
                 </div>
                 <div class="fixed inset-0 p-4 mx-auto overflow-y-auto lg:w-[70rem] sm:p-10 md:px-20"
                     @click.self="resetState">
-                    <div class="overflow-hidden transition-all transform bg-coolgray-200 ring-1 ring-black ring-opacity-5">
+                    <div class="overflow-hidden transition-all transform bg-devgray-200 ring-1 ring-black ring-opacity-5">
                         <div class="relative">
                             <svg class="absolute w-5 h-5 text-gray-400 pointer-events-none left-3 top-2.5"
                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -27,7 +27,7 @@
                             </svg>
                             <input type="text" v-model="search" ref="searchInput" @keydown.down="focusNext(magic.length)"
                                 @keydown.up="focusPrev(magic.length)" @keyup.enter="callAction"
-                                class="w-full h-10 pr-4 rounded outline-none dark:text-white bg-coolgray-400 pl-11 placeholder:text-neutral-700 sm:text-sm focus:outline-none"
+                                class="w-full h-10 pr-4 rounded outline-none dark:text-white bg-devgray-400 pl-11 placeholder:text-neutral-700 sm:text-sm focus:outline-none"
                                 placeholder="Search, jump or create... magically... 🪄" role="combobox"
                                 aria-expanded="false" aria-controls="options">
                         </div>
@@ -40,7 +40,7 @@
                                         possibleSequences[sequenceState.sequence[sequenceState.currentActionIndex]].newTitle }}
                                 </h2>
                                 <ul class="mt-2 -mx-4 dark:text-white">
-                                    <li class="flex items-center px-4 py-2 cursor-pointer select-none group hover:bg-coolgray-400"
+                                    <li class="flex items-center px-4 py-2 cursor-pointer select-none group hover:bg-devgray-400"
                                         id="option-1" role="option" tabindex="-1"
                                         @click="addNew(sequenceState.sequence[sequenceState.currentActionIndex])">
                                         <svg xmlns=" http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"
@@ -86,8 +86,8 @@
                                         possibleSequences[sequenceState.sequence[sequenceState.currentActionIndex]].title }}
                                 </h2>
                                 <ul v-if="magic.length != 0" class="mt-2 -mx-4 dark:text-white">
-                                    <li class="flex items-center px-4 py-2 transition-all cursor-pointer select-none group hover:bg-coolgray-400"
-                                        :class="{ 'bg-coollabs': currentFocus === index }" id="option-1" role="option"
+                                    <li class="flex items-center px-4 py-2 transition-all cursor-pointer select-none group hover:bg-devgray-400"
+                                        :class="{ 'bg-devlab': currentFocus === index }" id="option-1" role="option"
                                         tabindex="-1" v-for="action, index in magic" @click="goThroughSequence(index)"
                                         ref="magicItems">
                                         <div class="relative">

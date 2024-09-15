@@ -4,8 +4,8 @@
          <div class="grid grid-cols-1 gap-2">
              @foreach ($deployments as $deployment)
                  <a href="{{ data_get($deployment, 'deployment_url') }}" @class([
-                     'box-without-bg-without-border dark:bg-coolgray-100 bg-white gap-2 cursor-pointer group border-l-2',
-                     'dark:border-coolgray-300' => data_get($deployment, 'status') === 'queued',
+                     'box-without-bg-without-border dark:bg-devgray-100 bg-white gap-2 cursor-pointer group border-l-2',
+                     'dark:border-devgray-300' => data_get($deployment, 'status') === 'queued',
                      'dark:border-yellow-500' =>
                          data_get($deployment, 'status') === 'in_progress',
                  ])>

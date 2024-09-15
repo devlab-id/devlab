@@ -1,6 +1,6 @@
-# Coolify Release Guide
+# Devlab Release Guide
 
-This guide outlines the release process for Coolify, intended for developers and those interested in understanding how releases are managed and deployed.
+This guide outlines the release process for Devlab, intended for developers and those interested in understanding how releases are managed and deployed.
 
 ## Release Process
 
@@ -19,7 +19,7 @@ This guide outlines the release process for Coolify, intended for developers and
 
 5. **Updating the CDN**
    - The final step is updating the version information on the CDN:
-     [https://cdn.coollabs.io/coolify/versions.json](https://cdn.coollabs.io/coolify/versions.json)
+     [https://cdn.coollabs.io/devlab/versions.json](https://cdn.coollabs.io/devlab/versions.json)
 
 > [!NOTE]
 > The CDN update may not occur immediately after the GitHub release. It can happen hours or even days later due to additional testing, stability checks, or potential hotfixes.
@@ -37,9 +37,9 @@ It's important to understand that a new version released on GitHub may not immed
 > [!CAUTION]  
 > Updating to unreleased versions is not recommended and may cause issues. Use at your own risk!
 
-To update your Coolify instance to a specific (unreleased) version, use the following command:
+To update your Devlab instance to a specific (unreleased) version, use the following command:
 
 ```bash
-curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash -s <version>
+curl -fsSL https://cdn.coollabs.io/devlab/install.sh | bash -s <version>
 ```
 -> Replace `<version>` with the version you want to update to (for example `4.0.0-beta.332`).

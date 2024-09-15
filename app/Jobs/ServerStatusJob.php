@@ -43,7 +43,7 @@ class ServerStatusJob implements ShouldBeEncrypted, ShouldQueue
         }
         try {
             if ($this->server->isFunctional()) {
-                $this->remove_unnecessary_coolify_yaml();
+                $this->remove_unnecessary_devlab_yaml();
                 if ($this->server->isSentinelEnabled()) {
                     $this->server->checkSentinel();
                 }
@@ -57,11 +57,11 @@ class ServerStatusJob implements ShouldBeEncrypted, ShouldQueue
 
     }
 
-    private function remove_unnecessary_coolify_yaml()
+    private function remove_unnecessary_devlab_yaml()
     {
-        // This will remote the coolify.yaml file from the server as it is not needed on cloud servers
+        // This will remote the devlab.yaml file from the server as it is not needed on cloud servers
         if (isCloud() && $this->server->id !== 0) {
-            $file = $this->server->proxyPath().'/dynamic/coolify.yaml';
+            $file = $this->server->proxyPath().'/dynamic/devlab.yaml';
 
             return instant_remote_process([
                 "rm -f $file",

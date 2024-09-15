@@ -42,24 +42,24 @@ class NotifyDemo extends Command
 
     private function showHelp()
     {
-        style('coolify')->color('#9333EA');
-        style('title-box')->apply('mt-1 px-2 py-1 bg-coolify');
+        style('devlab')->color('#9333EA');
+        style('title-box')->apply('mt-1 px-2 py-1 bg-devlab');
 
         render(
             <<<'HTML'
         <div>
             <div class="title-box">
-                Coolify
+                Devlab
             </div>
             <p class="mt-1 ml-1 ">
-              Demo Notify <strong class="text-coolify">=></strong> Send a demo notification to a given channel.
+              Demo Notify <strong class="text-devlab">=></strong> Send a demo notification to a given channel.
             </p>
-            <p class="px-1 mt-1 ml-1 bg-coolify">
+            <p class="px-1 mt-1 ml-1 bg-devlab">
               php artisan app:demo-notify {channel}
             </p>
             <div class="my-1">
                 <div class="text-yellow-500"> Channels: </div>
-                <ul class="text-coolify">
+                <ul class="text-devlab">
                     <li>email</li>
                     <li>slack</li>
                     <li>discord</li>
@@ -72,7 +72,7 @@ class NotifyDemo extends Command
 
         ask(<<<'HTML'
         <div class="mr-1">
-            In which manner you wish a <strong class="text-coolify">coolified</strong> notification?
+            In which manner you wish a <strong class="text-devlab">coolified</strong> notification?
         </div>
         HTML, ['email', 'slack', 'discord', 'telegram']);
     }

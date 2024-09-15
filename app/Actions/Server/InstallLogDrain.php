@@ -47,11 +47,11 @@ class InstallLogDrain
 [FILTER]
     Name                modify
     Match               *
-    Set                 coolify.server_name {$server->name}
-    Rename              COOLIFY_APP_NAME coolify.app_name
-    Rename              COOLIFY_PROJECT_NAME coolify.project_name
-    Rename              COOLIFY_SERVER_IP coolify.server_ip
-    Rename              COOLIFY_ENVIRONMENT_NAME coolify.environment_name
+    Set                 devlab.server_name {$server->name}
+    Rename              COOLIFY_APP_NAME devlab.app_name
+    Rename              COOLIFY_PROJECT_NAME devlab.project_name
+    Rename              COOLIFY_SERVER_IP devlab.server_ip
+    Rename              COOLIFY_ENVIRONMENT_NAME devlab.environment_name
 [OUTPUT]
     Name nrlogs
     Match *
@@ -102,11 +102,11 @@ class InstallLogDrain
 [FILTER]
     Name                modify
     Match               *
-    Set                 coolify.server_name {$server->name}
-    Rename              COOLIFY_APP_NAME coolify.app_name
-    Rename              COOLIFY_PROJECT_NAME coolify.project_name
-    Rename              COOLIFY_SERVER_IP coolify.server_ip
-    Rename              COOLIFY_ENVIRONMENT_NAME coolify.environment_name
+    Set                 devlab.server_name {$server->name}
+    Rename              COOLIFY_APP_NAME devlab.app_name
+    Rename              COOLIFY_PROJECT_NAME devlab.project_name
+    Rename              COOLIFY_SERVER_IP devlab.server_ip
+    Rename              COOLIFY_ENVIRONMENT_NAME devlab.environment_name
 [OUTPUT]
     Name            http
     Match           *
@@ -140,9 +140,9 @@ class InstallLogDrain
             }
             $compose = base64_encode('
 services:
-  coolify-log-drain:
+  devlab-log-drain:
     image: cr.fluentbit.io/fluent/fluent-bit:2.0
-    container_name: coolify-log-drain
+    container_name: devlab-log-drain
     command: -c /fluent-bit.conf
     env_file:
       - .env
@@ -163,7 +163,7 @@ Files:
 ');
             $license_key = $server->settings->logdrain_newrelic_license_key;
             $base_uri = $server->settings->logdrain_newrelic_base_uri;
-            $base_path = config('coolify.base_config_path');
+            $base_path = config('devlab.base_config_path');
 
             $config_path = $base_path.'/log-drains';
             $fluent_bit_config = $config_path.'/fluent-bit.conf';

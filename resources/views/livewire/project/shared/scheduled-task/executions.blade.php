@@ -2,9 +2,9 @@
     @forelse($executions as $execution)
         <a wire:click="selectTask({{ data_get($execution, 'id') }})" @class([
             'flex flex-col border-l-2 transition-colors p-4 cursor-pointer',
-            'bg-white hover:bg-gray-100 dark:bg-coolgray-100 dark:hover:bg-coolgray-200',
+            'bg-white hover:bg-gray-100 dark:bg-devgray-100 dark:hover:bg-devgray-200',
             'text-black dark:text-white',
-            'bg-gray-200 dark:bg-coolgray-200' =>
+            'bg-gray-200 dark:bg-devgray-200' =>
                 data_get($execution, 'id') == $selectedKey,
             'border-green-500' => data_get($execution, 'status') === 'success',
             'border-red-500' => data_get($execution, 'status') === 'failed',
@@ -22,7 +22,7 @@
             </div>
         </a>
         @if (data_get($execution, 'id') == $selectedKey)
-            <div class="p-4 mb-2 bg-gray-100 dark:bg-coolgray-200 rounded">
+            <div class="p-4 mb-2 bg-gray-100 dark:bg-devgray-200 rounded">
                 @if (data_get($execution, 'message'))
                     <div>
                         <pre class="whitespace-pre-wrap">{{ data_get($execution, 'message') }}</pre>
@@ -33,6 +33,6 @@
             </div>
         @endif
     @empty
-        <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded">No executions found.</div>
+        <div class="p-4 bg-gray-100 dark:bg-devgray-100 rounded">No executions found.</div>
     @endforelse
 </div>

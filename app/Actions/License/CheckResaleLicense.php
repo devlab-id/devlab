@@ -24,7 +24,7 @@ class CheckResaleLicense
             // if (!$settings->resale_license) {
             //     return;
             // }
-            $base_url = config('coolify.license_url');
+            $base_url = config('devlab.license_url');
             $instance_id = config('app.id');
 
             ray("Checking license key against $base_url/lemon/validate");

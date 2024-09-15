@@ -19,5 +19,5 @@ http:
     redirect-regexp:
       redirectRegex:
         regex: '(.*)'
-        replacement: 'https://coolify.io'
+        replacement: 'https://devlab.id'
         permanent: false

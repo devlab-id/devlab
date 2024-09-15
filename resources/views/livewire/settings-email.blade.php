@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        Settings | Devlab
     </x-slot>
     <x-settings.navbar />
     <div class="flex items-center gap-2">
@@ -16,7 +16,7 @@
         </x-forms.button>
     </form>
     <div class="flex flex-col gap-4">
-        <div class="p-4 border dark:border-coolgray-300">
+        <div class="p-4 border dark:border-devgray-300">
             <form wire:submit='submit' class="flex flex-col">
                 <div class="flex gap-2">
                     <h3>SMTP Server</h3>
@@ -43,7 +43,7 @@
                 </div>
             </form>
         </div>
-        <div class="p-4 border dark:border-coolgray-300">
+        <div class="p-4 border dark:border-devgray-300">
             <form wire:submit='submitResend' class="flex flex-col">
                 <div class="flex gap-2">
                     <h3>Resend</h3>

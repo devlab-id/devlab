@@ -50,7 +50,7 @@ class StartDragonfly
                         'memlock' => '-1',
                     ],
                     'labels' => [
-                        'coolify.managed' => 'true',
+                        'devlab.managed' => 'true',
                     ],
                     'healthcheck' => [
                         'test' => "redis-cli -a {$this->database->dragonfly_password} ping",

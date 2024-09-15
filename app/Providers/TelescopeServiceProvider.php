@@ -60,7 +60,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             $root_user = User::find(0);
 
             return in_array($user->email, [
-                $root_user->email,
+                'test@example.com',
             ]);
         });
     }

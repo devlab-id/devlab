@@ -41,7 +41,7 @@
                                 @if (!isDatabaseImage(data_get($service, 'image')))
                                     <div class="flex items-end gap-2">
                                         <x-forms.input
-                                            helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io will point to port 3000 inside the container. "
+                                            helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.devlab.id,https://cloud.devlab.id/dashboard<br>- http://app.devlab.id/api/v3<br>- http://app.devlab.id:3000 -> app.devlab.id will point to port 3000 inside the container. "
                                             label="Domains for {{ str($serviceName)->headline() }}"
                                             id="parsedServiceDomains.{{ $serviceName }}.domain"></x-forms.input>
                                         <x-forms.button wire:click="generateDomain('{{ $serviceName }}')">Generate
@@ -56,8 +56,8 @@
             @endif
             @if ($application->build_pack !== 'dockercompose')
                 <div class="flex items-end gap-2">
-                    <x-forms.input placeholder="https://coolify.io" id="application.fqdn" label="Domains"
-                        helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io will point to port 3000 inside the container. " />
+                    <x-forms.input placeholder="https://devlab.id" id="application.fqdn" label="Domains"
+                        helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.devlab.id,https://cloud.devlab.id/dashboard<br>- http://app.devlab.id/api/v3<br>- http://app.devlab.id:3000 -> app.devlab.id will point to port 3000 inside the container. " />
                     <x-forms.button wire:click="getWildcardDomain">Generate Domain
                     </x-forms.button>
                 </div>
@@ -82,13 +82,13 @@
                     <h3>Docker Registry</h3>
                     @if ($application->build_pack !== 'dockerimage' && !$application->destination->server->isSwarm())
                         <x-helper
-                            helper="Push the built image to a docker registry. More info <a class='underline' href='https://coolify.io/docs/knowledge-base/docker/registry' target='_blank'>here</a>." />
+                            helper="Push the built image to a docker registry. More info <a class='underline' href='https://devlab.id/docs/knowledge-base/docker/registry' target='_blank'>here</a>." />
                     @endif
                 </div>
                 @if ($application->destination->server->isSwarm())
                     @if ($application->build_pack !== 'dockerimage')
                         <div>Docker Swarm requires the image to be available in a registry. More info <a
-                                class="underline" href="https://coolify.io/docs/knowledge-base/docker/registry"
+                                class="underline" href="https://devlab.id/docs/knowledge-base/docker/registry"
                                 target="_blank">here</a>.</div>
                     @endif
                 @endif
@@ -124,11 +124,11 @@
                     @endif
                 </div>
             @endif
-            <div class="py-4 border-b dark:border-coolgray-200">
+            <div class="py-4 border-b dark:border-devgray-200">
                 <h3>Build</h3>
                 @if ($application->build_pack === 'dockerimage')
                     <x-forms.input
-                        helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Coolify's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>docs.</a>"
+                        helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Devlab's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://devlab.id/docs/knowledge-base/docker/custom-commands'>docs.</a>"
                         placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
                         id="application.custom_docker_run_options" label="Custom Docker Options" />
                 @else
@@ -145,7 +145,7 @@
                             <div class="pt-1 text-xs">Nixpacks will detect the required configuration
                                 automatically.
                                 <a class="underline"
-                                    href="https://coolify.io/docs/resources/applications/index">Framework
+                                    href="https://devlab.id/docs/resources/applications/index">Framework
                                     Specific Docs</a>
                             </div>
                         @endif
@@ -222,14 +222,14 @@
                                 </div>
                             @endif
                             <x-forms.input
-                                helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Coolify's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>docs.</a>"
+                                helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Devlab's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://devlab.id/docs/knowledge-base/docker/custom-commands'>docs.</a>"
                                 placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
                                 id="application.custom_docker_run_options" label="Custom Docker Options" />
 
                             @if ($application->build_pack !== 'dockercompose')
                                 <div class="pt-2 w-96">
                                     <x-forms.checkbox
-                                        helper="Use a build server to build your application. You can configure your build server in the Server settings. This is experimental. For more info, check the <a href='https://coolify.io/docs/knowledge-base/server/build-server' class='underline' target='_blank'>documentation</a>."
+                                        helper="Use a build server to build your application. You can configure your build server in the Server settings. This is experimental. For more info, check the <a href='https://devlab.id/docs/knowledge-base/server/build-server' class='underline' target='_blank'>documentation</a>."
                                         instantSave id="application.settings.is_build_server_enabled"
                                         label="Use a Build Server? (experimental)" />
                                 </div>
@@ -268,7 +268,7 @@
                         helper="By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$.<br><br>If you want to use env variables inside the labels, turn this off."
                         id="application.settings.is_container_label_escape_enabled" instantSave></x-forms.checkbox>
                     <x-forms.checkbox label="Readonly labels"
-                        helper="If you know what are you doing, you can enable this to edit the labels directly. Coolify won't update labels automatically. <br><br>Be careful, it could break the proxy configuration after you restart the container."
+                        helper="If you know what are you doing, you can enable this to edit the labels directly. Devlab won't update labels automatically. <br><br>Be careful, it could break the proxy configuration after you restart the container."
                         id="application.settings.is_container_label_readonly_enabled" instantSave></x-forms.checkbox>
                 </div>
             @endif
@@ -299,12 +299,12 @@
                         helper="By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$.<br><br>If you want to use env variables inside the labels, turn this off."
                         id="application.settings.is_container_label_escape_enabled" instantSave></x-forms.checkbox>
                     <x-forms.checkbox label="Readonly labels"
-                        helper="If you know what are you doing, you can enable this to edit the labels directly. Coolify won't update labels automatically. <br><br>Be careful, it could break the proxy configuration after you restart the container."
+                        helper="If you know what are you doing, you can enable this to edit the labels directly. Devlab won't update labels automatically. <br><br>Be careful, it could break the proxy configuration after you restart the container."
                         id="application.settings.is_container_label_readonly_enabled" instantSave></x-forms.checkbox>
                 </div>
                 <x-modal-confirmation buttonFullWidth action="resetDefaultLabels"
-                    buttonTitle="Reset to Coolify Generated Labels">
-                    Are you sure you want to reset the labels to Coolify generated labels? <br>It could break the proxy
+                    buttonTitle="Reset to Devlab Generated Labels">
+                    Are you sure you want to reset the labels to Devlab generated labels? <br>It could break the proxy
                     configuration after you restart the container.
                 </x-modal-confirmation>
 

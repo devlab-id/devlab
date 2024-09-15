@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($application, 'name')->limit(10) }} > Deployment | Coolify
+        {{ data_get_str($application, 'name')->limit(10) }} > Deployment | Devlab
     </x-slot>
     <h1 class="py-0">Deployment</h1>
     <livewire:project.shared.configuration-checker :resource="$application" />
@@ -56,7 +56,7 @@
         @endif
         <div id="screen" :class="fullscreen ? 'fullscreen' : 'relative'">
             <div @if ($isKeepAliveOn) wire:poll.2000ms="polling" @endif
-                class="flex flex-col-reverse w-full p-2 px-4 mt-4 overflow-y-auto bg-white dark:text-white dark:bg-coolgray-100 scrollbar dark:border-coolgray-300"
+                class="flex flex-col-reverse w-full p-2 px-4 mt-4 overflow-y-auto bg-white dark:text-white dark:bg-devgray-100 scrollbar dark:border-devgray-300"
                 :class="fullscreen ? '' : 'min-h-14 max-h-[40rem] border border-dotted rounded'">
                 <div :class="fullscreen ? 'fixed' : 'absolute'" class="top-4 right-6">
                     <div class="flex justify-end gap-4 fixed -translate-x-full">
@@ -104,11 +104,11 @@
                     @forelse ($this->logLines as $line)
                         <div @class([
                             'mt-2' => $line['command'] ?? false,
-                            'flex gap-2 dark:hover:bg-coolgray-500 hover:bg-gray-100',
+                            'flex gap-2 dark:hover:bg-devgray-500 hover:bg-gray-100',
                         ])>
                             <span x-show="showTimestamps" class="shrink-0 text-gray-500">{{ $line['timestamp'] }}</span>
                             <span @class([
-                                'text-coollabs dark:text-warning' => $line['hidden'],
+                                'text-devlab dark:text-warning' => $line['hidden'],
                                 'text-red-500' => $line['stderr'],
                                 'font-bold' => $line['command'] ?? false,
                                 'whitespace-pre-wrap',

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Tag | Coolify
+        Tag | Devlab
     </x-slot>
     <div class="flex items-start gap-2">
         <div>
@@ -11,7 +11,7 @@
         <div>Available tags</div>
         <div class="flex flex-wrap gap-2 ">
             @forelse ($tags as $oneTag)
-                <a :class="{{ $tag->id == $oneTag->id }} && 'bg-coollabs hover:bg-coollabs-100'" class="w-64 box"
+                <a :class="{{ $tag->id == $oneTag->id }} && 'bg-devlab hover:bg-devlab-100'" class="w-64 box"
                     href="{{ route('tags.show', ['tag_name' => $oneTag->name]) }}">{{ $oneTag->name }}</a>
             @empty
                 <div>No tags yet defined yet. Go to a resource and add a tag there.</div>
@@ -63,7 +63,7 @@
                     @foreach ($deployments as $deployment)
                         <a href="{{ data_get($deployment, 'deployment_url') }}" @class([
                             'gap-2 cursor-pointer box group border-l-2 border-dotted',
-                            'dark:border-coolgray-300' => data_get($deployment, 'status') === 'queued',
+                            'dark:border-devgray-300' => data_get($deployment, 'status') === 'queued',
                             'border-yellow-500' => data_get($deployment, 'status') === 'in_progress',
                         ])>
                             <div class="flex flex-col mx-6">

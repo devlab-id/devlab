@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Tags | Coolify
+        Tags | Devlab
     </x-slot>
     <h1>Tags</h1>
     <div class="flex flex-col pb-6 ">

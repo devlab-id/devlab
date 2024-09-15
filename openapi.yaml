@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
-  title: Coolify
+  title: Devlab
   version: '0.1'
 servers:
   -
-    url: 'https://app.coolify.io/api/v1'
-    description: 'Coolify Cloud API. Change the host to your own instance if you are self-hosting.'
+    url: 'https://app.devlab.id/api/v1'
+    description: 'Devlab Cloud API. Change the host to your own instance if you are self-hosting.'
 paths:
   /applications:
     get:
@@ -2896,7 +2896,7 @@ paths:
   /version:
     get:
       summary: Version
-      description: 'Get Coolify version.'
+      description: 'Get Devlab version.'
       operationId: version
       responses:
         '200':
@@ -4592,7 +4592,7 @@ components:
           description: 'The date and time when the application was deleted.'
         compose_parsing_version:
           type: string
-          description: 'How Coolify parse the compose file.'
+          description: 'How Devlab parse the compose file.'
       type: object
     ApplicationDeploymentQueue:
       description: 'Project model'
@@ -4868,7 +4868,7 @@ components:
           description: 'The raw docker-compose.yml file of the service.'
         docker_compose:
           type: string
-          description: 'The docker-compose.yml file that is parsed and modified by Coolify.'
+          description: 'The docker-compose.yml file that is parsed and modified by Devlab.'
         destination_type:
           type: string
           description: 'Destination type.'

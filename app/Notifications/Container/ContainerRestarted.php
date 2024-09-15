@@ -24,7 +24,7 @@ class ContainerRestarted extends Notification implements ShouldQueue
     public function toMail(): MailMessage
     {
         $mail = new MailMessage;
-        $mail->subject("Coolify: A resource ({$this->name}) has been restarted automatically on {$this->server->name}");
+        $mail->subject("Devlab: A resource ({$this->name}) has been restarted automatically on {$this->server->name}");
         $mail->view('emails.container-restarted', [
             'containerName' => $this->name,
             'serverName' => $this->server->name,
@@ -36,14 +36,14 @@ class ContainerRestarted extends Notification implements ShouldQueue
 
     public function toDiscord(): string
     {
-        $message = "Coolify: A resource ({$this->name}) has been restarted automatically on {$this->server->name}";
+        $message = "Devlab: A resource ({$this->name}) has been restarted automatically on {$this->server->name}";
 
         return $message;
     }
 
     public function toTelegram(): array
     {
-        $message = "Coolify: A resource ({$this->name}) has been restarted automatically on {$this->server->name}";
+        $message = "Devlab: A resource ({$this->name}) has been restarted automatically on {$this->server->name}";
         $payload = [
             'message' => $message,
         ];
@@ -51,7 +51,7 @@ class ContainerRestarted extends Notification implements ShouldQueue
             $payload['buttons'] = [
                 [
                     [
-                        'text' => 'Check Proxy in Coolify',
+                        'text' => 'Check Proxy in Devlab',
                         'url' => $this->url,
                     ],
                 ],

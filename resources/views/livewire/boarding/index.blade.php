@@ -1,12 +1,12 @@
 @php use App\Enums\ProxyTypes; @endphp
 <x-slot:title>
-    Onboarding | Coolify
+    Onboarding | Devlab
 </x-slot>
 <section class="flex flex-col h-full lg:items-center lg:justify-center">
     <div
         class="flex flex-col items-center justify-center p-10 mx-2 mt-10 bg-white border rounded-lg shadow lg:p-20 dark:bg-transparent dark:border-none max-w-7xl ">
         @if ($currentState === 'welcome')
-            <h1 class="text-3xl font-bold lg:text-5xl">Welcome to Coolify</h1>
+            <h1 class="text-3xl font-bold lg:text-5xl">Welcome to Devlab</h1>
             <div class="py-6 text-center lg:text-xl">Let me help you set up the basics.</div>
             <div class="flex justify-center ">
                 <x-forms.button class="justify-center w-64 box-boarding"
@@ -15,14 +15,14 @@
                 </x-forms.button>
             </div>
         @elseif ($currentState === 'explanation')
-            <x-boarding-step title="What is Coolify?">
+            <x-boarding-step title="What is Devlab?">
                 <x-slot:question>
-                    Coolify is an all-in-one application to automate tasks on your servers, deploy application with
+                    Devlab is an all-in-one application to automate tasks on your servers, deploy application with
                     Git
                     integrations, deploy databases and services, monitor these resources with notifications and
                     alerts
                     without vendor lock-in
-                    and <a href="https://coolify.io" class="dark:text-white hover:underline">much much more</a>.
+                    and <a href="https://devlab.id" class="dark:text-white hover:underline">much much more</a>.
                     <br><br>
                     <span class="text-xl">
                         <x-highlighted text="Self-hosting with superpowers!" /></span>
@@ -30,12 +30,12 @@
                 <x-slot:explanation>
                     <p>
                         <x-highlighted text="Task automation:" /> You don't need to manage your servers anymore.
-                        Coolify does
+                        Devlab does
                         it for you.
                     </p>
                     <p>
                         <x-highlighted text="No vendor lock-in:" /> All configurations are stored on your servers, so
-                        everything works without a connection to Coolify (except integrations and automations).
+                        everything works without a connection to Devlab (except integrations and automations).
                     </p>
                     <p>
                         <x-highlighted text="Monitoring:" />You can get notified on your favourite platforms
@@ -80,7 +80,7 @@
                                     <p class="text-xs mt-1">
                                         Non-root user is experimental:
                                         <a class="font-bold underline" target="_blank"
-                                            href="https://coolify.io/docs/knowledge-base/server/non-root-user">docs</a>
+                                            href="https://devlab.id/docs/knowledge-base/server/non-root-user">docs</a>
                                     </p>
                                 </div>
                             </div>
@@ -91,14 +91,14 @@
                                     <li>The correct public key is in your <code
                                             class="bg-red-200 dark:bg-red-900 px-1 rounded">~/.ssh/authorized_keys</code>
                                         file for the specified user</li>
-                                    <li>Or skip the boarding process and manually add a new private key to Coolify and
+                                    <li>Or skip the boarding process and manually add a new private key to Devlab and
                                         the server</li>
                                 </ul>
                             </div>
 
                             <p class="mb-4">
                                 For more help, check this <a target="_blank" class="underline font-semibold"
-                                    href="https://coolify.io/docs/knowledge-base/server/openssh">documentation</a>.
+                                    href="https://devlab.id/docs/knowledge-base/server/openssh">documentation</a>.
                             </p>
 
                             <x-forms.input readonly id="serverPublicKey" class="mb-4"
@@ -115,7 +115,7 @@
                         services, called resources. Any CPU intensive process will use the server's CPU where you
                         are deploying your resources.</p>
                     <p>
-                        <x-highlighted text="Localhost" /> is the server where Coolify is running on. It is not
+                        <x-highlighted text="Localhost" /> is the server where Devlab is running on. It is not
                         recommended to use one server
                         for everything.
                     </p>
@@ -152,7 +152,7 @@
                 </x-slot:actions>
                 <x-slot:explanation>
                     <p>SSH Keys are used to connect to a remote server through a secure shell, called SSH.</p>
-                    <p>You can use your own ssh private key, or you can let Coolify to create one for you.</p>
+                    <p>You can use your own ssh private key, or you can let Devlab to create one for you.</p>
                     <p>In both ways, you need to add the public version of your ssh private key to the remote
                         server's
                         <code class="dark:text-warning">~/.ssh/authorized_keys</code> file.
@@ -198,7 +198,7 @@
                                     <p class="text-xs mt-1">
                                         Non-root user is experimental:
                                         <a class="font-bold underline" target="_blank"
-                                            href="https://coolify.io/docs/knowledge-base/server/non-root-user">docs</a>
+                                            href="https://devlab.id/docs/knowledge-base/server/non-root-user">docs</a>
                                     </p>
                                 </div>
                             </div>
@@ -209,14 +209,14 @@
                                     <li>The correct public key is in your <code
                                             class="bg-red-200 dark:bg-red-900 px-1 rounded">~/.ssh/authorized_keys</code>
                                         file for the specified user</li>
-                                    <li>Or skip the boarding process and manually add a new private key to Coolify and
+                                    <li>Or skip the boarding process and manually add a new private key to Devlab and
                                         the server</li>
                                 </ul>
                             </div>
 
                             <p class="mb-4">
                                 For more help, check this <a target="_blank" class="underline font-semibold"
-                                    href="https://coolify.io/docs/knowledge-base/server/openssh">documentation</a>.
+                                    href="https://devlab.id/docs/knowledge-base/server/openssh">documentation</a>.
                             </p>
 
                             <x-forms.input readonly id="serverPublicKey" class="mb-4"
@@ -230,7 +230,7 @@
                 </x-slot:actions>
                 <x-slot:explanation>
                     <p>Private Keys are used to connect to a remote server through a secure shell, called SSH.</p>
-                    <p>You can use your own private key, or you can let Coolify to create one for you.</p>
+                    <p>You can use your own private key, or you can let Devlab to create one for you.</p>
                     <p>In both ways, you need to add the public version of your private key to the remote server's
                         <code>~/.ssh/authorized_keys</code> file.
                     </p>
@@ -261,7 +261,7 @@
                 </x-slot:actions>
                 <x-slot:explanation>
                     <p>Private Keys are used to connect to a remote server through a secure shell, called SSH.</p>
-                    <p>You can use your own private key, or you can let Coolify to create one for you.</p>
+                    <p>You can use your own private key, or you can let Devlab to create one for you.</p>
                     <p>In both ways, you need to add the public version of your private key to the remote server's
                         <code>~/.ssh/authorized_keys</code> file.
                     </p>
@@ -298,14 +298,14 @@
                                         id="remoteServerUser" wire:model="remoteServerUser" />
                                     <div class="text-xs text-gray-600 dark:text-gray-300">Non-root user is
                                         experimental: <a class="font-bold underline" target="_blank"
-                                            href="https://coolify.io/docs/knowledge-base/server/non-root-user">docs</a>.
+                                            href="https://devlab.id/docs/knowledge-base/server/non-root-user">docs</a>.
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:w-64">
                             <x-forms.checkbox
-                                helper="If you are using Cloudflare Tunnels, enable this. It will proxy all ssh requests to your server through Cloudflare.<br><span class='dark:text-warning'>Coolify does not install/setup Cloudflare (cloudflared) on your server.</span>"
+                                helper="If you are using Cloudflare Tunnels, enable this. It will proxy all ssh requests to your server through Cloudflare.<br><span class='dark:text-warning'>Devlab does not install/setup Cloudflare (cloudflared) on your server.</span>"
                                 id="isCloudflareTunnel" label="Cloudflare Tunnel" wire:model="isCloudflareTunnel" />
                         </div>
                         <x-forms.button type="submit">Continue</x-forms.button>

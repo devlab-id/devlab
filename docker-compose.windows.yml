@@ -1,16 +1,16 @@
 services:
-  coolify-testing-host:
+  devlab-testing-host:
     init: true
     image: "ghcr.io/coollabsio/coolify-testing-host:latest"
     pull_policy: always
-    container_name: coolify-testing-host
+    container_name: devlab-testing-host
     volumes:
       - //var/run/docker.sock://var/run/docker.sock
-      - ./:/data/coolify
-  coolify:
+      - ./:/data/devlab
+  devlab:
     image: "ghcr.io/coollabsio/coolify:latest"
     pull_policy: always
-    container_name: coolify
+    container_name: devlab
     restart: always
     working_dir: /var/www/html
     extra_hosts:
@@ -64,23 +64,23 @@ services:
   postgres:
     image: postgres:15-alpine
     pull_policy: always
-    container_name: coolify-db
+    container_name: devlab-db
     restart: always
     env_file:
       - .env
     volumes:
-      - coolify-db:/var/lib/postgresql/data
+      - devlab-db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "${DB_USERNAME}"
       POSTGRES_PASSWORD: "${DB_PASSWORD}"
-      POSTGRES_DB: "${DB_DATABASE:-coolify}"
+      POSTGRES_DB: "${DB_DATABASE:-devlab}"
     healthcheck:
       test:
         [
           "CMD-SHELL",
           "pg_isready -U ${DB_USERNAME}",
           "-d",
-          "${DB_DATABASE:-coolify}"
+          "${DB_DATABASE:-devlab}"
         ]
       interval: 5s
       retries: 10
@@ -88,7 +88,7 @@ services:
   redis:
     image: redis:alpine
     pull_policy: always
-    container_name: coolify-redis
+    container_name: devlab-redis
     restart: always
     command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     env_file:
@@ -96,7 +96,7 @@ services:
     environment:
       REDIS_PASSWORD: "${REDIS_PASSWORD}"
     volumes:
-      - coolify-redis:/data
+      - devlab-redis:/data
     healthcheck:
       test: redis-cli ping
       interval: 5s
@@ -105,7 +105,7 @@ services:
   soketi:
     image: 'quay.io/soketi/soketi:1.6-16-alpine'
     pull_policy: always
-    container_name: coolify-realtime
+    container_name: devlab-realtime
     restart: always
     env_file:
       - .env
@@ -122,7 +122,7 @@ services:
       retries: 10
       timeout: 2s
 volumes:
-  coolify-db:
-    name: coolify-db
-  coolify-redis:
-    name: coolify-redis
+  devlab-db:
+    name: devlab-db
+  devlab-redis:
+    name: devlab-redis

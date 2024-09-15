@@ -1,16 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 const colors = {
-    "base": "#101010",
+    "base": "#000000",
     "warning": "#FCD452",
     "success": "#16A34A",
     "error": "#DC2626",
-    "coollabs": "#6B16ED",
-    "coollabs-100": "#7317FF",
-    "coolgray-100": "#181818",
-    "coolgray-200": "#202020",
-    "coolgray-300": "#242424",
-    "coolgray-400": "#282828",
-    "coolgray-500": "#323232",
+    "devlab": "#2A7DFD",
+    "devlab-100": "#2A7DFD",
+    "devgray-100": "#181818",
+    "devgray-200": "#202020",
+    "devgray-300": "#242424",
+    "devgray-400": "#282828",
+    "devgray-500": "#323232",
 }
 module.exports = {
     darkMode: "selector",
@@ -24,7 +24,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Inter", "sans-serif"],
+                sans: ["GTWalsheimPro", "sans-serif"],
             },
             colors
         },

@@ -9,7 +9,7 @@
     class="fixed bottom-0 right-0 w-full h-auto duration-300 ease-out sm:px-5 sm:pb-5 sm:w-[26rem] lg:w-full z-[999]"
     x-cloak>
     <div
-        class="flex flex-col items-center justify-between w-full h-full max-w-4xl p-6 mx-auto bg-white border shadow-lg lg:border-t dark:border-coolgray-300 dark:bg-coolgray-100 lg:p-8 lg:flex-row sm:rounded">
+        class="flex flex-col items-center justify-between w-full h-full max-w-4xl p-6 mx-auto bg-white border shadow-lg lg:border-t dark:border-devgray-300 dark:bg-devgray-100 lg:p-8 lg:flex-row sm:rounded">
         <div
             class="flex flex-col items-start h-full pb-6 text-xs lg:items-center lg:flex-row lg:pb-0 lg:pr-6 lg:space-x-5 dark:text-neutral-300">
             @if (isset($icon))
@@ -28,7 +28,7 @@
                 @if ($buttonText->attributes->whereStartsWith('@click')->first()) @click="bannerVisible=false;{{ $buttonText->attributes->get('@click') }}"
                 @else
                 @click="bannerVisible=false;" @endif
-                class="inline-flex items-center justify-center flex-shrink-0 w-1/2 px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-200 rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-coolgray-200 lg:w-auto dark:text-neutral-200 dark:hover:bg-coolgray-300 focus:shadow-outline focus:outline-none">
+                class="inline-flex items-center justify-center flex-shrink-0 w-1/2 px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-200 rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-devgray-200 lg:w-auto dark:text-neutral-200 dark:hover:bg-devgray-300 focus:shadow-outline focus:outline-none">
                 {{ $buttonText }}
             </button>
         </div>

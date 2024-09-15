@@ -250,11 +250,11 @@ class DatabaseBackupJob implements ShouldBeEncrypted, ShouldQueue
             }
             $this->backup_dir = backup_dir().'/databases/'.str($this->team->name)->slug().'-'.$this->team->id.'/'.$this->directory_name;
 
-            if ($this->database->name === 'coolify-db') {
-                $databasesToBackup = ['coolify'];
-                $this->directory_name = $this->container_name = 'coolify-db';
+            if ($this->database->name === 'devlab-db') {
+                $databasesToBackup = ['devlab'];
+                $this->directory_name = $this->container_name = 'devlab-db';
                 $ip = Str::slug($this->server->ip);
-                $this->backup_dir = backup_dir().'/coolify'."/coolify-db-$ip";
+                $this->backup_dir = backup_dir().'/devlab'."/devlab-db-$ip";
             }
             foreach ($databasesToBackup as $database) {
                 $size = 0;
@@ -494,16 +494,16 @@ class DatabaseBackupJob implements ShouldBeEncrypted, ShouldQueue
             $configName = new Cuid2;
 
             $s3_copy_dir = str($this->backup_location)->replace(backup_dir(), '/var/www/html/storage/app/backups/');
-            $commands[] = "docker exec coolify bash -c 'mc config host add {$configName} {$endpoint} $key $secret'";
-            $commands[] = "docker exec coolify bash -c 'mc cp $s3_copy_dir {$configName}/{$bucket}{$this->backup_dir}/'";
+            $commands[] = "docker exec devlab bash -c 'mc config host add {$configName} {$endpoint} $key $secret'";
+            $commands[] = "docker exec devlab bash -c 'mc cp $s3_copy_dir {$configName}/{$bucket}{$this->backup_dir}/'";
             instant_remote_process($commands, $this->server);
             $this->add_to_backup_output('Uploaded to S3.');
         } catch (\Throwable $e) {
             $this->add_to_backup_output($e->getMessage());
             throw $e;
         } finally {
-            $removeConfigCommands[] = "docker exec coolify bash -c 'mc config remove {$configName}'";
-            $removeConfigCommands[] = "docker exec coolify bash -c 'mc alias rm {$configName}'";
+            $removeConfigCommands[] = "docker exec devlab bash -c 'mc config remove {$configName}'";
+            $removeConfigCommands[] = "docker exec devlab bash -c 'mc alias rm {$configName}'";
             instant_remote_process($removeConfigCommands, $this->server, false);
         }
     }

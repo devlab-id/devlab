@@ -16,7 +16,7 @@ class StandaloneDockerSeeder extends Seeder
             StandaloneDocker::create([
                 'id' => 0,
                 'name' => 'Standalone Docker 1',
-                'network' => 'coolify',
+                'network' => 'devlab',
                 'server_id' => 0,
             ]);
         }

@@ -59,7 +59,7 @@ use Visus\Cuid2\Cuid2;
 
 function base_configuration_dir(): string
 {
-    return '/data/coolify';
+    return '/data/devlab';
 }
 function application_configuration_dir(): string
 {
@@ -175,13 +175,13 @@ function get_latest_sentinel_version(): string
         return '0.0.0';
     }
 }
-function get_latest_version_of_coolify(): string
+function get_latest_version_of_devlab(): string
 {
     try {
         $versions = File::get(base_path('versions.json'));
         $versions = json_decode($versions, true);
 
-        return data_get($versions, 'coolify.v4.version');
+        return data_get($versions, 'devlab.v4.version');
     } catch (\Throwable $e) {
         ray($e->getMessage());
 
@@ -209,14 +209,14 @@ function generateSSHKey(string $type = 'rsa')
 
         return [
             'private' => $key->toString('PKCS1'),
-            'public' => $key->getPublicKey()->toString('OpenSSH', ['comment' => 'coolify-generated-ssh-key']),
+            'public' => $key->getPublicKey()->toString('OpenSSH', ['comment' => 'devlab-generated-ssh-key']),
         ];
     } elseif ($type === 'ed25519') {
         $key = EC::createKey('Ed25519');
 
         return [
             'private' => $key->toString('OpenSSH'),
-            'public' => $key->getPublicKey()->toString('OpenSSH', ['comment' => 'coolify-generated-ssh-key']),
+            'public' => $key->getPublicKey()->toString('OpenSSH', ['comment' => 'devlab-generated-ssh-key']),
         ];
     }
     throw new Exception('Invalid key type');
@@ -350,7 +350,7 @@ function isDev(): bool
 
 function isCloud(): bool
 {
-    return ! config('coolify.self_hosted');
+    return ! config('devlab.self_hosted');
 }
 
 function translate_cron_expression($expression_to_validate): string
@@ -1161,7 +1161,7 @@ function check_domain_usage(ServiceApplication|Application|null $resource = null
             }
             $naked_domain = str($domain)->value();
             if ($domains->contains($naked_domain)) {
-                throw new \RuntimeException("Domain $naked_domain is already in use by this Coolify instance.");
+                throw new \RuntimeException("Domain $naked_domain is already in use by this Devlab instance.");
             }
         }
     }
@@ -1601,7 +1601,7 @@ function parseDockerComposeFile(Service|Application $resource, bool $isNew = fal
                 $savedService->save();
 
                 if (! $hasHostNetworkMode) {
-                    // Add Coolify specific networks
+                    // Add Devlab specific networks
                     $definedNetworkExists = $topLevelNetworks->contains(function ($value, $_) use ($definedNetwork) {
                         return $value == $definedNetwork;
                     });
@@ -2077,8 +2077,8 @@ function parseDockerComposeFile(Service|Application $resource, bool $isNew = fal
                 return $service;
             });
 
-            $envs_from_coolify = $resource->environment_variables()->get();
-            $services = collect($services)->map(function ($service, $serviceName) use ($resource, $envs_from_coolify) {
+            $envs_from_devlab = $resource->environment_variables()->get();
+            $services = collect($services)->map(function ($service, $serviceName) use ($resource, $envs_from_devlab) {
                 $serviceVariables = collect(data_get($service, 'environment', []));
                 $parsedServiceVariables = collect([]);
                 foreach ($serviceVariables as $key => $value) {
@@ -2112,9 +2112,9 @@ function parseDockerComposeFile(Service|Application $resource, bool $isNew = fal
                     $parsedServiceVariables->put('COOLIFY_PROJECT_NAME', $resource->project()->name);
                 }
 
-                $parsedServiceVariables = $parsedServiceVariables->map(function ($value, $key) use ($envs_from_coolify) {
+                $parsedServiceVariables = $parsedServiceVariables->map(function ($value, $key) use ($envs_from_devlab) {
                     if (! str($value)->startsWith('$')) {
-                        $found_env = $envs_from_coolify->where('key', $key)->first();
+                        $found_env = $envs_from_devlab->where('key', $key)->first();
                         if ($found_env) {
                             return $found_env->value;
                         }
@@ -2953,7 +2953,7 @@ function newParser(Application|Service $resource, int $pull_request_id = 0, ?int
             // convert environment variables to one format
             $environment = convertComposeEnvironmentToArray($environment);
 
-            // Add Coolify defined environments
+            // Add Devlab defined environments
             $allEnvironments = $resource->environment_variables()->get(['key', 'value']);
 
             $allEnvironments = $allEnvironments->mapWithKeys(function ($item) {
@@ -3118,7 +3118,7 @@ function newParser(Application|Service $resource, int $pull_request_id = 0, ?int
         $environment = $environment->merge($buildArgs);
 
         $environment = convertComposeEnvironmentToArray($environment);
-        $coolifyEnvironments = collect([]);
+        $devlabEnvironments = collect([]);
 
         $isDatabase = isDatabaseImage(data_get_str($service, 'image'));
         $volumesParsed = collect([]);
@@ -3469,13 +3469,13 @@ function newParser(Application|Service $resource, int $pull_request_id = 0, ?int
                 $branch = "pull/{$pullRequestId}/head";
             }
             if ($originalResource->environment_variables->where('key', 'COOLIFY_BRANCH')->isEmpty()) {
-                $coolifyEnvironments->put('COOLIFY_BRANCH', $branch);
+                $devlabEnvironments->put('COOLIFY_BRANCH', $branch);
             }
         }
 
         // Add COOLIFY_CONTAINER_NAME to environment
         if ($resource->environment_variables->where('key', 'COOLIFY_CONTAINER_NAME')->isEmpty()) {
-            $coolifyEnvironments->put('COOLIFY_CONTAINER_NAME', $containerName);
+            $devlabEnvironments->put('COOLIFY_CONTAINER_NAME', $containerName);
         }
 
         if ($isApplication) {
@@ -3529,14 +3529,14 @@ function newParser(Application|Service $resource, int $pull_request_id = 0, ?int
         }
         // Add COOLIFY_FQDN & COOLIFY_URL to environment
         if (! $isDatabase && $fqdns instanceof Collection && $fqdns->count() > 0) {
-            $coolifyEnvironments->put('COOLIFY_URL', $fqdns->implode(','));
+            $devlabEnvironments->put('COOLIFY_URL', $fqdns->implode(','));
 
             $urls = $fqdns->map(function ($fqdn) {
                 return str($fqdn)->replace('http://', '')->replace('https://', '');
             });
-            $coolifyEnvironments->put('COOLIFY_FQDN', $urls->implode(','));
+            $devlabEnvironments->put('COOLIFY_FQDN', $urls->implode(','));
         }
-        add_coolify_default_environment_variables($resource, $coolifyEnvironments, $resource->environment_variables);
+        add_devlab_default_environment_variables($resource, $devlabEnvironments, $resource->environment_variables);
 
         if ($environment->count() > 0) {
             $environment = $environment->filter(function ($value, $key) {
@@ -3639,8 +3639,8 @@ function newParser(Application|Service $resource, int $pull_request_id = 0, ?int
         if ($volumesParsed->count() > 0) {
             $payload['volumes'] = $volumesParsed;
         }
-        if ($environment->count() > 0 || $coolifyEnvironments->count() > 0) {
-            $payload['environment'] = $environment->merge($coolifyEnvironments);
+        if ($environment->count() > 0 || $devlabEnvironments->count() > 0) {
+            $payload['environment'] = $environment->merge($devlabEnvironments);
         }
         if ($logging) {
             $payload['logging'] = $logging;
@@ -3709,7 +3709,7 @@ function isAssociativeArray($array)
  *
  *  Theses variables are added in place to the $where_to_add array.
  */
-function add_coolify_default_environment_variables(StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|Application|Service $resource, Collection &$where_to_add, ?Collection $where_to_check = null)
+function add_devlab_default_environment_variables(StandaloneRedis|StandalonePostgresql|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|Application|Service $resource, Collection &$where_to_add, ?Collection $where_to_check = null)
 {
     if ($resource instanceof Service) {
         $ip = $resource->server->ip;

@@ -51,7 +51,7 @@ class Create extends Component
             $this->key = 'minioadmin';
             $this->secret = 'minioadmin';
             $this->bucket = 'local';
-            $this->endpoint = 'http://coolify-minio:9000';
+            $this->endpoint = 'http://devlab-minio:9000';
         }
     }
 

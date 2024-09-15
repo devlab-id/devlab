@@ -107,7 +107,7 @@ class WaitlistInvite extends Command
         $mail->view('emails.waitlist-invitation', [
             'loginLink' => $loginLink,
         ]);
-        $mail->subject('Congratulations! You are invited to join Coolify Cloud.');
+        $mail->subject('Congratulations! You are invited to join Devlab Cloud.');
         send_user_an_email($mail, $this->next_patient->email);
         $this->info('Email sent successfully. 📧');
     }

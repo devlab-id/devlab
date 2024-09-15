@@ -20,7 +20,7 @@
                         {{ $modalSubmit }}
                     @else
                         <div class="flex gap-4 mt-4">
-                            <x-forms.button class="w-24 bg-coolgray-200 hover:bg-coolgray-100" type="button"
+                            <x-forms.button class="w-24 bg-devgray-200 hover:bg-devgray-100" type="button"
                                 onclick="{{ $modalId }}.close()">Cancel
                             </x-forms.button>
                             <div class="flex-1"></div>

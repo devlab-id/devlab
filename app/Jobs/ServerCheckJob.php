@@ -130,7 +130,7 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
             return;
         }
         $foundLogDrainContainer = $this->containers->filter(function ($value, $key) {
-            return data_get($value, 'Name') === '/coolify-log-drain';
+            return data_get($value, 'Name') === '/devlab-log-drain';
         })->first();
         if ($foundLogDrainContainer) {
             $status = data_get($foundLogDrainContainer, 'State.Status');
@@ -153,7 +153,7 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
         foreach ($this->containers as $container) {
             if ($this->server->isSwarm()) {
                 $labels = data_get($container, 'Spec.Labels');
-                $uuid = data_get($labels, 'coolify.name');
+                $uuid = data_get($labels, 'devlab.name');
             } else {
                 $labels = data_get($container, 'Config.Labels');
             }
@@ -161,9 +161,9 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
             $containerHealth = data_get($container, 'State.Health.Status', 'unhealthy');
             $containerStatus = "$containerStatus ($containerHealth)";
             $labels = Arr::undot(format_docker_labels_to_json($labels));
-            $applicationId = data_get($labels, 'coolify.applicationId');
+            $applicationId = data_get($labels, 'devlab.applicationId');
             if ($applicationId) {
-                $pullRequestId = data_get($labels, 'coolify.pullRequestId');
+                $pullRequestId = data_get($labels, 'devlab.pullRequestId');
                 if ($pullRequestId) {
                     if (str($applicationId)->contains('-')) {
                         $applicationId = str($applicationId)->before('-');
@@ -192,11 +192,11 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
                 }
             } else {
                 $uuid = data_get($labels, 'com.docker.compose.service');
-                $type = data_get($labels, 'coolify.type');
+                $type = data_get($labels, 'devlab.type');
 
                 if ($uuid) {
                     if ($type === 'service') {
-                        $database_id = data_get($labels, 'coolify.service.subId');
+                        $database_id = data_get($labels, 'devlab.service.subId');
                         if ($database_id) {
                             $service_db = ServiceDatabase::where('id', $database_id)->first();
                             if ($service_db) {
@@ -206,7 +206,7 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
                                     if ($isPublic) {
                                         $foundTcpProxy = $this->containers->filter(function ($value, $key) use ($uuid) {
                                             if ($this->server->isSwarm()) {
-                                                return data_get($value, 'Spec.Name') === "coolify-proxy_$uuid";
+                                                return data_get($value, 'Spec.Name') === "devlab-proxy_$uuid";
                                             } else {
                                                 return data_get($value, 'Name') === "/$uuid-proxy";
                                             }
@@ -231,7 +231,7 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
                             if ($isPublic) {
                                 $foundTcpProxy = $this->containers->filter(function ($value, $key) use ($uuid) {
                                     if ($this->server->isSwarm()) {
-                                        return data_get($value, 'Spec.Name') === "coolify-proxy_$uuid";
+                                        return data_get($value, 'Spec.Name') === "devlab-proxy_$uuid";
                                     } else {
                                         return data_get($value, 'Name') === "/$uuid-proxy";
                                     }
@@ -246,14 +246,14 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
                         }
                     }
                 }
-                if (data_get($container, 'Name') === '/coolify-db') {
+                if (data_get($container, 'Name') === '/devlab-db') {
                     $foundDatabases[] = 0;
                 }
             }
-            $serviceLabelId = data_get($labels, 'coolify.serviceId');
+            $serviceLabelId = data_get($labels, 'devlab.serviceId');
             if ($serviceLabelId) {
-                $subType = data_get($labels, 'coolify.service.subType');
-                $subId = data_get($labels, 'coolify.service.subId');
+                $subType = data_get($labels, 'devlab.service.subType');
+                $subId = data_get($labels, 'devlab.service.subId');
                 $service = $this->services->where('id', $serviceLabelId)->first();
                 if (! $service) {
                     continue;
@@ -404,9 +404,9 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
         $this->server->proxyType();
         $foundProxyContainer = $this->containers->filter(function ($value, $key) {
             if ($this->server->isSwarm()) {
-                return data_get($value, 'Spec.Name') === 'coolify-proxy_traefik';
+                return data_get($value, 'Spec.Name') === 'devlab-proxy_traefik';
             } else {
-                return data_get($value, 'Name') === '/coolify-proxy';
+                return data_get($value, 'Name') === '/devlab-proxy';
             }
         })->first();
         if (! $foundProxyContainer) {
@@ -414,7 +414,7 @@ class ServerCheckJob implements ShouldBeEncrypted, ShouldQueue
                 $shouldStart = CheckProxy::run($this->server);
                 if ($shouldStart) {
                     StartProxy::run($this->server, false);
-                    $this->server->team?->notify(new ContainerRestarted('coolify-proxy', $this->server));
+                    $this->server->team?->notify(new ContainerRestarted('devlab-proxy', $this->server));
                 }
             } catch (\Throwable $e) {
                 ray($e);

@@ -44,7 +44,7 @@ class StartMysql
                         $this->database->destination->network,
                     ],
                     'labels' => [
-                        'coolify.managed' => 'true',
+                        'devlab.managed' => 'true',
                     ],
                     'healthcheck' => [
                         'test' => ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', "-p{$this->database->mysql_root_password}"],
@@ -169,7 +169,7 @@ class StartMysql
             $environment_variables->push("MYSQL_PASSWORD={$this->database->mysql_password}");
         }
 
-        add_coolify_default_environment_variables($this->database, $environment_variables, $environment_variables);
+        add_devlab_default_environment_variables($this->database, $environment_variables, $environment_variables);
 
         return $environment_variables->all();
     }

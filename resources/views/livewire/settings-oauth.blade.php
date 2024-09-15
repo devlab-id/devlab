@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        Settings | Devlab
     </x-slot>
     <x-settings.navbar />
     <form wire:submit='submit' class="flex flex-col">
@@ -15,7 +15,7 @@
         </div>
         <div class="flex flex-col gap-2 pt-4">
             @foreach ($oauth_settings_map as $oauth_setting)
-                <div class="p-4 border dark:border-coolgray-300">
+                <div class="p-4 border dark:border-devgray-300">
                     <h3>{{ ucfirst($oauth_setting->provider) }} Oauth</h3>
                     <div class="w-32">
                         <x-forms.checkbox instantSave id="oauth_settings_map.{{ $oauth_setting->provider }}.enabled"

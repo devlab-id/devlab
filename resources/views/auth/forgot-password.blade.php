@@ -2,7 +2,7 @@
     <section class="bg-gray-50 dark:bg-base">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a class="flex items-center mb-1 text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                Coolify
+                Devlab
             </a> <div class="flex items-center gap-2">
                 {{ __('auth.forgot_password') }}
             </div>

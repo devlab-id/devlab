@@ -1,4 +1,4 @@
-<nav class="flex flex-col flex-1 bg-white border-r dark:border-coolgray-200 dark:bg-base" x-data="{
+<nav class="flex flex-col flex-1 bg-white border-r dark:border-devgray-200 dark:bg-base" x-data="{
     switchWidth() {
             if (this.full === 'full') {
                 localStorage.removeItem('pageWidth');
@@ -48,7 +48,7 @@
 }">
     <div class="flex pt-6 pb-4 pl-3">
         <div class="flex flex-col w-full">
-            <div class="text-2xl font-bold tracking-wide dark:text-white">Coolify</div>
+            <div class="text-2xl font-bold tracking-wide dark:text-white">Devlab</div>
             <x-version />
         </div>
         <div class="pt-1">
@@ -69,11 +69,11 @@
                     </div>
                 </x-slot:title>
                 <div class="flex flex-col gap-1">
-                    <div class="mb-1 font-bold border-b dark:border-coolgray-500 dark:text-white text-md">Color</div>
+                    <div class="mb-1 font-bold border-b dark:border-devgray-500 dark:text-white text-md">Color</div>
                     <button @click="setTheme('dark')" class="px-1 dropdown-item-no-padding">Dark</button>
                     <button @click="setTheme('light')" class="px-1 dropdown-item-no-padding">Light</button>
                     <button @click="setTheme('system')" class="px-1 dropdown-item-no-padding">System</button>
-                    <div class="my-1 font-bold border-b dark:border-coolgray-500 dark:text-white text-md">Width</div>
+                    <div class="my-1 font-bold border-b dark:border-devgray-500 dark:text-white text-md">Width</div>
                     <button @click="switchWidth()" class="px-1 dropdown-item-no-padding" x-show="full">Center</button>
                     <button @click="switchWidth()" class="px-1 dropdown-item-no-padding" x-show="!full">Full</button>
                 </div>
@@ -337,7 +337,7 @@
                         </a>
                     </li>
                     <li>
-                        <a title="Sponsor us" class="menu-item" href="https://coolify.io/sponsorships"
+                        <a title="Sponsor us" class="menu-item" href="https://devlab.id/sponsorships"
                             target="_blank">
                             <svg class="text-pink-500 icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round"

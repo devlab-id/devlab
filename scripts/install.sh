@@ -9,9 +9,9 @@ set -o pipefail # Cause a pipeline to return the status of the last command that
 VERSION="1.4"
 DOCKER_VERSION="26.0"
 
-CDN="https://cdn.coollabs.io/coolify"
+CDN="https://cdn.coollabs.io/devlab"
 OS_TYPE=$(grep -w "ID" /etc/os-release | cut -d "=" -f 2 | tr -d '"')
-ENV_FILE="/data/coolify/source/.env"
+ENV_FILE="/data/devlab/source/.env"
 
 # Check if the OS is manjaro, if so, change it to arch
 if [ "$OS_TYPE" = "manjaro" ] || [ "$OS_TYPE" = "manjaro-arm" ]; then
@@ -74,13 +74,13 @@ if [ "$1" != "" ]; then
 fi
 
 echo -e "-------------"
-echo -e "Welcome to Coolify v4 beta installer!"
+echo -e "Welcome to Devlab v4 beta installer!"
 echo -e "This script will install everything for you."
-echo -e "Source code: https://github.com/coollabsio/coolify/blob/main/scripts/install.sh\n"
+echo -e "Source code: https://github.com/coollabsio/devlab/blob/main/scripts/install.sh\n"
 echo -e "-------------"
 
 echo "OS: $OS_TYPE $OS_VERSION"
-echo "Coolify version: $LATEST_VERSION"
+echo "Devlab version: $LATEST_VERSION"
 echo "Helper version: $LATEST_HELPER_VERSION"
 
 echo -e "-------------"
@@ -146,7 +146,7 @@ fi
 if [ "$SSH_DETECTED" = "false" ]; then
     echo "###############################################################################"
     echo "WARNING: Could not detect if OpenSSH server is installed and running - this does not mean that it is not installed, just that we could not detect it."
-    echo -e "Please make sure it is set, otherwise Coolify cannot connect to the host system. \n"
+    echo -e "Please make sure it is set, otherwise Devlab cannot connect to the host system. \n"
     echo "###############################################################################"
 fi
 
@@ -162,7 +162,7 @@ if [ "$SSH_PERMIT_ROOT_LOGIN" != "true" ]; then
     echo "###############################################################################"
     echo "WARNING: PermitRootLogin is not enabled in /etc/ssh/sshd_config."
     echo -e "It is set to $SSH_PERMIT_ROOT_LOGIN_CONFIG. Should be prohibit-password, yes or without-password.\n"
-    echo -e "Please make sure it is set, otherwise Coolify cannot connect to the host system. \n"
+    echo -e "Please make sure it is set, otherwise Devlab cannot connect to the host system. \n"
     echo "###############################################################################"
 fi
 
@@ -170,7 +170,7 @@ fi
 if [ -x "$(command -v snap)" ]; then
     if snap list | grep -q docker; then
         echo "Docker is installed via snap."
-        echo "Please note that Coolify does not support Docker installed via snap."
+        echo "Please note that Devlab does not support Docker installed via snap."
         echo "Please remove Docker with snap (snap remove docker) and reexecute this script."
         exit 1
     fi
@@ -260,7 +260,7 @@ test -s /etc/docker/daemon.json && cp /etc/docker/daemon.json /etc/docker/daemon
   }
 }
 EOL
-cat >/etc/docker/daemon.json.coolify <<EOL
+cat >/etc/docker/daemon.json.devlab <<EOL
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -270,7 +270,7 @@ cat >/etc/docker/daemon.json.coolify <<EOL
 }
 EOL
 TEMP_FILE=$(mktemp)
-if ! jq -s '.[0] * .[1]' /etc/docker/daemon.json /etc/docker/daemon.json.coolify >"$TEMP_FILE"; then
+if ! jq -s '.[0] * .[1]' /etc/docker/daemon.json /etc/docker/daemon.json.devlab >"$TEMP_FILE"; then
     echo "Error merging JSON files"
     exit 1
 fi
@@ -324,18 +324,18 @@ fi
 
 echo -e "-------------"
 
-mkdir -p /data/coolify/{source,ssh,applications,databases,backups,services,proxy,webhooks-during-maintenance,metrics,logs}
-mkdir -p /data/coolify/ssh/{keys,mux}
-mkdir -p /data/coolify/proxy/dynamic
+mkdir -p /data/devlab/{source,ssh,applications,databases,backups,services,proxy,webhooks-during-maintenance,metrics,logs}
+mkdir -p /data/devlab/ssh/{keys,mux}
+mkdir -p /data/devlab/proxy/dynamic
 
-chown -R 9999:root /data/coolify
-chmod -R 700 /data/coolify
+chown -R 9999:root /data/devlab
+chmod -R 700 /data/devlab
 
 echo "Downloading required files from CDN..."
-curl -fsSL $CDN/docker-compose.yml -o /data/coolify/source/docker-compose.yml
-curl -fsSL $CDN/docker-compose.prod.yml -o /data/coolify/source/docker-compose.prod.yml
-curl -fsSL $CDN/.env.production -o /data/coolify/source/.env.production
-curl -fsSL $CDN/upgrade.sh -o /data/coolify/source/upgrade.sh
+curl -fsSL $CDN/docker-compose.yml -o /data/devlab/source/docker-compose.yml
+curl -fsSL $CDN/docker-compose.prod.yml -o /data/devlab/source/docker-compose.prod.yml
+curl -fsSL $CDN/.env.production -o /data/devlab/source/.env.production
+curl -fsSL $CDN/upgrade.sh -o /data/devlab/source/upgrade.sh
 
 # Copy .env.example if .env does not exist
 if [ -f $ENV_FILE ]; then
@@ -345,7 +345,7 @@ if [ -f $ENV_FILE ]; then
 else
     echo "File does not exist: $ENV_FILE"
     echo "Copying .env.production to .env-$DATE"
-    cp /data/coolify/source/.env.production $ENV_FILE-$DATE
+    cp /data/devlab/source/.env.production $ENV_FILE-$DATE
     # Generate a secure APP_ID and APP_KEY
     sed -i "s|^APP_ID=.*|APP_ID=$(openssl rand -hex 16)|" "$ENV_FILE-$DATE"
     sed -i "s|^APP_KEY=.*|APP_KEY=base64:$(openssl rand -base64 32)|" "$ENV_FILE-$DATE"
@@ -366,24 +366,24 @@ fi
 
 # Merge .env and .env.production. New values will be added to .env
 echo "Updating .env with new values (if necessary)..."
-awk -F '=' '!seen[$1]++' "$ENV_FILE-$DATE" /data/coolify/source/.env.production > $ENV_FILE
+awk -F '=' '!seen[$1]++' "$ENV_FILE-$DATE" /data/devlab/source/.env.production > $ENV_FILE
 
 if [ "$AUTOUPDATE" = "false" ]; then
-    if ! grep -q "AUTOUPDATE=" /data/coolify/source/.env; then
-        echo "AUTOUPDATE=false" >>/data/coolify/source/.env
+    if ! grep -q "AUTOUPDATE=" /data/devlab/source/.env; then
+        echo "AUTOUPDATE=false" >>/data/devlab/source/.env
     else
-        sed -i "s|AUTOUPDATE=.*|AUTOUPDATE=false|g" /data/coolify/source/.env
+        sed -i "s|AUTOUPDATE=.*|AUTOUPDATE=false|g" /data/devlab/source/.env
     fi
 fi
 
-# Generate an ssh key (ed25519) at /data/coolify/ssh/keys/id.root@host.docker.internal
-if [ ! -f /data/coolify/ssh/keys/id.root@host.docker.internal ]; then
-    ssh-keygen -t ed25519 -a 100 -f /data/coolify/ssh/keys/id.root@host.docker.internal -q -N "" -C root@coolify
-    chown 9999 /data/coolify/ssh/keys/id.root@host.docker.internal
+# Generate an ssh key (ed25519) at /data/devlab/ssh/keys/id.root@host.docker.internal
+if [ ! -f /data/devlab/ssh/keys/id.root@host.docker.internal ]; then
+    ssh-keygen -t ed25519 -a 100 -f /data/devlab/ssh/keys/id.root@host.docker.internal -q -N "" -C root@devlab
+    chown 9999 /data/devlab/ssh/keys/id.root@host.docker.internal
 fi
 
 addSshKey() {
-    cat /data/coolify/ssh/keys/id.root@host.docker.internal.pub >>~/.ssh/authorized_keys
+    cat /data/devlab/ssh/keys/id.root@host.docker.internal.pub >>~/.ssh/authorized_keys
     chmod 600 ~/.ssh/authorized_keys
 }
 
@@ -394,18 +394,18 @@ if [ ! -f ~/.ssh/authorized_keys ]; then
     addSshKey
 fi
 
-if ! grep -qw "root@coolify" ~/.ssh/authorized_keys; then
+if ! grep -qw "root@devlab" ~/.ssh/authorized_keys; then
     addSshKey
 fi
 
-bash /data/coolify/source/upgrade.sh "${LATEST_VERSION:-latest}" "${LATEST_HELPER_VERSION:-latest}"
+bash /data/devlab/source/upgrade.sh "${LATEST_VERSION:-latest}" "${LATEST_HELPER_VERSION:-latest}"
 rm -f $ENV_FILE-$DATE
-echo "Waiting for 20 seconds for Coolify to be ready..."
+echo "Waiting for 20 seconds for Devlab to be ready..."
 
 sleep 20
 echo "Please visit http://$(curl -4s https://ifconfig.io):8000 to get started."
-echo -e "\nCongratulations! Your Coolify instance is ready to use.\n"
+echo -e "\nCongratulations! Your Devlab instance is ready to use.\n"
 
-echo -e "Make sure you backup your /data/coolify/source/.env file to a safe location, outside of this server.\n"
-cp /data/coolify/source/.env /data/coolify/source/.env.backup
-echo -e "Your .env file has been copied to /data/coolify/source/.env.backup\n"
+echo -e "Make sure you backup your /data/devlab/source/.env file to a safe location, outside of this server.\n"
+cp /data/devlab/source/.env /data/devlab/source/.env.backup
+echo -e "Your .env file has been copied to /data/devlab/source/.env.backup\n"

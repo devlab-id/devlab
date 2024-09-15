@@ -8,7 +8,7 @@
             @forelse($executions as $execution)
                 <div wire:key="{{ data_get($execution, 'id') }}" @class([
                     'flex flex-col border-l-2 transition-colors p-4 ',
-                    'bg-white dark:bg-coolgray-100 ',
+                    'bg-white dark:bg-devgray-100 ',
                     'text-black dark:text-white',
                     'border-green-500' => data_get($execution, 'status') === 'success',
                     'border-red-500' => data_get($execution, 'status') === 'failed',
@@ -36,13 +36,13 @@
                         Location: {{ data_get($execution, 'filename', 'N/A') }}
                     </div>
                     @if (data_get($execution, 'message'))
-                        <div class="mt-2 p-2 bg-gray-100 dark:bg-coolgray-200 rounded">
+                        <div class="mt-2 p-2 bg-gray-100 dark:bg-devgray-200 rounded">
                             <pre class="whitespace-pre-wrap text-sm">{{ data_get($execution, 'message') }}</pre>
                         </div>
                     @endif
                     <div class="flex gap-2 mt-4">
                         @if (data_get($execution, 'status') === 'success')
-                            <x-forms.button class="dark:hover:bg-coolgray-400"
+                            <x-forms.button class="dark:hover:bg-devgray-400"
                                 x-on:click="download_file('{{ data_get($execution, 'id') }}')">Download</x-forms.button>
                         @endif
                         <x-modal-confirmation isErrorButton action="deleteBackup({{ data_get($execution, 'id') }})">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             @empty
-                <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded">No executions found.</div>
+                <div class="p-4 bg-gray-100 dark:bg-devgray-100 rounded">No executions found.</div>
             @endforelse
         </div>
         <script>

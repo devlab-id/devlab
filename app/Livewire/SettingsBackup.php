@@ -43,7 +43,7 @@ class SettingsBackup extends Component
     {
         if (isInstanceAdmin()) {
             $settings = InstanceSettings::get();
-            $this->database = StandalonePostgresql::whereName('coolify-db')->first();
+            $this->database = StandalonePostgresql::whereName('devlab-db')->first();
             $s3s = S3Storage::whereTeamId(0)->get() ?? [];
             if ($this->database) {
                 if ($this->database->status !== 'running') {
@@ -61,19 +61,19 @@ class SettingsBackup extends Component
         }
     }
 
-    public function add_coolify_database()
+    public function add_devlab_database()
     {
         try {
             $server = Server::findOrFail(0);
-            $out = instant_remote_process(['docker inspect coolify-db'], $server);
+            $out = instant_remote_process(['docker inspect devlab-db'], $server);
             $envs = format_docker_envs_to_json($out);
             $postgres_password = $envs['POSTGRES_PASSWORD'];
             $postgres_user = $envs['POSTGRES_USER'];
             $postgres_db = $envs['POSTGRES_DB'];
             $this->database = StandalonePostgresql::create([
                 'id' => 0,
-                'name' => 'coolify-db',
-                'description' => 'Coolify database',
+                'name' => 'devlab-db',
+                'description' => 'Devlab database',
                 'postgres_user' => $postgres_user,
                 'postgres_password' => $postgres_password,
                 'postgres_db' => $postgres_db,

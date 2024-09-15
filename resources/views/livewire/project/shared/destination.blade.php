@@ -5,7 +5,7 @@
         <div class="flex flex-col gap-2">
             <h3>Primary Server</h3>
             <div
-                class="relative flex flex-col bg-white border cursor-default dark:text-white box-without-bg dark:bg-coolgray-100 w-96 dark:border-black">
+                class="relative flex flex-col bg-white border cursor-default dark:text-white box-without-bg dark:bg-devgray-100 w-96 dark:border-black">
                 @if (str($resource->realStatus())->startsWith('running'))
                     <div title="{{ $resource->realStatus() }}" class="absolute bg-success -top-1 -left-1 badge ">
                     </div>

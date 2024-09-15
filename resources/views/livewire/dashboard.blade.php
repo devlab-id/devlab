@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Dashboard | Coolify
+        Dashboard | Devlab
     </x-slot>
     @if (session('error'))
         <span x-data x-init="$wire.emit('error', '{{ session('error') }}')" />
@@ -81,7 +81,7 @@
                                 &
                             @endif
                             @if (!$server->settings->is_usable)
-                                Not usable by Coolify
+                                Not usable by Devlab
                             @endif
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                     @foreach ($deployments as $deployment)
                         <a href="{{ data_get($deployment, 'deployment_url') }}" @class([
                             'gap-2 cursor-pointer box group border-l-2 border-dotted',
-                            'dark:border-coolgray-300' => data_get($deployment, 'status') === 'queued',
+                            'dark:border-devgray-300' => data_get($deployment, 'status') === 'queued',
                             'border-yellow-500' => data_get($deployment, 'status') === 'in_progress',
                         ])>
                             <div class="flex flex-col justify-center mx-6">

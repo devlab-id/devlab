@@ -31,7 +31,7 @@ RUN echo deb [arch=amd64,arm64,ppc64el signed-by=/usr/share/keyrings/postgresql.
 RUN apt-get update
 RUN apt-get install postgresql-client-$POSTGRES_VERSION -y
 
-# Coolify requirements
+# Devlab requirements
 RUN apt-get install -y php8.2-pgsql openssh-client git git-lfs jq lsof vim
 RUN apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 

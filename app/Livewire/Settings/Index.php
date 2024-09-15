@@ -25,7 +25,7 @@ class Index extends Component
 
     public string $update_check_frequency;
 
-    protected string $dynamic_config_path = '/data/coolify/proxy/dynamic';
+    protected string $dynamic_config_path = '/data/devlab/proxy/dynamic';
 
     protected Server $server;
 
@@ -120,7 +120,7 @@ class Index extends Component
 
             if ($this->settings->is_dns_validation_enabled && $this->settings->fqdn) {
                 if (! validate_dns_entry($this->settings->fqdn, $this->server)) {
-                    $this->dispatch('error', "Validating DNS failed.<br><br>Make sure you have added the DNS records correctly.<br><br>{$this->settings->fqdn}->{$this->server->ip}<br><br>Check this <a target='_blank' class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/dns-configuration'>documentation</a> for further help.");
+                    $this->dispatch('error', "Validating DNS failed.<br><br>Make sure you have added the DNS records correctly.<br><br>{$this->settings->fqdn}->{$this->server->ip}<br><br>Check this <a target='_blank' class='underline dark:text-white' href='https://devlab.id/docs/knowledge-base/dns-configuration'>documentation</a> for further help.");
                     $error_show = true;
                 }
             }

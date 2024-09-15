@@ -50,7 +50,7 @@ class StartClickhouse
                         ],
                     ],
                     'labels' => [
-                        'coolify.managed' => 'true',
+                        'devlab.managed' => 'true',
                     ],
                     'healthcheck' => [
                         'test' => "clickhouse-client --password {$this->database->clickhouse_admin_password} --query 'SELECT 1'",
@@ -160,7 +160,7 @@ class StartClickhouse
             $environment_variables->push("CLICKHOUSE_ADMIN_PASSWORD={$this->database->clickhouse_admin_password}");
         }
 
-        add_coolify_default_environment_variables($this->database, $environment_variables, $environment_variables);
+        add_devlab_default_environment_variables($this->database, $environment_variables, $environment_variables);
 
         return $environment_variables->all();
     }

@@ -26,7 +26,7 @@ class ComplexStatusCheck
                     continue;
                 }
             }
-            $container = instant_remote_process(["docker container inspect $(docker container ls -q --filter 'label=coolify.applicationId={$application->id}' --filter 'label=coolify.pullRequestId=0') --format '{{json .}}'"], $server, false);
+            $container = instant_remote_process(["docker container inspect $(docker container ls -q --filter 'label=devlab.applicationId={$application->id}' --filter 'label=devlab.pullRequestId=0') --format '{{json .}}'"], $server, false);
             $container = format_docker_command_output_to_json($container);
             if ($container->count() === 1) {
                 $container = $container->first();

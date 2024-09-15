@@ -23,7 +23,7 @@ class ApplicationPreview extends BaseModel
                     instant_remote_process(["docker volume rm -f $key"], $server, false);
                 });
                 $networkKeys->each(function ($key) use ($server) {
-                    instant_remote_process(["docker network disconnect $key coolify-proxy"], $server, false);
+                    instant_remote_process(["docker network disconnect $key devlab-proxy"], $server, false);
                     instant_remote_process(["docker network rm $key"], $server, false);
                 });
             }

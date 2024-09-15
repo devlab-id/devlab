@@ -12,7 +12,7 @@ class StopLogDrain
     public function handle(Server $server)
     {
         try {
-            return instant_remote_process(['docker rm -f coolify-log-drain || true'], $server);
+            return instant_remote_process(['docker rm -f devlab-log-drain || true'], $server);
         } catch (\Throwable $e) {
             return handleError($e);
         }

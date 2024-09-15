@@ -12,7 +12,7 @@
         </a>
         @else
         <div class="box" wire:click="setSelectedBackup('{{ data_get($backup, 'id') }}')">
-            <div @class([ 'border-coollabs'=>
+            <div @class([ 'borderdevlab'=>
                 data_get($backup, 'id') === data_get($selectedBackup, 'id'),
                 'flex flex-col border-l-2 border-transparent',
                 ])>

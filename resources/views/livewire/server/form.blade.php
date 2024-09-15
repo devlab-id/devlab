@@ -4,7 +4,7 @@
             <h2>General</h2>
             @if ($server->id === 0)
                 <x-modal-confirmation buttonTitle="Save" title="Change Localhost" action="submit">
-                    You could lose a lot of functionalities if you change the server details of the server where Coolify
+                    You could lose a lot of functionalities if you change the server details of the server where Devlab
                     is
                     running on.<br>Please think again.
                 </x-modal-confirmation>
@@ -35,7 +35,7 @@
                     <livewire:server.validate-and-install :server="$server" />
                 </x-slot:content>
                 <x-forms.button @click="slideOverOpen=true"
-                    class="w-full mt-8 mb-4 font-bold box-without-bg bg-coollabs hover:bg-coollabs-100"
+                    class="w-full mt-8 mb-4 font-bold box-without-bg bg-devlab hover:bg-devlab-100"
                     wire:click.prevent='validateServer' isHighlighted>
                     Validate Server & Install Docker Engine
                 </x-forms.button>
@@ -48,7 +48,7 @@
             @endif
         @endif
         @if ((!$server->settings->is_reachable || !$server->settings->is_usable) && $server->id === 0)
-            <x-forms.button class="mt-8 mb-4 font-bold box-without-bg bg-coollabs hover:bg-coollabs-100"
+            <x-forms.button class="mt-8 mb-4 font-bold box-without-bg bg-devlab hover:bg-devlab-100"
                 wire:click.prevent='checkLocalhostConnection' isHighlighted>
                 Validate Server
             </x-forms.button>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="relative">
                     <div class="inline-flex items-center relative w-64">
-                        <input wire:dirty.class.remove='dark:focus:ring-coolgray-300 dark:ring-coolgray-300'
+                        <input wire:dirty.class.remove='dark:focus:ring-devgray-300 dark:ring-devgray-300'
                             wire:dirty.class="dark:focus:ring-warning dark:ring-warning" x-model="search"
                             @focus="open = true" @click.away="open = false" @input="open = true" class="w-full input "
                             :placeholder="placeholder" wire:model.debounce.300ms="server.settings.server_timezone">
@@ -106,12 +106,12 @@
                         </svg>
                     </div>
                     <div x-show="open"
-                        class="absolute z-50 w-64 mt-1 bg-white dark:bg-coolgray-100 border dark:border-coolgray-200 rounded-md shadow-lg max-h-60 overflow-auto scrollbar overflow-x-hidden">
+                        class="absolute z-50 w-64 mt-1 bg-white dark:bg-devgray-100 border dark:border-devgray-200 rounded-md shadow-lg max-h-60 overflow-auto scrollbar overflow-x-hidden">
                         <template
                             x-for="timezone in timezones.filter(tz => tz.toLowerCase().includes(search.toLowerCase()))"
                             :key="timezone">
                             <div @click="search = timezone; open = false; $wire.set('server.settings.server_timezone', timezone)"
-                                class="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-coolgray-300 text-gray-800 dark:text-gray-200"
+                                class="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-devgray-300 text-gray-800 dark:text-gray-200"
                                 x-text="timezone"></div>
                         </template>
                     </div>
@@ -126,7 +126,7 @@
                             <h3 class="">Cloudflare Tunnels
                             </h3>
                             <x-helper class="inline-flex"
-                                helper="If you are using Cloudflare Tunnels, enable this. It will proxy all SSH requests to your server through Cloudflare.<br><span class='dark:text-warning'>Coolify does not install or set up Cloudflare (cloudflared) on your server.</span>" />
+                                helper="If you are using Cloudflare Tunnels, enable this. It will proxy all SSH requests to your server through Cloudflare.<br><span class='dark:text-warning'>Devlab does not install or set up Cloudflare (cloudflared) on your server.</span>" />
                         </div>
                         @if ($server->settings->is_cloudflare_tunnel)
                             <x-forms.checkbox instantSave id="server.settings.is_cloudflare_tunnel" label="Enabled" />
@@ -138,27 +138,27 @@
                         @if (!$server->isBuildServer())
                             <h3 class="pt-6">Swarm <span class="text-xs text-neutral-500">(experimental)</span></h3>
                             <div class="pb-4">Read the docs <a class='underline dark:text-white'
-                                    href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>.
+                                    href='https://devlab.id/docs/knowledge-base/docker/swarm' target='_blank'>here</a>.
                             </div>
                             @if ($server->settings->is_swarm_worker)
                                 <x-forms.checkbox disabled instantSave type="checkbox"
                                     id="server.settings.is_swarm_manager"
-                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
+                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://devlab.id/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
                                     label="Is it a Swarm Manager?" />
                             @else
                                 <x-forms.checkbox instantSave type="checkbox" id="server.settings.is_swarm_manager"
-                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
+                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://devlab.id/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
                                     label="Is it a Swarm Manager?" />
                             @endif
 
                             @if ($server->settings->is_swarm_manager)
                                 <x-forms.checkbox disabled instantSave type="checkbox"
                                     id="server.settings.is_swarm_worker"
-                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
+                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://devlab.id/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
                                     label="Is it a Swarm Worker?" />
                             @else
                                 <x-forms.checkbox instantSave type="checkbox" id="server.settings.is_swarm_worker"
-                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
+                                    helper="For more information, please read the documentation <a class='dark:text-white' href='https://devlab.id/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
                                     label="Is it a Swarm Worker?" />
                             @endif
                         @endif
@@ -168,7 +168,7 @@
                         <h3 class="">Cloudflare Tunnels
                         </h3>
                         <x-helper class="inline-flex"
-                            helper="If you are using Cloudflare Tunnels, enable this. It will proxy all SSH requests to your server through Cloudflare.<br><span class='dark:text-warning'>Coolify does not install or set up Cloudflare (cloudflared) on your server.</span>" />
+                            helper="If you are using Cloudflare Tunnels, enable this. It will proxy all SSH requests to your server through Cloudflare.<br><span class='dark:text-warning'>Devlab does not install or set up Cloudflare (cloudflared) on your server.</span>" />
                     </div>
                     @if ($server->settings->is_cloudflare_tunnel)
                         <x-forms.checkbox instantSave id="server.settings.is_cloudflare_tunnel" label="Enabled" />

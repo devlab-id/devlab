@@ -150,7 +150,7 @@ class General extends Component
         $this->is_container_label_escape_enabled = $this->application->settings->is_container_label_escape_enabled;
         $this->customLabels = $this->application->parseContainerLabels();
         if (! $this->customLabels && $this->application->destination->server->proxyType() !== 'NONE' && ! $this->application->settings->is_container_label_readonly_enabled) {
-            $this->customLabels = str(implode('|coolify|', generateLabelsApplication($this->application)))->replace('|coolify|', "\n");
+            $this->customLabels = str(implode('|devlab|', generateLabelsApplication($this->application)))->replace('|devlab|', "\n");
             $this->application->custom_labels = base64_encode($this->customLabels);
             $this->application->save();
         }
@@ -290,7 +290,7 @@ class General extends Component
         if ($this->application->settings->is_container_label_readonly_enabled) {
             return;
         }
-        $this->customLabels = str(implode('|coolify|', generateLabelsApplication($this->application)))->replace('|coolify|', "\n");
+        $this->customLabels = str(implode('|devlab|', generateLabelsApplication($this->application)))->replace('|devlab|', "\n");
         $this->ports_exposes = $this->application->ports_exposes;
         $this->is_container_label_escape_enabled = $this->application->settings->is_container_label_escape_enabled;
         $this->application->custom_labels = base64_encode($this->customLabels);
@@ -308,7 +308,7 @@ class General extends Component
             if ($this->application->additional_servers->count() === 0) {
                 foreach ($domains as $domain) {
                     if (! validate_dns_entry($domain, $this->application->destination->server)) {
-                        $showToaster && $this->dispatch('error', 'Validating DNS failed.', "Make sure you have added the DNS records correctly.<br><br>$domain->{$this->application->destination->server->ip}<br><br>Check this <a target='_blank' class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/dns-configuration'>documentation</a> for further help.");
+                        $showToaster && $this->dispatch('error', 'Validating DNS failed.', "Make sure you have added the DNS records correctly.<br><br>$domain->{$this->application->destination->server->ip}<br><br>Check this <a target='_blank' class='underline dark:text-white' href='https://devlab.id/docs/knowledge-base/dns-configuration'>documentation</a> for further help.");
                     }
                 }
             }
@@ -351,7 +351,7 @@ class General extends Component
 
             $this->application->save();
             if (! $this->customLabels && $this->application->destination->server->proxyType() !== 'NONE' && ! $this->application->settings->is_container_label_readonly_enabled) {
-                $this->customLabels = str(implode('|coolify|', generateLabelsApplication($this->application)))->replace('|coolify|', "\n");
+                $this->customLabels = str(implode('|devlab|', generateLabelsApplication($this->application)))->replace('|devlab|', "\n");
                 $this->application->custom_labels = base64_encode($this->customLabels);
                 $this->application->save();
             }
@@ -395,7 +395,7 @@ class General extends Component
                     $domain = data_get($service, 'domain');
                     if ($domain) {
                         if (! validate_dns_entry($domain, $this->application->destination->server)) {
-                            $showToaster && $this->dispatch('error', 'Validating DNS failed.', "Make sure you have added the DNS records correctly.<br><br>$domain->{$this->application->destination->server->ip}<br><br>Check this <a target='_blank' class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/dns-configuration'>documentation</a> for further help.");
+                            $showToaster && $this->dispatch('error', 'Validating DNS failed.', "Make sure you have added the DNS records correctly.<br><br>$domain->{$this->application->destination->server->ip}<br><br>Check this <a target='_blank' class='underline dark:text-white' href='https://devlab.id/docs/knowledge-base/dns-configuration'>documentation</a> for further help.");
                         }
                         check_domain_usage(resource: $this->application);
                     }

@@ -24,12 +24,12 @@ class CleanupDocker
     {
         $settings = InstanceSettings::get();
         $helperImageVersion = data_get($settings, 'helper_version');
-        $helperImage = config('coolify.helper_image');
-        $helperImageWithVersion = config('coolify.helper_image').':'.$helperImageVersion;
+        $helperImage = config('devlab.helper_image');
+        $helperImageWithVersion = config('devlab.helper_image').':'.$helperImageVersion;
 
         $commonCommands = [
-            'docker container prune -f --filter "label=coolify.managed=true"',
-            'docker image prune -af --filter "label!=coolify.managed=true"',
+            'docker container prune -f --filter "label=devlab.managed=true"',
+            'docker image prune -af --filter "label!=devlab.managed=true"',
             'docker builder prune -af',
             "docker images --filter before=$helperImageWithVersion --filter reference=$helperImage | grep $helperImage | awk '{print $3}' | xargs -r docker rmi",
         ];

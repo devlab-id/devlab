@@ -1,36 +1,36 @@
 services:
-    coolify:
-        container_name: coolify
+    devlab:
+        container_name: devlab
         restart: always
         working_dir: /var/www/html
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         networks:
-            - coolify
+            - devlab
         depends_on:
             - postgres
             - redis
             - soketi
     postgres:
         image: postgres:15-alpine
-        container_name: coolify-db
+        container_name: devlab-db
         restart: always
         networks:
-            - coolify
+            - devlab
     redis:
         image: redis:alpine
-        container_name: coolify-redis
+        container_name: devlab-redis
         restart: always
         networks:
-            - coolify
+            - devlab
     soketi:
         image: 'quay.io/soketi/soketi:1.6-16-alpine'
-        container_name: coolify-realtime
+        container_name: devlab-realtime
         restart: always
         networks:
-            - coolify
+            - devlab
 networks:
-    coolify:
-        name: coolify
+    devlab:
+        name: devlab
         driver: bridge
         external: false

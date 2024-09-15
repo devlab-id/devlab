@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Proxy Configuration | Coolify
+        Proxy Configuration | Devlab
     </x-slot>
     <x-server.navbar :server="$server" :parameters="$parameters" />
     @if ($server->isFunctional())

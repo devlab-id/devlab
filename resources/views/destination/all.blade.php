@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Destinations | Coolify
+        Destinations | Devlab
     </x-slot>
     <div class="flex items-start gap-2">
         <h1>Destinations</h1>

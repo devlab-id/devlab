@@ -1,6 +1,6 @@
 <div>
     <form wire:submit='submit'
-        class="flex flex-col items-center gap-4 p-4 bg-white border lg:items-start dark:bg-base dark:border-coolgray-300">
+        class="flex flex-col items-center gap-4 p-4 bg-white border lg:items-start dark:bg-base dark:border-devgray-300">
         @if ($isLocked)
             <div class="flex flex-1 w-full gap-2">
                 <x-forms.input disabled id="env.key" />
@@ -13,7 +13,7 @@
                 </svg>
                 <x-modal-confirmation isErrorButton buttonTitle="Delete">
                     You will delete environment variable <span
-                        class="font-bold dark:text-warning text-coollabs">{{ $env->key }}</span>.
+                        class="font-bold dark:text-warning text-devlab">{{ $env->key }}</span>.
                 </x-modal-confirmation>
             </div>
         @else

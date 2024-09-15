@@ -1,7 +1,7 @@
 <?php
 
-use App\Actions\CoolifyTask\PrepareCoolifyTask;
-use App\Data\CoolifyTaskArgs;
+use App\Actions\DevlabTask\PrepareDevlabTask;
+use App\Data\DevlabTaskArgs;
 use App\Enums\ActivityTypes;
 use App\Models\Application;
 use App\Models\ApplicationDeploymentQueue;
@@ -43,8 +43,8 @@ function remote_process(
         }
     }
 
-    return resolve(PrepareCoolifyTask::class, [
-        'remoteProcessArgs' => new CoolifyTaskArgs(
+    return resolve(PrepareDevlabTask::class, [
+        'remoteProcessArgs' => new DevlabTaskArgs(
             server_uuid: $server->uuid,
             command: <<<EOT
                 {$command_string}
@@ -98,7 +98,7 @@ function generateScpCommand(Server $server, string $source, string $dest)
     $muxPersistTime = config('constants.ssh.mux_persist_time');
 
     $scp_command = "timeout $timeout scp ";
-    $muxEnabled = config('constants.ssh.mux_enabled', true) && config('coolify.is_windows_docker_desktop') == false;
+    $muxEnabled = config('constants.ssh.mux_enabled', true) && config('devlab.is_windows_docker_desktop') == false;
     // ray('SSH Multiplexing Enabled:', $muxEnabled)->blue();
 
     if ($muxEnabled) {
@@ -161,7 +161,7 @@ function generateSshCommand(Server $server, string $command)
 
     $ssh_command = "timeout $timeout ssh ";
 
-    $muxEnabled = config('constants.ssh.mux_enabled') && config('coolify.is_windows_docker_desktop') == false;
+    $muxEnabled = config('constants.ssh.mux_enabled') && config('devlab.is_windows_docker_desktop') == false;
     // ray('SSH Multiplexing Enabled:', $muxEnabled)->blue();
     if ($muxEnabled) {
         // Always use multiplexing when enabled
@@ -197,7 +197,7 @@ function generateSshCommand(Server $server, string $command)
 
 function ensureMultiplexedConnection(Server $server)
 {
-    if (! (config('constants.ssh.mux_enabled') && config('coolify.is_windows_docker_desktop') == false)) {
+    if (! (config('constants.ssh.mux_enabled') && config('devlab.is_windows_docker_desktop') == false)) {
         return;
     }
 
@@ -268,7 +268,7 @@ function ensureMultiplexedConnection(Server $server)
 
 function shouldResetMultiplexedConnection(Server $server)
 {
-    if (! (config('constants.ssh.mux_enabled') && config('coolify.is_windows_docker_desktop') == false)) {
+    if (! (config('constants.ssh.mux_enabled') && config('devlab.is_windows_docker_desktop') == false)) {
         return false;
     }
 
@@ -287,7 +287,7 @@ function shouldResetMultiplexedConnection(Server $server)
 
 function resetMultiplexedConnection(Server $server)
 {
-    if (! (config('constants.ssh.mux_enabled') && config('coolify.is_windows_docker_desktop') == false)) {
+    if (! (config('constants.ssh.mux_enabled') && config('devlab.is_windows_docker_desktop') == false)) {
         return;
     }
 

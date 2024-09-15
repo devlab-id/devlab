@@ -37,8 +37,8 @@ jobs:
       - name: Start the stack
         run: |
           ./vendor/bin/spin up -d
-          ./vendor/bin/spin exec coolify php artisan key:generate
-          ./vendor/bin/spin exec coolify php artisan migrate:fresh --seed
+          ./vendor/bin/spin exec devlab php artisan key:generate
+          ./vendor/bin/spin exec devlab php artisan migrate:fresh --seed
       - name: Test (missing E2E tests)
         run: |
-          ./vendor/bin/spin exec coolify php artisan test
+          ./vendor/bin/spin exec devlab php artisan test

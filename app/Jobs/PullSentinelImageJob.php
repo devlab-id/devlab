@@ -39,7 +39,7 @@ class PullSentinelImageJob implements ShouldBeEncrypted, ShouldQueue
 
                 return;
             }
-            $local_version = instant_remote_process(['docker exec coolify-sentinel sh -c "curl http://127.0.0.1:8888/api/version"'], $this->server, false);
+            $local_version = instant_remote_process(['docker exec devlab-sentinel sh -c "curl http://127.0.0.1:8888/api/version"'], $this->server, false);
             if (empty($local_version)) {
                 $local_version = '0.0.0';
             }

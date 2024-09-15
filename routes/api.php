@@ -129,7 +129,7 @@ Route::group([
 });
 
 Route::any('/{any}', function () {
-    return response()->json(['message' => 'Not found.', 'docs' => 'https://coolify.io/docs'], 404);
+    return response()->json(['message' => 'Not found.', 'docs' => 'https://devlab.id/docs'], 404);
 })->where('any', '.*');
 
 // Route::middleware(['throttle:5'])->group(function () {

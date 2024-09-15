@@ -33,8 +33,8 @@ class StartProxy
                     "mkdir -p $proxy_path/dynamic",
                     "cd $proxy_path",
                     "echo 'Creating required Docker Compose file.'",
-                    "echo 'Starting coolify-proxy.'",
-                    'docker stack deploy -c docker-compose.yml coolify-proxy',
+                    "echo 'Starting devlab-proxy.'",
+                    'docker stack deploy -c docker-compose.yml devlab-proxy',
                     "echo 'Proxy started successfully.'",
                 ]);
             } else {
@@ -46,9 +46,9 @@ class StartProxy
                     "echo 'Creating required Docker Compose file.'",
                     "echo 'Pulling docker image.'",
                     'docker compose pull',
-                    "echo 'Stopping existing coolify-proxy.'",
+                    "echo 'Stopping existing devlab-proxy.'",
                     'docker compose down -v --remove-orphans > /dev/null 2>&1',
-                    "echo 'Starting coolify-proxy.'",
+                    "echo 'Starting devlab-proxy.'",
                     'docker compose up -d --remove-orphans',
                     "echo 'Proxy started successfully.'",
                 ]);

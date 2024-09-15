@@ -18,7 +18,7 @@
                     if (checkNumber > 5) {
                         this.popups.realtime = true;
                         console.error(
-                            'Coolify could not connect to its real-time service. This will cause unusual problems on the UI if not fixed! Please check the related documentation (https://coolify.io/docs/knowledge-base/cloudflare/tunnels) or get help on Discord (https://coollabs.io/discord).)'
+                            'Devlab could not connect to its real-time service. This will cause unusual problems on the UI if not fixed! Please check the related documentation (https://devlab.id/docs/knowledge-base/cloudflare/tunnels) or get help on Discord (https://coollabs.io/discord).)'
                         );
                         clearInterval(checkPusherInterval);
                     }
@@ -35,15 +35,15 @@
                         <span class="font-bold text-left text-red-500">WARNING: </span>Realtime Error?!
                     </x-slot:title>
                     <x-slot:description>
-                        <span>Coolify could not connect to its real-time service.<br>This will cause unusual problems on the
+                        <span>Devlab could not connect to its real-time service.<br>This will cause unusual problems on the
                             UI
                             if
                             not fixed! <br><br>
                             Please ensure that you have opened the
-                            <a class="underline" href='https://coolify.io/docs/knowledge-base/server/firewall'
+                            <a class="underline" href='https://devlab.id/docs/knowledge-base/server/firewall'
                                 target='_blank'>required ports</a>,
                             check the
-                            related <a class="underline" href='https://coolify.io/docs/knowledge-base/cloudflare/tunnels'
+                            related <a class="underline" href='https://devlab.id/docs/knowledge-base/cloudflare/tunnels'
                                 target='_blank'>documentation</a> or get
                             help on <a class="underline" href='https://coollabs.io/discord' target='_blank'>Discord</a>.
                         </span>
@@ -58,7 +58,7 @@
     <span x-show="popups.sponsorship">
         <x-popup>
             <x-slot:title>
-                Love Coolify as we do?
+                Love Devlab as we do?
             </x-slot:title>
             <x-slot:icon>
                 <img src="https://cdn-icons-png.flaticon.com/512/8236/8236748.png"

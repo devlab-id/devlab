@@ -18,7 +18,7 @@ class S3StorageSeeder extends Seeder
             'key' => 'minioadmin',
             'secret' => 'minioadmin',
             'bucket' => 'local',
-            'endpoint' => 'http://coolify-minio:9000',
+            'endpoint' => 'http://devlab-minio:9000',
             'team_id' => 0,
         ]);
     }

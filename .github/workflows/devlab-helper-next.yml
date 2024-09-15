@@ -1,15 +1,15 @@
-name: Coolify Helper Image (v4)
+name: Devlab Helper Image Development (v4)
 
 on:
   push:
-    branches: [ "main", "next" ]
+    branches: [ "next" ]
     paths:
-      - .github/workflows/coolify-helper.yml
-      - docker/coolify-helper/Dockerfile
+      - .github/workflows/devlab-helper-next.yml
+      - docker/devlab-helper/Dockerfile
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: "coollabsio/coolify-helper"
+  IMAGE_NAME: "coollabsio/devlab-helper"
 
 jobs:
   amd64:
@@ -28,18 +28,18 @@ jobs:
       - name: Get Version
         id: version
         run: |
-          echo "VERSION=$(docker run --rm -v "$(pwd):/app" -w /app ghcr.io/jqlang/jq:latest '.coolify.helper.version' versions.json)"|xargs >> $GITHUB_OUTPUT
+          echo "VERSION=$(docker run --rm -v "$(pwd):/app" -w /app ghcr.io/jqlang/jq:latest '.devlab.helper.version' versions.json)"|xargs >> $GITHUB_OUTPUT
       - name: Build image and push to registry
         uses: docker/build-push-action@v5
         with:
           no-cache: true
           context: .
-          file: docker/coolify-helper/Dockerfile
+          file: docker/devlab-helper/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}-next
           labels: |
-            coolify.managed=true
+            devlab.managed=true
   aarch64:
     runs-on: [ self-hosted, arm64 ]
     permissions:
@@ -56,18 +56,18 @@ jobs:
       - name: Get Version
         id: version
         run: |
-           echo "VERSION=$(docker run --rm -v "$(pwd):/app" -w /app ghcr.io/jqlang/jq:latest '.coolify.helper.version' versions.json)"|xargs >> $GITHUB_OUTPUT
+          echo "VERSION=$(docker run --rm -v "$(pwd):/app" -w /app ghcr.io/jqlang/jq:latest '.devlab.helper.version' versions.json)"|xargs >> $GITHUB_OUTPUT
       - name: Build image and push to registry
         uses: docker/build-push-action@v5
         with:
           no-cache: true
           context: .
-          file: docker/coolify-helper/Dockerfile
+          file: docker/devlab-helper/Dockerfile
           platforms: linux/aarch64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}-aarch64
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}-next-aarch64
           labels: |
-            coolify.managed=true
+            devlab.managed=true
   merge-manifest:
     runs-on: ubuntu-latest
     permissions:
@@ -90,11 +90,12 @@ jobs:
       - name: Get Version
         id: version
         run: |
-           echo "VERSION=$(docker run  --rm -v "$(pwd):/app" -w /app ghcr.io/jqlang/jq:latest '.coolify.helper.version' versions.json)"|xargs >> $GITHUB_OUTPUT
+           echo "VERSION=$(docker run --rm -v "$(pwd):/app" -w /app ghcr.io/jqlang/jq:latest '.devlab.helper.version' versions.json)"|xargs >> $GITHUB_OUTPUT
       - name: Create & publish manifest
         run: |
-          docker buildx imagetools create --append ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}-aarch64 --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }} --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker buildx imagetools create --append ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}-next-aarch64 --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}-next --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:next
       - uses: sarisia/actions-status-discord@v1
         if: always()
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_PROD_RELEASE_CHANNEL  }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK_DEV_RELEASE_CHANNEL  }}
+

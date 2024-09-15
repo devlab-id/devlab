@@ -1,72 +1,55 @@
 @font-face {
-  font-display: swap;
-  font-family: 'Inter';
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Regular.otf') format('opentype');
+  font-weight: normal;
   font-style: normal;
-  font-weight: 100;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-100.woff2') format('woff2');
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Inter';
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Bold.otf') format('opentype');
+  font-weight: bold;
   font-style: normal;
-  font-weight: 200;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-200.woff2') format('woff2');
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Light.otf') format('opentype');
   font-weight: 300;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-300.woff2') format('woff2');
+  font-style: normal;
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Medium.otf') format('opentype');
   font-weight: 500;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-500.woff2') format('woff2');
+  font-style: normal;
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-700.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 800;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-800.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Black.otf') format('opentype');
   font-weight: 900;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-900.woff2') format('woff2');
+  font-style: normal;
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Inter';
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Thin.otf') format('opentype');
+  font-weight: 100;
   font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/inter-v13-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-regular.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Ultra-Bold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GTWalsheimPro';
+  src: url('../fonts/GTWalsheimPro/GT-Walsheim-Pro-Ultra-Light.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}

@@ -15,7 +15,7 @@ function collectProxyDockerNetworksByServer(Server $server)
     if (is_null($proxyType) || $proxyType === 'NONE') {
         return collect();
     }
-    $networks = instant_remote_process(['docker inspect --format="{{json .NetworkSettings.Networks }}" coolify-proxy'], $server, false);
+    $networks = instant_remote_process(['docker inspect --format="{{json .NetworkSettings.Networks }}" devlab-proxy'], $server, false);
     $networks = collect($networks)->map(function ($network) {
         return collect(json_decode($network))->keys();
     })->flatten()->unique();
@@ -72,13 +72,13 @@ function collectDockerNetworksByServer(Server $server)
     $allNetworks = $allNetworks->flatten()->unique();
     if ($server->isSwarm()) {
         if ($networks->count() === 0) {
-            $networks = collect(['coolify-overlay']);
-            $allNetworks = collect(['coolify-overlay']);
+            $networks = collect(['devlab-overlay']);
+            $allNetworks = collect(['devlab-overlay']);
         }
     } else {
         if ($networks->count() === 0) {
-            $networks = collect(['coolify']);
-            $allNetworks = collect(['coolify']);
+            $networks = collect(['devlab']);
+            $allNetworks = collect(['devlab']);
         }
     }
 
@@ -93,17 +93,17 @@ function connectProxyToNetworks(Server $server)
     if ($server->isSwarm()) {
         $commands = $networks->map(function ($network) {
             return [
-                "echo 'Connecting coolify-proxy to $network network...'",
+                "echo 'Connecting devlab-proxy to $network network...'",
                 "docker network ls --format '{{.Name}}' | grep '^$network$' >/dev/null || docker network create --driver overlay --attachable $network >/dev/null",
-                "docker network connect $network coolify-proxy >/dev/null 2>&1 || true",
+                "docker network connect $network devlab-proxy >/dev/null 2>&1 || true",
             ];
         });
     } else {
         $commands = $networks->map(function ($network) {
             return [
-                "echo 'Connecting coolify-proxy to $network network...'",
+                "echo 'Connecting devlab-proxy to $network network...'",
                 "docker network ls --format '{{.Name}}' | grep '^$network$' >/dev/null || docker network create --attachable $network >/dev/null",
-                "docker network connect $network coolify-proxy >/dev/null 2>&1 || true",
+                "docker network connect $network devlab-proxy >/dev/null 2>&1 || true",
             ];
         });
     }
@@ -120,14 +120,14 @@ function generate_default_proxy_configuration(Server $server)
             return $docker['network'];
         })->unique();
         if ($networks->count() === 0) {
-            $networks = collect(['coolify-overlay']);
+            $networks = collect(['devlab-overlay']);
         }
     } else {
         $networks = collect($server->standaloneDockers)->map(function ($docker) {
             return $docker['network'];
         })->unique();
         if ($networks->count() === 0) {
-            $networks = collect(['coolify']);
+            $networks = collect(['devlab']);
         }
     }
 
@@ -143,13 +143,13 @@ function generate_default_proxy_configuration(Server $server)
             'traefik.http.routers.traefik.entrypoints=http',
             'traefik.http.routers.traefik.service=api@internal',
             'traefik.http.services.traefik.loadbalancer.server.port=8080',
-            'coolify.managed=true',
+            'devlab.managed=true',
         ];
         $config = [
             'networks' => $array_of_networks->toArray(),
             'services' => [
                 'traefik' => [
-                    'container_name' => 'coolify-proxy',
+                    'container_name' => 'devlab-proxy',
                     'image' => 'traefik:v3.1',
                     'restart' => RESTART_MODE,
                     'extra_hosts' => [
@@ -221,7 +221,7 @@ function generate_default_proxy_configuration(Server $server)
             'networks' => $array_of_networks->toArray(),
             'services' => [
                 'caddy' => [
-                    'container_name' => 'coolify-proxy',
+                    'container_name' => 'devlab-proxy',
                     'image' => 'lucaslorentz/caddy-docker-proxy:2.8-alpine',
                     'restart' => RESTART_MODE,
                     'extra_hosts' => [

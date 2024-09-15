@@ -42,7 +42,7 @@ class ForceEnabled extends Notification implements ShouldQueue
     public function toMail(): MailMessage
     {
         $mail = new MailMessage;
-        $mail->subject("Coolify: Server ({$this->server->name}) enabled again!");
+        $mail->subject("Devlab: Server ({$this->server->name}) enabled again!");
         $mail->view('emails.server-force-enabled', [
             'name' => $this->server->name,
         ]);
@@ -52,7 +52,7 @@ class ForceEnabled extends Notification implements ShouldQueue
 
     public function toDiscord(): string
     {
-        $message = "Coolify: Server ({$this->server->name}) enabled again!";
+        $message = "Devlab: Server ({$this->server->name}) enabled again!";
 
         return $message;
     }
@@ -60,7 +60,7 @@ class ForceEnabled extends Notification implements ShouldQueue
     public function toTelegram(): array
     {
         return [
-            'message' => "Coolify: Server ({$this->server->name}) enabled again!",
+            'message' => "Devlab: Server ({$this->server->name}) enabled again!",
         ];
     }
 }

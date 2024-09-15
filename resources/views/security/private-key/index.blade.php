@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Private Keys | Coolify
+        Private Keys | Devlab
     </x-slot>
     <x-security.navbar />
     <div class="flex gap-2">

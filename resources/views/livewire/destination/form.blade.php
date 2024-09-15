@@ -5,7 +5,7 @@
             <x-forms.button wire:click.prevent='submit' type="submit">
                 Save
             </x-forms.button>
-            @if ($destination->network !== 'coolify')
+            @if ($destination->network !== 'devlab')
                 <x-modal-confirmation isErrorButton buttonTitle="Delete Destination">
                     This destination will be deleted. It is not reversible. <br>Please think again.
                 </x-modal-confirmation>

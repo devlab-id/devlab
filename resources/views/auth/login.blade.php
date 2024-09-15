@@ -2,7 +2,7 @@
     <section class="bg-gray-50 dark:bg-base">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a class="flex items-center mb-6 text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                Coolify
+                Devlab
             </a>
             <div class="w-full bg-white shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-base ">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -51,14 +51,14 @@
                         @endif
                     </form>
                     @if ($is_registration_enabled)
-                        <a href="/register" class="button bg-coollabs-gradient">
+                        <a href="/register" class="button bg-devlab-gradient">
                             {{ __('auth.register_now') }}
                         </a>
                     @endif
                     @if ($enabled_oauth_providers->isNotEmpty())
                         <div class="relative">
                             <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                                <div class="w-full border-t dark:border-coolgray-200"></div>
+                                <div class="w-full border-t dark:border-devgray-200"></div>
                             </div>
                             <div class="relative flex justify-center">
                                 <span class="px-2 text-sm dark:text-neutral-500 dark:bg-base">or</span>

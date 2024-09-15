@@ -6,7 +6,7 @@ use App\Models\InstanceSettings;
 use App\Models\Server;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class UpdateCoolify
+class UpdateDevlab
 {
     use AsAction;
 
@@ -25,7 +25,7 @@ class UpdateCoolify
                 return;
             }
             CleanupDocker::dispatch($this->server)->onQueue('high');
-            $this->latestVersion = get_latest_version_of_coolify();
+            $this->latestVersion = get_latest_version_of_devlab();
             $this->currentVersion = config('version');
             if (! $manual_update) {
                 if (! $settings->is_auto_update_enabled) {
@@ -58,8 +58,8 @@ class UpdateCoolify
         instant_remote_process(["docker pull -q ghcr.io/coollabsio/coolify:{$this->latestVersion}"], $this->server, false);
 
         remote_process([
-            'curl -fsSL https://cdn.coollabs.io/coolify/upgrade.sh -o /data/coolify/source/upgrade.sh',
-            "bash /data/coolify/source/upgrade.sh $this->latestVersion",
+            'curl -fsSL https://cdn.coollabs.io/devlab/upgrade.sh -o /data/devlab/source/upgrade.sh',
+            "bash /data/devlab/source/upgrade.sh $this->latestVersion",
         ], $this->server);
     }
 }

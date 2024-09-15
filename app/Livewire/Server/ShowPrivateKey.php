@@ -43,7 +43,7 @@ class ShowPrivateKey extends Component
                 $this->dispatch('success', 'Server is reachable.');
             } else {
                 ray($error);
-                $this->dispatch('error', 'Server is not reachable.<br>Please validate your configuration and connection.<br><br>Check this <a target="_blank" class="underline" href="https://coolify.io/docs/knowledge-base/server/openssh">documentation</a> for further help.');
+                $this->dispatch('error', 'Server is not reachable.<br>Please validate your configuration and connection.<br><br>Check this <a target="_blank" class="underline" href="https://devlab.id/docs/knowledge-base/server/openssh">documentation</a> for further help.');
 
                 return;
             }

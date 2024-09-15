@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Server Resources | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Server Resources | Devlab
     </x-slot>
     <x-server.navbar :server="$server" :parameters="$parameters" />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'managed' }" class="flex flex-col h-full gap-8 md:flex-row">
@@ -17,7 +17,7 @@
                         <h2>Resources</h2>
                         <x-forms.button wire:click="refreshStatus">Refresh</x-forms.button>
                     </div>
-                    <div class="subtitle">Here you can find all resources that are managed by Coolify.</div>
+                    <div class="subtitle">Here you can find all resources that are managed by Devlab.</div>
                 </div>
                 @if ($server->definedResources()->count() > 0)
                     <div class="flex flex-col">

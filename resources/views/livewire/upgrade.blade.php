@@ -42,7 +42,7 @@
                         x-transition:leave="ease-in duration-100"
                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                         x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
-                        class="relative w-full py-6 border rounded min-w-full lg:min-w-[36rem] max-w-fit bg-neutral-100 border-neutral-400 dark:bg-base px-7 dark:border-coolgray-300">
+                        class="relative w-full py-6 border rounded min-w-full lg:min-w-[36rem] max-w-fit bg-neutral-100 border-neutral-400 dark:bg-base px-7 dark:border-devgray-300">
                         <div class="flex items-center justify-between pb-3">
                             <h3 class="text-lg font-semibold">Upgrade confirmation</h3>
                             @if (!$showProgress)
@@ -59,10 +59,10 @@
                             <p>Are you sure you would like to upgrade your instance to {{ $latestVersion }}?</p>
                             <br />
                             <p>You can review the changelogs <a class="font-bold underline dark:text-white"
-                                    href="https://github.com/coollabsio/coolify/releases" target="_blank">here</a>.</p>
+                                    href="https://github.com/coollabsio/devlab/releases" target="_blank">here</a>.</p>
                             <br />
                             <p>If something goes wrong and you cannot upgrade your instance, You can check the following
-                                <a class="font-bold underline dark:text-white" href="https://coolify.io/docs/upgrade"
+                                <a class="font-bold underline dark:text-white" href="https://devlab.id/docs/upgrade"
                                     target="_blank">guide</a> on what to do.
                             </p>
                             @if ($showProgress)
@@ -75,7 +75,7 @@
                         <div class="flex gap-4">
                             @if (!$showProgress)
                                 <x-forms.button @click="modalOpen=false"
-                                    class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">Cancel
+                                    class="w-24 dark:bg-devgray-200 dark:hover:bg-devgray-300">Cancel
                                 </x-forms.button>
                                 <div class="flex-1"></div>
                                 <x-forms.button @click="confirmed" class="w-24" isHighlighted type="button">Continue
@@ -112,7 +112,7 @@
                         .then(response => {
                             if (response.ok) {
                                 this.currentStatus =
-                                    'Coolify is back online. Reloading this page (you can manually reload if its not done automatically)...';
+                                    'Devlab is back online. Reloading this page (you can manually reload if its not done automatically)...';
                                 if (checkHealthInterval) clearInterval(
                                     checkHealthInterval);
                                 setTimeout(() => {
@@ -120,14 +120,14 @@
                                 }, 5000)
                             } else {
                                 this.currentStatus =
-                                    "Waiting for Coolify to come back from dead..."
+                                    "Waiting for Devlab to come back from dead..."
                             }
                         })
                 }, 2000);
             },
             upgrade() {
                 if (checkIfIamDeadInterval || this.$wire.showProgress) return true;
-                this.currentStatus = 'Pulling new images and updating Coolify.';
+                this.currentStatus = 'Pulling new images and updating Devlab.';
                 checkIfIamDeadInterval = setInterval(() => {
                     fetch('/api/health')
                         .then(response => {
@@ -135,7 +135,7 @@
                                 this.currentStatus = "Waiting for the update process..."
                             } else {
                                 this.currentStatus =
-                                    "Update done, restarting Coolify & waiting until it is revived!"
+                                    "Update done, restarting Devlab & waiting until it is revived!"
                                 if (checkIfIamDeadInterval) clearInterval(
                                     checkIfIamDeadInterval);
                                 this.revive();

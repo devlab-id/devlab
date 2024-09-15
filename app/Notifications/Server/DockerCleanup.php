@@ -40,7 +40,7 @@ class DockerCleanup extends Notification implements ShouldQueue
     // public function toMail(): MailMessage
     // {
     //     $mail = new MailMessage();
-    //     $mail->subject("Coolify: Server ({$this->server->name}) high disk usage detected!");
+    //     $mail->subject("Devlab: Server ({$this->server->name}) high disk usage detected!");
     //     $mail->view('emails.high-disk-usage', [
     //         'name' => $this->server->name,
     //         'disk_usage' => $this->disk_usage,
@@ -51,7 +51,7 @@ class DockerCleanup extends Notification implements ShouldQueue
 
     public function toDiscord(): string
     {
-        $message = "Coolify: Server '{$this->server->name}' cleanup job done!\n\n{$this->message}";
+        $message = "Devlab: Server '{$this->server->name}' cleanup job done!\n\n{$this->message}";
 
         return $message;
     }
@@ -59,7 +59,7 @@ class DockerCleanup extends Notification implements ShouldQueue
     public function toTelegram(): array
     {
         return [
-            'message' => "Coolify: Server '{$this->server->name}' cleanup job done!\n\n{$this->message}",
+            'message' => "Devlab: Server '{$this->server->name}' cleanup job done!\n\n{$this->message}",
         ];
     }
 }

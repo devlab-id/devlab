@@ -11,7 +11,7 @@ class OtherController extends Controller
 {
     #[OA\Get(
         summary: 'Version',
-        description: 'Get Coolify version.',
+        description: 'Get Devlab version.',
         path: '/version',
         operationId: 'version',
         security: [
@@ -147,7 +147,7 @@ class OtherController extends Controller
     public function feedback(Request $request)
     {
         $content = $request->input('content');
-        $webhook_url = config('coolify.feedback_discord_webhook');
+        $webhook_url = config('devlab.feedback_discord_webhook');
         if ($webhook_url) {
             Http::post($webhook_url, [
                 'content' => $content,

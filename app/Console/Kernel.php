@@ -12,7 +12,7 @@ use App\Jobs\PullSentinelImageJob;
 use App\Jobs\PullTemplatesFromCDN;
 use App\Jobs\ScheduledTaskJob;
 use App\Jobs\ServerCheckJob;
-use App\Jobs\UpdateCoolifyJob;
+use App\Jobs\UpdateDevlabJob;
 use App\Models\InstanceSettings;
 use App\Models\ScheduledDatabaseBackup;
 use App\Models\ScheduledTask;
@@ -69,7 +69,7 @@ class Kernel extends ConsoleKernel
         foreach ($servers as $server) {
             if ($server->isSentinelEnabled()) {
                 $schedule->job(function () use ($server) {
-                    $sentinel_found = instant_remote_process(['docker inspect coolify-sentinel'], $server, false);
+                    $sentinel_found = instant_remote_process(['docker inspect devlab-sentinel'], $server, false);
                     $sentinel_found = json_decode($sentinel_found, true);
                     $status = data_get($sentinel_found, '0.State.Status', 'exited');
                     if ($status !== 'running') {
@@ -96,7 +96,7 @@ class Kernel extends ConsoleKernel
 
         if ($settings->is_auto_update_enabled) {
             $autoUpdateFrequency = $settings->auto_update_frequency;
-            $schedule->job(new UpdateCoolifyJob)
+            $schedule->job(new UpdateDevlabJob)
                 ->cron($autoUpdateFrequency)
                 ->timezone($settings->instance_timezone)
                 ->onOneServer();

@@ -226,9 +226,9 @@ class Emails extends Command
             case 'waitlist-invitation-link':
                 $this->mail = new MailMessage;
                 $this->mail->view('emails.waitlist-invitation', [
-                    'loginLink' => 'https://coolify.io',
+                    'loginLink' => 'https://devlab.id',
                 ]);
-                $this->mail->subject('Congratulations! You are invited to join Coolify Cloud.');
+                $this->mail->subject('Congratulations! You are invited to join Devlab Cloud.');
                 $this->sendEmail();
                 break;
             case 'waitlist-confirmation':

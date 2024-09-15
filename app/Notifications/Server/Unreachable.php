@@ -55,7 +55,7 @@ class Unreachable extends Notification implements ShouldQueue
     public function toMail(): MailMessage
     {
         $mail = new MailMessage;
-        $mail->subject("Coolify: Your server ({$this->server->name}) is unreachable.");
+        $mail->subject("Devlab: Your server ({$this->server->name}) is unreachable.");
         $mail->view('emails.server-lost-connection', [
             'name' => $this->server->name,
         ]);
@@ -65,7 +65,7 @@ class Unreachable extends Notification implements ShouldQueue
 
     public function toDiscord(): string
     {
-        $message = "Coolify: Your server '{$this->server->name}' is unreachable. All automations & integrations are turned off! Please check your server! IMPORTANT: We automatically try to revive your server and turn on all automations & integrations.";
+        $message = "Devlab: Your server '{$this->server->name}' is unreachable. All automations & integrations are turned off! Please check your server! IMPORTANT: We automatically try to revive your server and turn on all automations & integrations.";
 
         return $message;
     }
@@ -73,7 +73,7 @@ class Unreachable extends Notification implements ShouldQueue
     public function toTelegram(): array
     {
         return [
-            'message' => "Coolify: Your server '{$this->server->name}' is unreachable. All automations & integrations are turned off! Please check your server! IMPORTANT: We automatically try to revive your server and turn on all automations & integrations.",
+            'message' => "Devlab: Your server '{$this->server->name}' is unreachable. All automations & integrations are turned off! Please check your server! IMPORTANT: We automatically try to revive your server and turn on all automations & integrations.",
         ];
     }
 }

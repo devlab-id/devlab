@@ -50,7 +50,7 @@ class Help extends Component
             $settings = \App\Models\InstanceSettings::get();
             $type = set_transanctional_email_settings($settings);
             if (! $type) {
-                $url = 'https://app.coolify.io/api/feedback';
+                $url = 'https://app.devlab.id/api/feedback';
                 if (isDev()) {
                     $url = 'http://localhost:80/api/feedback';
                 }

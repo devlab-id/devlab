@@ -65,13 +65,13 @@ class ProductionSeeder extends Seeder
             ]);
         }
 
-        if (! isCloud() && config('coolify.is_windows_docker_desktop') == false) {
+        if (! isCloud() && config('devlab.is_windows_docker_desktop') == false) {
             echo "Checking localhost key.\n";
-            // Save SSH Keys for the Coolify Host
-            $coolify_key_name = 'id.root@host.docker.internal';
-            $coolify_key = Storage::disk('ssh-keys')->get("{$coolify_key_name}");
+            // Save SSH Keys for the Devlab Host
+            $devlab_key_name = 'id.root@host.docker.internal';
+            $devlab_key = Storage::disk('ssh-keys')->get("{$devlab_key_name}");
 
-            if ($coolify_key) {
+            if ($devlab_key) {
                 PrivateKey::updateOrCreate(
                     [
                         'id' => 0,
@@ -79,22 +79,22 @@ class ProductionSeeder extends Seeder
                     ],
                     [
                         'name' => 'localhost\'s key',
-                        'description' => 'The private key for the Coolify host machine (localhost).',
-                        'private_key' => $coolify_key,
+                        'description' => 'The private key for the Devlab host machine (localhost).',
+                        'private_key' => $devlab_key,
                     ]
                 );
             } else {
-                echo "No SSH key found for the Coolify host machine (localhost).\n";
-                echo "Please generate one and save it in /data/coolify/ssh/keys/{$coolify_key_name}\n";
+                echo "No SSH key found for the Devlab host machine (localhost).\n";
+                echo "Please generate one and save it in /data/devlab/ssh/keys/{$devlab_key_name}\n";
                 echo "Then try to install again.\n";
                 exit(1);
             }
-            // Add Coolify host (localhost) as Server if it doesn't exist
+            // Add Devlab host (localhost) as Server if it doesn't exist
             if (Server::find(0) == null) {
                 $server_details = [
                     'id' => 0,
                     'name' => 'localhost',
-                    'description' => "This is the server where Coolify is running on. Don't delete this!",
+                    'description' => "This is the server where Devlab is running on. Don't delete this!",
                     'user' => 'root',
                     'ip' => 'host.docker.internal',
                     'team_id' => 0,
@@ -117,13 +117,13 @@ class ProductionSeeder extends Seeder
             if (StandaloneDocker::find(0) == null) {
                 StandaloneDocker::create([
                     'id' => 0,
-                    'name' => 'localhost-coolify',
-                    'network' => 'coolify',
+                    'name' => 'localhost-devlab',
+                    'network' => 'devlab',
                     'server_id' => 0,
                 ]);
             }
         }
-        if (config('coolify.is_windows_docker_desktop')) {
+        if (config('devlab.is_windows_docker_desktop')) {
             PrivateKey::updateOrCreate(
                 [
                     'id' => 0,
@@ -145,11 +145,11 @@ uZx9iFkCELtxrh31QJ68AAAAEXNhaWxANzZmZjY2ZDJlMmRkAQIDBA==
             if (Server::find(0) == null) {
                 $server_details = [
                     'id' => 0,
-                    'uuid' => 'coolify-testing-host',
+                    'uuid' => 'devlab-testing-host',
                     'name' => 'localhost',
-                    'description' => "This is the server where Coolify is running on. Don't delete this!",
+                    'description' => "This is the server where Devlab is running on. Don't delete this!",
                     'user' => 'root',
-                    'ip' => 'coolify-testing-host',
+                    'ip' => 'devlab-testing-host',
                     'team_id' => 0,
                     'private_key_id' => 0,
                 ];
@@ -170,8 +170,8 @@ uZx9iFkCELtxrh31QJ68AAAAEXNhaWxANzZmZjY2ZDJlMmRkAQIDBA==
             if (StandaloneDocker::find(0) == null) {
                 StandaloneDocker::create([
                     'id' => 0,
-                    'name' => 'localhost-coolify',
-                    'network' => 'coolify',
+                    'name' => 'localhost-devlab',
+                    'network' => 'devlab',
                     'server_id' => 0,
                 ]);
             }

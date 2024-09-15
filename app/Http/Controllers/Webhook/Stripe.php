@@ -136,15 +136,15 @@ class Stripe extends Controller
                     $customerId = data_get($data, 'customer');
                     $subscription = Subscription::where('stripe_customer_id', $customerId)->first();
                     if (! $subscription) {
-                        // send_internal_notification('invoice.payment_failed failed but no subscription found in Coolify for customer: '.$customerId);
+                        // send_internal_notification('invoice.payment_failed failed but no subscription found in Devlab for customer: '.$customerId);
 
-                        return response('No subscription found in Coolify.');
+                        return response('No subscription found in Devlab.');
                     }
                     $team = data_get($subscription, 'team');
                     if (! $team) {
-                        // send_internal_notification('invoice.payment_failed failed but no team found in Coolify for customer: '.$customerId);
+                        // send_internal_notification('invoice.payment_failed failed but no team found in Devlab for customer: '.$customerId);
 
-                        return response('No team found in Coolify.');
+                        return response('No team found in Devlab.');
                     }
                     if (! $subscription->stripe_invoice_paid) {
                         SubscriptionInvoiceFailedJob::dispatch($team);
@@ -157,9 +157,9 @@ class Stripe extends Controller
                     $customerId = data_get($data, 'customer');
                     $subscription = Subscription::where('stripe_customer_id', $customerId)->first();
                     if (! $subscription) {
-                        // send_internal_notification('payment_intent.payment_failed, no subscription found in Coolify for customer: '.$customerId);
+                        // send_internal_notification('payment_intent.payment_failed, no subscription found in Devlab for customer: '.$customerId);
 
-                        return response('No subscription found in Coolify.');
+                        return response('No subscription found in Devlab.');
                     }
                     if ($subscription->stripe_invoice_paid) {
                         // send_internal_notification('payment_intent.payment_failed but invoice is active for customer: '.$customerId);

@@ -52,15 +52,15 @@ class Init extends Command
         }
         if ($cleanup_proxy_networks) {
             echo "Running cleanup proxy networks.\n";
-            $this->cleanup_unused_network_from_coolify_proxy();
+            $this->cleanup_unused_network_from_devlab_proxy();
 
             return;
         }
         if ($full_cleanup) {
-            // Required for falsely deleted coolify db
-            $this->restore_coolify_db_backup();
+            // Required for falsely deleted devlab db
+            $this->restore_devlab_db_backup();
             $this->update_traefik_labels();
-            $this->cleanup_unused_network_from_coolify_proxy();
+            $this->cleanup_unused_network_from_devlab_proxy();
             $this->cleanup_unnecessary_dynamic_proxy_configuration();
             $this->cleanup_in_progress_application_deployments();
             $this->cleanup_stucked_helper_containers();
@@ -117,7 +117,7 @@ class Init extends Command
                     if ($server->id === 0) {
                         continue;
                     }
-                    $file = $server->proxyPath().'/dynamic/coolify.yaml';
+                    $file = $server->proxyPath().'/dynamic/devlab.yaml';
 
                     return instant_remote_process([
                         "rm -f $file",
@@ -130,7 +130,7 @@ class Init extends Command
         }
     }
 
-    private function cleanup_unused_network_from_coolify_proxy()
+    private function cleanup_unused_network_from_devlab_proxy()
     {
         if (isCloud()) {
             return;
@@ -149,36 +149,36 @@ class Init extends Command
                 foreach ($removeNetworks as $network) {
                     $out = instant_remote_process(["docker network inspect -f json $network | jq '.[].Containers | if . == {} then null else . end'"], $server, false);
                     if (empty($out)) {
-                        $commands->push("docker network disconnect $network coolify-proxy >/dev/null 2>&1 || true");
+                        $commands->push("docker network disconnect $network devlab-proxy >/dev/null 2>&1 || true");
                         $commands->push("docker network rm $network >/dev/null 2>&1 || true");
                     } else {
                         $data = collect(json_decode($out, true));
                         if ($data->count() === 1) {
-                            // If only coolify-proxy itself is connected to that network (it should not be possible, but who knows)
-                            $isCoolifyProxyItself = data_get($data->first(), 'Name') === 'coolify-proxy';
-                            if ($isCoolifyProxyItself) {
-                                $commands->push("docker network disconnect $network coolify-proxy >/dev/null 2>&1 || true");
+                            // If only devlab-proxy itself is connected to that network (it should not be possible, but who knows)
+                            $isDevlabProxyItself = data_get($data->first(), 'Name') === 'devlab-proxy';
+                            if ($isDevlabProxyItself) {
+                                $commands->push("docker network disconnect $network devlab-proxy >/dev/null 2>&1 || true");
                                 $commands->push("docker network rm $network >/dev/null 2>&1 || true");
                             }
                         }
                     }
                 }
                 if ($commands->isNotEmpty()) {
-                    echo "Cleaning up unused networks from coolify proxy\n";
+                    echo "Cleaning up unused networks from devlab proxy\n";
                     remote_process(command: $commands, type: ActivityTypes::INLINE->value, server: $server, ignore_errors: false);
                 }
             } catch (\Throwable $e) {
-                echo "Error in cleaning up unused networks from coolify proxy: {$e->getMessage()}\n";
+                echo "Error in cleaning up unused networks from devlab proxy: {$e->getMessage()}\n";
             }
         }
     }
 
-    private function restore_coolify_db_backup()
+    private function restore_devlab_db_backup()
     {
         try {
             $database = StandalonePostgresql::withTrashed()->find(0);
             if ($database && $database->trashed()) {
-                echo "Restoring coolify db backup\n";
+                echo "Restoring devlab db backup\n";
                 $database->restore();
                 $scheduledBackup = ScheduledDatabaseBackup::find(0);
                 if (! $scheduledBackup) {
@@ -194,7 +194,7 @@ class Init extends Command
                 }
             }
         } catch (\Throwable $e) {
-            echo "Error in restoring coolify db backup: {$e->getMessage()}\n";
+            echo "Error in restoring devlab db backup: {$e->getMessage()}\n";
         }
     }
 
@@ -219,7 +219,7 @@ class Init extends Command
             return;
         }
         try {
-            Http::get("https://undead.coolify.io/v4/alive?appId=$id&version=$version");
+            Http::get("https://undead.devlab.id/v4/alive?appId=$id&version=$version");
             echo "I am alive!\n";
         } catch (\Throwable $e) {
             echo "Error in alive: {$e->getMessage()}\n";

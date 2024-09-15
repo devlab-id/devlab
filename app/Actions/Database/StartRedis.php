@@ -49,7 +49,7 @@ class StartRedis
                         $this->database->destination->network,
                     ],
                     'labels' => [
-                        'coolify.managed' => 'true',
+                        'devlab.managed' => 'true',
                     ],
                     'healthcheck' => [
                         'test' => [
@@ -168,7 +168,7 @@ class StartRedis
             $environment_variables->push("REDIS_PASSWORD={$this->database->redis_password}");
         }
 
-        add_coolify_default_environment_variables($this->database, $environment_variables, $environment_variables);
+        add_devlab_default_environment_variables($this->database, $environment_variables, $environment_variables);
 
         return $environment_variables->all();
     }

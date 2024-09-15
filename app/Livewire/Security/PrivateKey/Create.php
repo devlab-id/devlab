@@ -36,7 +36,7 @@ class Create extends Component
         try {
             $this->rateLimit(10);
             $this->name = generate_random_name();
-            $this->description = 'Created by Coolify';
+            $this->description = 'Created by Devlab';
             ['private' => $this->value, 'public' => $this->publicKey] = generateSSHKey();
         } catch (\Throwable $e) {
             return handleError($e, $this);
@@ -48,7 +48,7 @@ class Create extends Component
         try {
             $this->rateLimit(10);
             $this->name = generate_random_name();
-            $this->description = 'Created by Coolify';
+            $this->description = 'Created by Devlab';
             ['private' => $this->value, 'public' => $this->publicKey] = generateSSHKey('ed25519');
         } catch (\Throwable $e) {
             return handleError($e, $this);

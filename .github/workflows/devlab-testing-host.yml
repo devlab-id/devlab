@@ -1,15 +1,15 @@
-name: Coolify Testing Host (v4-non-prod)
+name: Devlab Testing Host (v4-non-prod)
 
 on:
   push:
     branches: [ "main", "next" ]
     paths:
-      - .github/workflows/coolify-testing-host.yml
+      - .github/workflows/devlab-testing-host.yml
       - docker/testing-host/Dockerfile
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: "coollabsio/coolify-testing-host"
+  IMAGE_NAME: "coollabsio/devlab-testing-host"
 
 jobs:
   amd64:

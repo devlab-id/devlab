@@ -1,13 +1,13 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Server LogDrains | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Server LogDrains | Devlab
     </x-slot>
     <x-server.navbar :server="$server" :parameters="$parameters" />
     @if ($server->isFunctional())
         <h2>Log Drains</h2>
         <div class="pb-4">Sends service logs to 3rd party tools.</div>
         <div class="flex flex-col gap-4 pt-4">
-            <div class="p-4 border dark:border-coolgray-300">
+            <div class="p-4 border dark:border-devgray-300">
                 <form wire:submit='submit("newrelic")' class="flex flex-col">
                     <h3>New Relic</h3>
                     <div class="w-32">

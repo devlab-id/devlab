@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($application, 'name')->limit(10) }} > Deployments | Coolify
+        {{ data_get_str($application, 'name')->limit(10) }} > Deployments | Devlab
     </x-slot>
     <h1>Deployments</h1>
     <livewire:project.shared.configuration-checker :resource="$application" />
@@ -31,7 +31,7 @@
         @endif
         @forelse ($deployments as $deployment)
             <div @class([
-                'dark:bg-coolgray-100 p-2 border-l-2 transition-colors hover:no-underline box-without-bg-without-border bg-white flex-col cursor-pointer dark:hover:text-neutral-400 dark:hover:bg-coolgray-200',
+                'dark:bg-devgray-100 p-2 border-l-2 transition-colors hover:no-underline box-without-bg-without-border bg-white flex-col cursor-pointer dark:hover:text-neutral-400 dark:hover:bg-devgray-200',
                 'border-warning border-dashed ' =>
                     data_get($deployment, 'status') === 'in_progress' ||
                     data_get($deployment, 'status') === 'cancelled-by-user',

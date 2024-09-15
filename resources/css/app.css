@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 
-
 html,
 body {
     @apply h-full bg-neutral-50 text-neutral-800 dark:bg-base dark:text-neutral-400;
@@ -16,7 +15,7 @@ body {
 }
 
 .apexcharts-tooltip {
-    @apply dark:text-white dark:border-coolgray-300 dark:bg-coolgray-200 shadow-none !important;
+    @apply dark:text-white dark:border-devgray-300 dark:bg-devgray-200 shadow-none !important;
 }
 
 .apexcharts-tooltip-title {
@@ -29,18 +28,18 @@ body {
 
 .input,
 .select {
-    @apply text-black dark:bg-coolgray-100 dark:text-white ring-neutral-200 dark:ring-coolgray-300;
+    @apply text-black dark:bg-devgray-100 dark:text-white ring-neutral-200 dark:ring-devgray-300;
 }
 
 /* Readonly */
 .input {
-    @apply dark:read-only:text-neutral-500 dark:read-only:ring-0 dark:read-only:bg-coolgray-100/40 placeholder:text-neutral-300 dark:placeholder:text-neutral-700 read-only:text-neutral-500 read-only:bg-neutral-200;
+    @apply dark:read-only:text-neutral-500 dark:read-only:ring-0 dark:read-only:bg-devgray-100/40 placeholder:text-neutral-300 dark:placeholder:text-neutral-700 read-only:text-neutral-500 read-only:bg-neutral-200;
 }
 
 /* Focus */
 .input,
 .select {
-    @apply focus:ring-2 dark:focus:ring-coolgray-300 focus:ring-neutral-400;
+    @apply focus:ring-2 dark:focus:ring-devgray-300 focus:ring-neutral-400;
 }
 
 .input,
@@ -53,11 +52,11 @@ body {
 }
 
 option {
-    @apply dark:text-white dark:bg-coolgray-100;
+    @apply dark:text-white dark:bg-devgray-100;
 }
 
 .button {
-    @apply flex items-center justify-center gap-2 px-2 py-1 text-sm text-black normal-case border rounded cursor-pointer bg-neutral-200/50 border-neutral-300 hover:bg-neutral-300 dark:bg-coolgray-200 dark:text-white dark:hover:text-white dark:hover:bg-coolgray-500 dark:border-coolgray-300 hover:text-black disabled:cursor-not-allowed min-w-fit focus:outline-1 dark:disabled:text-neutral-600 disabled:border-none disabled:hover:bg-transparent disabled:bg-transparent disabled:text-neutral-300;
+    @apply flex items-center justify-center gap-2 px-2 py-1 text-sm text-black normal-case border rounded cursor-pointer bg-neutral-200/50 border-neutral-300 hover:bg-neutral-300 dark:bg-devgray-200 dark:text-white dark:hover:text-white dark:hover:bg-devgray-500 dark:border-devgray-300 hover:text-black disabled:cursor-not-allowed min-w-fit focus:outline-1 dark:disabled:text-neutral-600 disabled:border-none disabled:hover:bg-transparent disabled:bg-transparent disabled:text-neutral-300;
 }
 
 button[isError]:not(:disabled) {
@@ -65,7 +64,7 @@ button[isError]:not(:disabled) {
 }
 
 button[isHighlighted]:not(:disabled) {
-    @apply text-white bg-coollabs hover:bg-coollabs-100;
+    @apply text-white bg-devlab hover:bg-devlab-100;
 }
 
 h1 {
@@ -93,7 +92,7 @@ label {
 }
 
 table {
-    @apply min-w-full divide-y dark:divide-coolgray-200 divide-neutral-300;
+    @apply min-w-full divide-y dark:divide-devgray-200 divide-neutral-300;
 }
 
 thead {
@@ -101,7 +100,7 @@ thead {
 }
 
 tbody {
-    @apply divide-y dark:divide-coolgray-200 divide-neutral-300;
+    @apply divide-y dark:divide-devgray-200 divide-neutral-300;
 }
 
 tr {
@@ -133,19 +132,19 @@ tr td:first-child {
 }
 
 .tag {
-    @apply px-2 py-1 cursor-pointer box-description dark:bg-coolgray-100 dark:hover:bg-coolgray-300 bg-neutral-100 hover:bg-neutral-200;
+    @apply px-2 py-1 cursor-pointer box-description dark:bg-devgray-100 dark:hover:bg-devgray-300 bg-neutral-100 hover:bg-neutral-200;
 }
 
 .add-tag {
-    @apply flex items-center px-2 text-xs cursor-pointer dark:text-neutral-500/20 text-neutral-500 group-hover:text-neutral-700 group-hover:dark:text-white dark:hover:bg-coolgray-300 hover:bg-neutral-200;
+    @apply flex items-center px-2 text-xs cursor-pointer dark:text-neutral-500/20 text-neutral-500 group-hover:text-neutral-700 group-hover:dark:text-white dark:hover:bg-devgray-300 hover:bg-neutral-200;
 }
 
 .dropdown-item {
-    @apply relative flex cursor-pointer select-none dark:text-white hover:bg-neutral-100 dark:hover:bg-coollabs items-center pr-4 pl-2 py-1 text-xs justify-start outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 gap-2 w-full;
+    @apply relative flex cursor-pointer select-none dark:text-white hover:bg-neutral-100 dark:hover:bg-devlab items-center pr-4 pl-2 py-1 text-xs justify-start outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 gap-2 w-full;
 }
 
 .dropdown-item-no-padding {
-    @apply relative flex cursor-pointer select-none dark:text-white hover:bg-neutral-100 dark:hover:bg-coollabs items-center py-1 text-xs justify-start outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 gap-2 w-full;
+    @apply relative flex cursor-pointer select-none dark:text-white hover:bg-neutral-100 dark:hover:bg-devlab items-center py-1 text-xs justify-start outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 gap-2 w-full;
 }
 
 .badge {
@@ -177,15 +176,15 @@ tr td:first-child {
 }
 
 .menu-item {
-    @apply flex items-center w-full gap-3 px-2 py-1 text-sm sm:pr-0 dark:hover:bg-coolgray-100 dark:hover:text-white hover:bg-neutral-300 min-w-fit sm:min-w-64;
+    @apply flex items-center w-full gap-3 px-2 py-1 text-sm sm:pr-0 dark:hover:bg-devgray-100 dark:hover:text-white hover:bg-neutral-300 min-w-fit sm:min-w-64;
 }
 
 .menu-item-active {
-    @apply text-black rounded-none dark:bg-coolgray-200 dark:text-warning bg-neutral-200;
+    @apply text-black rounded-none dark:bg-devgray-200 dark:text-devlab bg-neutral-200;
 }
 
 .heading-item-active {
-    @apply text-black rounded-none dark:bg-coolgray-200 dark:text-warning;
+    @apply text-black rounded-none dark:bg-devgray-200 dark:text-warning;
 }
 
 .icon {
@@ -193,7 +192,7 @@ tr td:first-child {
 }
 
 .scrollbar {
-    @apply scrollbar-thumb-coollabs-100 dark:scrollbar-track-coolgray-200 scrollbar-track-neutral-200 scrollbar-w-2;
+    @apply scrollbar-thumb-devlab-100 dark:scrollbar-track-devgray-200 scrollbar-track-neutral-200 scrollbar-w-2;
 }
 
 .main {
@@ -201,15 +200,15 @@ tr td:first-child {
 }
 
 .custom-modal {
-    @apply z-50 flex flex-col gap-2 px-8 py-4 border dark:bg-coolgray-100 dark:border-coolgray-200;
+    @apply z-50 flex flex-col gap-2 px-8 py-4 border dark:bg-devgray-100 dark:border-devgray-200;
 }
 
 .navbar-main {
-    @apply flex flex-col gap-4 pb-2 border-b-2 border-solid h-fit md:flex-row justify-items-start sm:justify-between dark:border-coolgray-200 md:items-center;
+    @apply flex flex-col gap-4 pb-2 border-b-2 border-solid h-fit md:flex-row justify-items-start sm:justify-between dark:border-devgray-200 md:items-center;
 }
 
 .loading {
-    @apply w-4 dark:text-warning text-coollabs;
+    @apply w-4 dark:text-warning text-devlab;
 }
 
 .kbd-custom {
@@ -217,11 +216,11 @@ tr td:first-child {
 }
 
 .box {
-    @apply relative flex lg:flex-row flex-col p-2 transition-colors cursor-pointer min-h-[4rem] dark:bg-coolgray-100 bg-white border text-black dark:text-white hover:text-black border-neutral-200 dark:border-black hover:bg-neutral-100 dark:hover:bg-coollabs-100 dark:hover:text-white hover:no-underline;
+    @apply relative flex lg:flex-row flex-col p-2 transition-colors cursor-pointer min-h-[4rem] dark:bg-devgray-100 bg-white border text-black dark:text-white hover:text-black border-neutral-200 dark:border-black hover:bg-neutral-100 dark:hover:bg-devlab-100 dark:hover:text-white hover:no-underline;
 }
 
 .box-boarding {
-    @apply flex lg:flex-row flex-col p-2 transition-colors cursor-pointer min-h-[4rem] dark:bg-coolgray-100 dark:text-white bg-neutral-50 border border-neutral-200 dark:border-black hover:bg-neutral-100 dark:hover:bg-coollabs-100 dark:hover:text-white hover:text-black hover:no-underline text-black;
+    @apply flex lg:flex-row flex-col p-2 transition-colors cursor-pointer min-h-[4rem] dark:bg-devgray-100 dark:text-white bg-neutral-50 border border-neutral-200 dark:border-black hover:bg-neutral-100 dark:hover:bg-devlab-100 dark:hover:text-white hover:text-black hover:no-underline text-black;
 }
 
 .box-without-bg {
@@ -233,7 +232,7 @@ tr td:first-child {
 }
 
 .on-box {
-    @apply rounded hover:bg-neutral-300 dark:hover:bg-coolgray-500/20;
+    @apply rounded hover:bg-neutral-300 dark:hover:bg-devgray-500/20;
 }
 
 .box-title {
@@ -278,24 +277,24 @@ tr td:first-child {
     }
 }
 
-.bg-coollabs-gradient {
+.bg-devlab-gradient {
     @apply text-transparent text-white bg-gradient-to-r from-purple-500 via-pink-500 to-red-500;
 }
 
 .text-helper {
-    @apply inline-block font-bold text-coollabs dark:text-warning;
+    @apply inline-block font-bold text-devlab dark:text-warning;
 }
 
 .info-helper {
-    @apply cursor-pointer text-coollabs dark:text-warning;
+    @apply cursor-pointer text-devlab dark:text-warning;
 }
 
 .info-helper-popup {
-    @apply absolute z-40 hidden text-xs rounded text-neutral-700 group-hover:block dark:border-coolgray-500 border-neutral-900 dark:bg-coolgray-400 bg-neutral-200 dark:text-neutral-300;
+    @apply absolute z-40 hidden text-xs rounded text-neutral-700 group-hover:block dark:border-devgray-500 border-neutral-900 dark:bg-devgray-400 bg-neutral-200 dark:text-neutral-300;
 }
 
 .buyme {
-    @apply block px-3 py-2 mt-10 text-sm font-semibold leading-6 text-center text-white rounded-md shadow-sm hover:text-white bg-coolgray-200 hover:bg-coolgray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coolgray-200 hover:no-underline;
+    @apply block px-3 py-2 mt-10 text-sm font-semibold leading-6 text-center text-white rounded-md shadow-sm hover:text-white bg-devgray-200 hover:bg-devgray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-devgray-200 hover:no-underline;
 }
 
 .title {
@@ -307,7 +306,7 @@ tr td:first-child {
 }
 
 .fullscreen {
-    @apply fixed top-0 left-0 w-full h-full z-[9999] dark:bg-coolgray-100 bg-white overflow-y-auto scrollbar pb-4;
+    @apply fixed top-0 left-0 w-full h-full z-[9999] dark:bg-devgray-100 bg-white overflow-y-auto scrollbar pb-4;
 }
 
 .toast {
@@ -315,5 +314,5 @@ tr td:first-child {
 }
 
 .dz-button {
-    @apply w-full p-4 py-10 my-4 font-bold bg-white border dark:border-coolgray-400 dark:text-white dark:bg-transparent hover:dark:bg-coolgray-400;
+    @apply w-full p-4 py-10 my-4 font-bold bg-white border dark:border-devgray-400 dark:text-white dark:bg-transparent hover:dark:bg-devgray-400;
 }

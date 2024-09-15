@@ -4,13 +4,13 @@ on:
   push:
     branches: ["main"]
     paths-ignore:
-      - .github/workflows/coolify-helper.yml
-      - docker/coolify-helper/Dockerfile
+      - .github/workflows/devlab-helper.yml
+      - docker/devlab-helper/Dockerfile
       - templates/service-templates.json
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: "coollabsio/coolify"
+  IMAGE_NAME: "coollabsio/devlab"
 
 jobs:
   amd64:

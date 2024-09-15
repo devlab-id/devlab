@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Servers | Coolify
+        Servers | Devlab
     </x-slot>
     <div class="flex items-start gap-2">
         <h1>Servers</h1>
@@ -35,7 +35,7 @@
                             &
                         @endif
                         @if (!$server->settings->is_usable)
-                            <span>Not usable by Coolify</span>
+                            <span>Not usable by Devlab</span>
                         @endif
                         @if ($server->settings->force_disabled)
                             <span>Disabled by the system</span>

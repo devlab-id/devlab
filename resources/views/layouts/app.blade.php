@@ -25,7 +25,7 @@
                             </button>
                         </div>
 
-                        <div class="flex flex-col pb-2 overflow-y-auto min-w-48 dark:bg-coolgray-100 gap-y-5 scrollbar">
+                        <div class="flex flex-col pb-2 overflow-y-auto min-w-48 dark:bg-devgray-100 gap-y-5 scrollbar">
                             <x-navbar />
                         </div>
                     </div>

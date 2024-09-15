@@ -36,7 +36,7 @@ class StopService
                 instant_remote_process(command: ["docker rm -f {$db->name}-{$service->uuid}"], server: $server, throwError: false);
                 $db->update(['status' => 'exited']);
             }
-            instant_remote_process(["docker network disconnect {$service->uuid} coolify-proxy"], $service->server);
+            instant_remote_process(["docker network disconnect {$service->uuid} devlab-proxy"], $service->server);
             instant_remote_process(["docker network rm {$service->uuid}"], $service->server);
         } catch (\Exception $e) {
             ray($e->getMessage());

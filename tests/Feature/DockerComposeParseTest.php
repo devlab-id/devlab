@@ -66,7 +66,7 @@ networks:
         'preview_url_template' => '{{pr_id}}.{{domain}}',
         'uuid' => 'bcoowoookw0co4cok4sgc4k8s',
         'repository_project_id' => 603035348,
-        'git_repository' => 'coollabsio/coolify-examples',
+        'git_repository' => 'coollabsio/devlab-examples',
         'git_branch' => 'main',
         'base_directory' => '/docker-compose-test',
         'docker_compose_location' => 'docker-compose.yml',
@@ -84,7 +84,7 @@ networks:
         'git_type' => 'github',
         'application_id' => $this->application->id,
         'pull_request_id' => 1,
-        'pull_request_html_url' => 'https://github.com/coollabsio/coolify-examples/pull/1',
+        'pull_request_html_url' => 'https://github.com/coollabsio/devlab-examples/pull/1',
     ]);
     $this->serviceYaml = '
 services:
@@ -207,11 +207,11 @@ test('ServiceComposeParseNew', function () {
 //     $environment = $app->get('environment');
 //     expect($environment)->not->toBeNull();
 
-//     $coolifyBranch = $environment->get('COOLIFY_BRANCH');
-//     expect($coolifyBranch)->toBe('main');
+//     $devlabBranch = $environment->get('COOLIFY_BRANCH');
+//     expect($devlabBranch)->toBe('main');
 
-//     $coolifyContainerName = $environment->get('COOLIFY_CONTAINER_NAME');
-//     expect($coolifyContainerName)->toMatch('/app-[a-z0-9]{24}-[0-9]{12}/');
+//     $devlabContainerName = $environment->get('COOLIFY_CONTAINER_NAME');
+//     expect($devlabContainerName)->toMatch('/app-[a-z0-9]{24}-[0-9]{12}/');
 
 //     $volumes = $app->get('volumes');
 //     // /etc/nginx
@@ -228,8 +228,8 @@ test('ServiceComposeParseNew', function () {
 
 //     $labels = $app->get('labels');
 //     expect($labels)->not->toBeNull();
-//     expect($labels)->toContain('coolify.managed=true');
-//     expect($labels)->toContain('coolify.pullRequestId=0');
+//     expect($labels)->toContain('devlab.managed=true');
+//     expect($labels)->toContain('devlab.pullRequestId=0');
 
 //     $topLevelVolumes = $output->get('volumes');
 //     expect($topLevelVolumes)->not->toBeNull();
@@ -293,11 +293,11 @@ test('ServiceComposeParseNew', function () {
 //     $environment = $app->get('environment');
 //     expect($environment)->not->toBeNull();
 
-//     $coolifyBranch = $environment->get('COOLIFY_BRANCH');
-//     expect($coolifyBranch)->toBe("pull/{$pullRequestId}/head");
+//     $devlabBranch = $environment->get('COOLIFY_BRANCH');
+//     expect($devlabBranch)->toBe("pull/{$pullRequestId}/head");
 
-//     $coolifyContainerName = $environment->get('COOLIFY_CONTAINER_NAME');
-//     expect($coolifyContainerName)->toMatch("/app-[a-z0-9]{24}-pr-{$pullRequestId}/");
+//     $devlabContainerName = $environment->get('COOLIFY_CONTAINER_NAME');
+//     expect($devlabContainerName)->toMatch("/app-[a-z0-9]{24}-pr-{$pullRequestId}/");
 
 //     $volumes = $app->get('volumes');
 //     // /etc/nginx
@@ -314,8 +314,8 @@ test('ServiceComposeParseNew', function () {
 
 //     $labels = $app->get('labels');
 //     expect($labels)->not->toBeNull();
-//     expect($labels)->toContain('coolify.managed=true');
-//     expect($labels)->toContain("coolify.pullRequestId={$pullRequestId}");
+//     expect($labels)->toContain('devlab.managed=true');
+//     expect($labels)->toContain("devlab.pullRequestId={$pullRequestId}");
 
 //     $topLevelVolumes = $output->get('volumes');
 //     expect($topLevelVolumes)->not->toBeNull();

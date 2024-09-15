@@ -15,8 +15,8 @@ class ConfigureCloudflared
         try {
             $config = [
                 'services' => [
-                    'coolify-cloudflared' => [
-                        'container_name' => 'coolify-cloudflared',
+                    'devlab-cloudflared' => [
+                        'container_name' => 'devlab-cloudflared',
                         'image' => 'cloudflare/cloudflared:latest',
                         'restart' => RESTART_MODE,
                         'network_mode' => 'host',

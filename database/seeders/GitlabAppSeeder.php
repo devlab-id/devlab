@@ -22,7 +22,7 @@ class GitlabAppSeeder extends Seeder
         ]);
         GitlabApp::create([
             'id' => 2,
-            'name' => 'coolify-laravel-development-private-gitlab',
+            'name' => 'devlab-laravel-development-private-gitlab',
             'api_url' => 'https://gitlab.com/api/v4',
             'html_url' => 'https://gitlab.com',
             'app_id' => 1234,

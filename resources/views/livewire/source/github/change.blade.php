@@ -47,7 +47,7 @@
                     @if (!isCloud())
                         <div class="w-48">
                             <x-forms.checkbox label="System Wide?"
-                                helper="If checked, this GitHub App will be available for everyone in this Coolify instance."
+                                helper="If checked, this GitHub App will be available for everyone in this Devlab instance."
                                 instantSave id="github_app.is_system_wide" />
                         </div>
                     @endif
@@ -176,7 +176,7 @@
         <div class="flex flex-col">
             <div class="flex gap-2">
                 <h2>Register a GitHub App</h2>
-                <x-forms.button class="bg-coollabs hover:bg-coollabs-100"
+                <x-forms.button class="bg-devlab hover:bg-devlab-100"
                     x-on:click.prevent="createGithubApp('{{ $webhook_endpoint }}','{{ $preview_deployment_permissions }}',{{ $administration }})">
                     Register Now
                 </x-forms.button>
@@ -186,7 +186,7 @@
                 @if (!isCloud() || isDev())
                     <div class="flex items-end gap-2">
                         <x-forms.select wire:model.live='webhook_endpoint' label="Webhook Endpoint"
-                            helper="All Git webhooks will be sent to this endpoint. <br><br>If you would like to use domain instead of IP address, set your Coolify instance's FQDN in the Settings menu.">
+                            helper="All Git webhooks will be sent to this endpoint. <br><br>If you would like to use domain instead of IP address, set your Devlab instance's FQDN in the Settings menu.">
                             @if ($ipv4)
                                 <option value="{{ $ipv4 }}">Use {{ $ipv4 }}</option>
                             @endif
@@ -227,7 +227,7 @@
                 const name = @js($name);
                 const isDev = @js(config('app.env')) ===
                     'local';
-                const devWebhook = @js(config('coolify.dev_webhook'));
+                const devWebhook = @js(config('devlab.dev_webhook'));
                 if (isDev && devWebhook) {
                     baseUrl = devWebhook;
                 }

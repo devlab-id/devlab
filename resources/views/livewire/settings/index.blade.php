@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        Settings | Devlab
     </x-slot>
     <x-settings.navbar />
     <form wire:submit='submit' class="flex flex-col">
@@ -10,7 +10,7 @@
                 Save
             </x-forms.button>
         </div>
-        <div>General configuration for your Coolify instance.</div>
+        <div>General configuration for your Devlab instance.</div>
 
         <div class="flex flex-col gap-2">
             <h4 class="pt-6">Instance Settings</h4>
@@ -18,8 +18,8 @@
                 <div class="flex gap-2 md:flex-row flex-col w-full">
                     <x-forms.input id="settings.fqdn" label="Instance's Domain"
                         helper="Enter the full domain name (FQDN) of the instance, including 'https://' if you want to secure the dashboard with HTTPS. Setting this will make the dashboard accessible via this domain, secured by HTTPS, instead of just the IP address."
-                        placeholder="https://coolify.yourdomain.com" />
-                    <x-forms.input id="settings.instance_name" label="Instance's Name" placeholder="Coolify" />
+                        placeholder="https://devlab.yourdomain.com" />
+                    <x-forms.input id="settings.instance_name" label="Instance's Name" placeholder="Devlab" />
                     <div class="w-full" x-data="{
                         open: false,
                         search: '{{ $settings->instance_timezone ?: '' }}',
@@ -37,11 +37,11 @@
                             <label for="settings.instance_timezone">Instance
                                 Timezone</label>
                             <x-helper class="ml-2"
-                                helper="Timezone for the Coolify instance. This is used for the update check and automatic update frequency." />
+                                helper="Timezone for the Devlab instance. This is used for the update check and automatic update frequency." />
                         </div>
                         <div class="relative">
                             <div class="inline-flex items-center relative w-full">
-                                <input wire:dirty.class.remove='dark:focus:ring-coolgray-300 dark:ring-coolgray-300'
+                                <input wire:dirty.class.remove='dark:focus:ring-devgray-300 dark:ring-devgray-300'
                                     wire:dirty.class="dark:focus:ring-warning dark:ring-warning" x-model="search"
                                     @focus="open = true" @click.away="open = false" @input="open = true"
                                     class="w-full input " :placeholder="placeholder"
@@ -54,12 +54,12 @@
                                 </svg>
                             </div>
                             <div x-show="open"
-                                class="absolute z-50 w-full  mt-1 bg-white dark:bg-coolgray-100 border dark:border-coolgray-200 rounded-md shadow-lg max-h-60 overflow-auto scrollbar overflow-x-hidden">
+                                class="absolute z-50 w-full  mt-1 bg-white dark:bg-devgray-100 border dark:border-devgray-200 rounded-md shadow-lg max-h-60 overflow-auto scrollbar overflow-x-hidden">
                                 <template
                                     x-for="timezone in timezones.filter(tz => tz.toLowerCase().includes(search.toLowerCase()))"
                                     :key="timezone">
                                     <div @click="search = timezone; open = false; $wire.set('settings.instance_timezone', timezone)"
-                                        class="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-coolgray-300 text-gray-800 dark:text-gray-200"
+                                        class="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-devgray-300 text-gray-800 dark:text-gray-200"
                                         x-text="timezone"></div>
                                 </template>
                             </div>
@@ -110,13 +110,13 @@
             <div class="flex items-end gap-2">
                 <x-forms.input required id="update_check_frequency" label="Update Check Frequency"
                     placeholder="0 * * * *"
-                    helper="Cron expression for update check frequency (check for new Coolify versions and pull new Service Templates from CDN).<br>You can use every_minute, hourly, daily, weekly, monthly, yearly.<br><br>Default is every hour." />
+                    helper="Cron expression for update check frequency (check for new Devlab versions and pull new Service Templates from CDN).<br>You can use every_minute, hourly, daily, weekly, monthly, yearly.<br><br>Default is every hour." />
                 <x-forms.button wire:click='checkManually'>Check Manually</x-forms.button>
             </div>
 
             @if (is_null(env('AUTOUPDATE', null)) && $is_auto_update_enabled)
                 <x-forms.input required id="auto_update_frequency" label="Auto Update Frequency" placeholder="0 0 * * *"
-                    helper="Cron expression for auto update frequency (automatically update coolify).<br>You can use every_minute, hourly, daily, weekly, monthly, yearly.<br><br>Default is every day at 00:00" />
+                    helper="Cron expression for auto update frequency (automatically update devlab).<br>You can use every_minute, hourly, daily, weekly, monthly, yearly.<br><br>Default is every day at 00:00" />
             @endif
         </div>
     </form>

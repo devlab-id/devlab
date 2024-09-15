@@ -63,10 +63,10 @@ class DeploymentSuccess extends Notification implements ShouldQueue
         $pull_request_id = data_get($this->preview, 'pull_request_id', 0);
         $fqdn = $this->fqdn;
         if ($pull_request_id === 0) {
-            $mail->subject("Coolify: New version is deployed of {$this->application_name}");
+            $mail->subject("Devlab: New version is deployed of {$this->application_name}");
         } else {
             $fqdn = $this->preview->fqdn;
-            $mail->subject("Coolify: Pull request #{$pull_request_id} of {$this->application_name} deployed successfully");
+            $mail->subject("Devlab: Pull request #{$pull_request_id} of {$this->application_name} deployed successfully");
         }
         $mail->view('emails.application-deployment-success', [
             'name' => $this->application_name,
@@ -81,7 +81,7 @@ class DeploymentSuccess extends Notification implements ShouldQueue
     public function toDiscord(): string
     {
         if ($this->preview) {
-            $message = 'Coolify: New PR'.$this->preview->pull_request_id.' version successfully deployed of '.$this->application_name.'
+            $message = 'Devlab: New PR'.$this->preview->pull_request_id.' version successfully deployed of '.$this->application_name.'
 
 ';
             if ($this->preview->fqdn) {
@@ -89,7 +89,7 @@ class DeploymentSuccess extends Notification implements ShouldQueue
             }
             $message .= '[Deployment logs]('.$this->deployment_url.')';
         } else {
-            $message = 'Coolify: New version successfully deployed of '.$this->application_name.'
+            $message = 'Devlab: New version successfully deployed of '.$this->application_name.'
 
 ';
             if ($this->fqdn) {
@@ -104,7 +104,7 @@ class DeploymentSuccess extends Notification implements ShouldQueue
     public function toTelegram(): array
     {
         if ($this->preview) {
-            $message = 'Coolify: New PR'.$this->preview->pull_request_id.' version successfully deployed of '.$this->application_name.'';
+            $message = 'Devlab: New PR'.$this->preview->pull_request_id.' version successfully deployed of '.$this->application_name.'';
             if ($this->preview->fqdn) {
                 $buttons[] = [
                     'text' => 'Open Application',

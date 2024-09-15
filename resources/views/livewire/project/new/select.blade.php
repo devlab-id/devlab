@@ -517,7 +517,7 @@
                                     {{ data_get($service, 'documentation') }}
                                 </x-slot>
                                 <x-slot:upgrade>
-                                    You need to upgrade Coolify to {{ data_get($service, 'minversion') }} to use this
+                                    You need to upgrade Devlab to {{ data_get($service, 'minversion') }} to use this
                                     service.
                                 </x-slot>
                             </x-resource-view>
@@ -590,7 +590,7 @@
     @if ($current_step === 'destinations')
         <h2>Select a destination</h2>
         <div>Destinations are used to segregate resources by network. If you are unsure, select the default
-            Standalone Docker (coolify).</div>
+            Standalone Docker (devlab).</div>
         <div class="flex flex-col justify-center gap-4 text-left xl:flex-row xl:flex-wrap">
             @if ($server->isSwarm())
                 @foreach ($swarmDockers as $swarmDocker)
@@ -623,7 +623,7 @@
             16 (default).</div>
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-2">
-                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-coolgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-coollabs group flex"
+                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-devgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-devlab group flex"
                     wire:click="setPostgresqlType('postgres:16-alpine')">
                     <div class="flex flex-col">
                         <div class="box-title">PostgreSQL 16 (default)</div>
@@ -641,7 +641,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-coolgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-coollabs group flex"
+                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-devgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-devlab group flex"
                     wire:click="setPostgresqlType('supabase/postgres:15.6.1.113')">
                     <div class="flex flex-col">
                         <div class="box-title">Supabase PostgreSQL (with extensions)</div>
@@ -658,7 +658,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-coolgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-coollabs group flex"
+                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-devgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-devlab group flex"
                     wire:click="setPostgresqlType('postgis/postgis')">
                     <div class="flex flex-col">
                         <div class="box-title">PostGIS</div>
@@ -675,7 +675,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-coolgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-coollabs group flex"
+                <div class="gap-2 border border-transparent cursor-pointer box-without-bg dark:bg-devgray-100 bg-white dark:hover:text-neutral-400 dark:hover:bg-devlab group flex"
                     wire:click="setPostgresqlType('pgvector/pgvector:pg16')">
                     <div class="flex flex-col">
                         <div class="box-title">PGVector (16)</div>

@@ -82,7 +82,7 @@ class PublicGitRepository extends Component
     public function mount()
     {
         if (isDev()) {
-            $this->repository_url = 'https://github.com/coollabsio/coolify-examples';
+            $this->repository_url = 'https://github.com/coollabsio/devlab-examples';
             $this->port = 3000;
         }
         $this->parameters = get_route_parameters();
@@ -241,7 +241,7 @@ class PublicGitRepository extends Component
                 $server = $destination->server;
                 $new_service = [
                     'name' => 'service'.str()->random(10),
-                    'docker_compose_raw' => 'coolify',
+                    'docker_compose_raw' => 'devlab',
                     'environment_id' => $environment->id,
                     'server_id' => $server->id,
                 ];

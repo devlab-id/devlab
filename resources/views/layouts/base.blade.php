@@ -19,11 +19,11 @@
             }
         }
     @endphp
-    <title>{{ $name }}{{ $title ?? 'Coolify' }}</title>
+    <title>{{ $name }}{{ $title ?? 'Devlab' }}</title>
     @env('local')
     <link rel="icon" href="{{ asset('favicon-dev.png') }}" type="image/x-icon" />
 @else
-    <link rel="icon" href="{{ asset('coolify-transparent.png') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('devlab-transparent.png') }}" type="image/x-icon" />
     @endenv
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/js/app.js', 'resources/css/app.css'])
@@ -32,8 +32,8 @@
             display: none !important;
         }
     </style>
-    @if (config('app.name') == 'Coolify Cloud')
-        <script defer data-domain="app.coolify.io" src="https://analytics.coollabs.io/js/plausible.js"></script>
+    @if (config('app.name') == 'Devlab Cloud')
+        <script defer data-domain="app.devlab.id" src="https://analytics.coollabs.io/js/plausible.js"></script>
     @endif
     @auth
         <script type="text/javascript" src="{{ URL::asset('js/echo.js') }}"></script>
@@ -85,7 +85,7 @@
             window.Echo = new Echo({
                 broadcaster: 'pusher',
                 cluster: "{{ env('PUSHER_HOST') }}" || window.location.hostname,
-                key: "{{ env('PUSHER_APP_KEY') }}" || 'coolify',
+                key: "{{ env('PUSHER_APP_KEY') }}" || 'devlab',
                 wsHost: "{{ env('PUSHER_HOST') }}" || window.location.hostname,
                 wsPort: "{{ getRealtime() }}",
                 wssPort: "{{ getRealtime() }}",

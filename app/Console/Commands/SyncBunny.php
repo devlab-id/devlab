@@ -35,7 +35,7 @@ class SyncBunny extends Command
         $only_version = $this->option('release');
         $nightly = $this->option('nightly');
         $bunny_cdn = 'https://cdn.coollabs.io';
-        $bunny_cdn_path = 'coolify';
+        $bunny_cdn_path = 'devlab';
         $bunny_cdn_storage_name = 'coolcdn';
 
         $parent_dir = realpath(dirname(__FILE__).'/../../..');
@@ -81,7 +81,7 @@ class SyncBunny extends Command
         });
         try {
             if ($nightly) {
-                $bunny_cdn_path = 'coolify-nightly';
+                $bunny_cdn_path = 'devlab-nightly';
 
                 $compose_file_location = "$parent_dir/other/nightly/$compose_file";
                 $compose_file_prod_location = "$parent_dir/other/nightly/$compose_file_prod";
@@ -122,7 +122,7 @@ class SyncBunny extends Command
                 }
                 $file = file_get_contents($versions_location);
                 $json = json_decode($file, true);
-                $actual_version = data_get($json, 'coolify.v4.version');
+                $actual_version = data_get($json, 'devlab.v4.version');
 
                 $confirmed = confirm("Are you sure you want to sync to {$actual_version}?");
                 if (! $confirmed) {

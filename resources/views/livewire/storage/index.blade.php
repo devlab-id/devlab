@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Storages | Coolify
+        Storages | Devlab
     </x-slot>
     <div class="flex items-start gap-2">
         <h1>S3 Storages</h1>

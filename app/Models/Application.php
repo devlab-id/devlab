@@ -94,7 +94,7 @@ use Visus\Cuid2\Cuid2;
         'created_at' => ['type' => 'string', 'format' => 'date-time', 'description' => 'The date and time when the application was created.'],
         'updated_at' => ['type' => 'string', 'format' => 'date-time', 'description' => 'The date and time when the application was last updated.'],
         'deleted_at' => ['type' => 'string', 'format' => 'date-time', 'nullable' => true, 'description' => 'The date and time when the application was deleted.'],
-        'compose_parsing_version' => ['type' => 'string', 'description' => 'How Coolify parse the compose file.'],
+        'compose_parsing_version' => ['type' => 'string', 'description' => 'How Devlab parse the compose file.'],
     ]
 )]
 
@@ -859,7 +859,7 @@ class Application extends BaseModel
             $git_clone_command = "git clone --no-checkout -b \"{$this->git_branch}\"";
         }
         if ($pull_request_id !== 0) {
-            $pr_branch_name = "pr-{$pull_request_id}-coolify";
+            $pr_branch_name = "pr-{$pull_request_id}-devlab";
         }
         if ($this->deploymentType() === 'source') {
             $source_html_url = data_get($this, 'source.html_url');
@@ -1067,14 +1067,14 @@ class Application extends BaseModel
                 }
             }
             $labels = collect(data_get($service, 'labels', []));
-            if (! $labels->contains('coolify.managed')) {
-                $labels->push('coolify.managed=true');
+            if (! $labels->contains('devlab.managed')) {
+                $labels->push('devlab.managed=true');
             }
-            if (! $labels->contains('coolify.applicationId')) {
-                $labels->push('coolify.applicationId='.$this->id);
+            if (! $labels->contains('devlab.applicationId')) {
+                $labels->push('devlab.applicationId='.$this->id);
             }
-            if (! $labels->contains('coolify.type')) {
-                $labels->push('coolify.type=application');
+            if (! $labels->contains('devlab.type')) {
+                $labels->push('devlab.type=application');
             }
             data_set($service, 'labels', $labels->toArray());
 
@@ -1183,7 +1183,7 @@ class Application extends BaseModel
         $customLabels = base64_decode($this->custom_labels);
         if (mb_detect_encoding($customLabels, 'ASCII', true) === false) {
             ray('custom_labels contains non-ascii characters');
-            $customLabels = str(implode('|coolify|', generateLabelsApplication($this, $preview)))->replace('|coolify|', "\n");
+            $customLabels = str(implode('|devlab|', generateLabelsApplication($this, $preview)))->replace('|devlab|', "\n");
         }
         $this->custom_labels = base64_encode($customLabels);
         $this->save();
@@ -1336,7 +1336,7 @@ class Application extends BaseModel
         $container_name = $this->uuid;
         if ($server->isMetricsEnabled()) {
             $from = now()->subMinutes($mins)->toIso8601ZuluString();
-            $metrics = instant_remote_process(["docker exec coolify-sentinel sh -c 'curl -H \"Authorization: Bearer {$server->settings->metrics_token}\" http://localhost:8888/api/container/{$container_name}/metrics/history?from=$from'"], $server, false);
+            $metrics = instant_remote_process(["docker exec devlab-sentinel sh -c 'curl -H \"Authorization: Bearer {$server->settings->metrics_token}\" http://localhost:8888/api/container/{$container_name}/metrics/history?from=$from'"], $server, false);
             if (str($metrics)->contains('error')) {
                 $error = json_decode($metrics, true);
                 $error = data_get($error, 'error', 'Something is not okay, are you okay?');

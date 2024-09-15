@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Actions\CoolifyTask;
+namespace App\Actions\DevlabTask;
 
-use App\Data\CoolifyTaskArgs;
+use App\Data\DevlabTaskArgs;
 use App\Enums\ActivityTypes;
-use App\Jobs\CoolifyTask;
+use App\Jobs\DevlabTask;
 use Spatie\Activitylog\Models\Activity;
 
 /**
- * The initial step to run a `CoolifyTask`: a remote SSH process
+ * The initial step to run a `DevlabTask`: a remote SSH process
  * with monitoring/tracking/trace feature. Such thing is made
  * possible using an Activity model and some attributes.
  */
-class PrepareCoolifyTask
+class PrepareDevlabTask
 {
     protected Activity $activity;
 
-    protected CoolifyTaskArgs $remoteProcessArgs;
+    protected DevlabTaskArgs $remoteProcessArgs;
 
-    public function __construct(CoolifyTaskArgs $remoteProcessArgs)
+    public function __construct(DevlabTaskArgs $remoteProcessArgs)
     {
         $this->remoteProcessArgs = $remoteProcessArgs;
 
@@ -41,7 +41,7 @@ class PrepareCoolifyTask
 
     public function __invoke(): Activity
     {
-        $job = new CoolifyTask(
+        $job = new DevlabTask(
             activity: $this->activity,
             ignore_errors: $this->remoteProcessArgs->ignore_errors,
             call_event_on_finish: $this->remoteProcessArgs->call_event_on_finish,

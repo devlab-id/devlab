@@ -9,10 +9,10 @@ tasks:
       sed -i "s#GROUPID=#GROUPID=33333#g" .env
       composer install --ignore-platform-reqs
       ./vendor/bin/spin up -d
-      ./vendor/bin/spin exec -u webuser coolify php artisan key:generate
-      ./vendor/bin/spin exec -u webuser coolify php artisan storage:link
-      ./vendor/bin/spin exec -u webuser coolify php artisan migrate:fresh --seed
-      cat .coolify-logo
+      ./vendor/bin/spin exec -u webuser devlab php artisan key:generate
+      ./vendor/bin/spin exec -u webuser devlab php artisan storage:link
+      ./vendor/bin/spin exec -u webuser devlab php artisan migrate:fresh --seed
+      cat .devlab-logo
       gp sync-done spin-is-ready
 
   - name: Install Node dependencies and run Vite
@@ -26,7 +26,7 @@ tasks:
     command: |
       echo "Waiting for Sail environment to boot up."
       gp sync-await spin-is-ready
-      ./vendor/bin/spin exec -u webuser coolify php artisan queue:listen
+      ./vendor/bin/spin exec -u webuser devlab php artisan queue:listen
 
 ports:
   - port: 5432
@@ -40,7 +40,7 @@ ports:
   - port: 8000
     onOpen: ignore
     visibility: public
-    name: Coolify
+    name: Devlab
 
 # Configure vscode
 vscode:

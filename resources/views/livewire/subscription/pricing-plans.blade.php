@@ -5,25 +5,25 @@
                 class="grid grid-cols-2 p-1 text-xs font-semibold leading-5 text-center rounded dark:text-white gap-x-1 dark:bg-white/5 bg-black/5">
                 <legend class="sr-only">Payment frequency</legend>
                 <label class="cursor-pointer rounded px-2.5 py-1"
-                    :class="selected === 'monthly' ? 'dark:bg-coollabs-100 bg-warning dark:text-white' : ''">
+                    :class="selected === 'monthly' ? 'dark:bg-devlab-100 bg-warning dark:text-white' : ''">
                     <input type="radio" x-on:click="selected = 'monthly'" name="frequency" value="monthly"
                         class="sr-only">
                     <span>Monthly</span>
                 </label>
                 <label class="cursor-pointer rounded px-2.5 py-1"
-                    :class="selected === 'yearly' ? 'dark:bg-coollabs-100 bg-warning dark:text-white' : ''">
+                    :class="selected === 'yearly' ? 'dark:bg-devlab-100 bg-warning dark:text-white' : ''">
                     <input type="radio" x-on:click="selected = 'yearly'" name="frequency" value="annually"
                         class="sr-only">
-                    <span>Annually <span class="text-xs dark:text-warning text-coollabs">(save ~20%)</span
+                    <span>Annually <span class="text-xs dark:text-warning text-devlab">(save ~20%)</span
                         ></span>
                 </label>
             </fieldset>
         </div>
         <div class="flow-root mt-12">
             {{-- <div class="pb-10 text-xl text-center">For the detailed list of features, please visit our landing page: <a
-                    class="font-bold underline dark:text-white" href="https://coolify.io">coolify.io</a></div> --}}
+                    class="font-bold underline dark:text-white" href="https://devlab.id">devlab.id</a></div> --}}
             <div
-                class="grid max-w-sm grid-cols-1 -mt-16 divide-y divide-neutral-200 dark:divide-coolgray-500 isolate gap-y-16 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-1 lg:divide-x lg:divide-y-0 xl:-mx-4">
+                class="grid max-w-sm grid-cols-1 -mt-16 divide-y divide-neutral-200 dark:divide-devgray-500 isolate gap-y-16 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-1 lg:divide-x lg:divide-y-0 xl:-mx-4">
                 <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
                     <h3 id="tier-dynamic" class="text-4xl font-semibold leading-7 dark:text-white">Pay-as-you-go</h3>
                     <p class="mt-4 text-sm leading-6 dark:text-neutral-400">
@@ -66,7 +66,7 @@
                           <div>
                             You need to bring your own servers from any cloud provider (such as <a
                               class="underline"
-                              href="https://coolify.io/hetzner"
+                              href="https://devlab.id/hetzner"
                               target="_blank">Hetzner</a
                             >, DigitalOcean, AWS, etc.)
                           </div>
@@ -74,7 +74,7 @@
                             (You can connect your RPi, old laptop, or any other device that runs
                             the <a
                               class="underline"
-                              href="https://coolify.io/docs/installation#supported-operating-systems"
+                              href="https://devlab.id/docs/installation#supported-operating-systems"
                               target="_blank">supported operating systems</a
                             >.)
                           </div>
@@ -200,7 +200,7 @@
 
                           Do you require official support for your self-hosted instance?<a
                             class="underline"
-                            href="https://coolify.io/docs/contact">Contact Us</a
+                            href="https://devlab.id/docs/contact">Contact Us</a
                           >
                         </li>
                       </ul>

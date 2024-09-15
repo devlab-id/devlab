@@ -14,19 +14,19 @@ function getCurrentApplicationContainerStatus(Server $server, int $id, ?int $pul
 {
     $containers = collect([]);
     if (! $server->isSwarm()) {
-        $containers = instant_remote_process(["docker ps -a --filter='label=coolify.applicationId={$id}' --format '{{json .}}' "], $server);
+        $containers = instant_remote_process(["docker ps -a --filter='label=devlab.applicationId={$id}' --format '{{json .}}' "], $server);
         $containers = format_docker_command_output_to_json($containers);
         $containers = $containers->map(function ($container) use ($pullRequestId, $includePullrequests) {
             $labels = data_get($container, 'Labels');
-            if (! str($labels)->contains('coolify.pullRequestId=')) {
-                data_set($container, 'Labels', $labels.",coolify.pullRequestId={$pullRequestId}");
+            if (! str($labels)->contains('devlab.pullRequestId=')) {
+                data_set($container, 'Labels', $labels.",devlab.pullRequestId={$pullRequestId}");
 
                 return $container;
             }
             if ($includePullrequests) {
                 return $container;
             }
-            if (str($labels)->contains("coolify.pullRequestId=$pullRequestId")) {
+            if (str($labels)->contains("devlab.pullRequestId=$pullRequestId")) {
                 return $container;
             }
 
@@ -175,15 +175,15 @@ function get_port_from_dockerfile($dockerfile): ?int
 function defaultLabels($id, $name, $pull_request_id = 0, string $type = 'application', $subType = null, $subId = null)
 {
     $labels = collect([]);
-    $labels->push('coolify.managed=true');
-    $labels->push('coolify.version='.config('version'));
-    $labels->push('coolify.'.$type.'Id='.$id);
-    $labels->push("coolify.type=$type");
-    $labels->push('coolify.name='.$name);
-    $labels->push('coolify.pullRequestId='.$pull_request_id);
+    $labels->push('devlab.managed=true');
+    $labels->push('devlab.version='.config('version'));
+    $labels->push('devlab.'.$type.'Id='.$id);
+    $labels->push("devlab.type=$type");
+    $labels->push('devlab.name='.$name);
+    $labels->push('devlab.pullRequestId='.$pull_request_id);
     if ($type === 'service') {
-        $subId && $labels->push('coolify.service.subId='.$subId);
-        $subType && $labels->push('coolify.service.subType='.$subType);
+        $subId && $labels->push('devlab.service.subId='.$subId);
+        $subType && $labels->push('devlab.service.subType='.$subType);
     }
 
     return $labels;

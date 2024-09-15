@@ -40,8 +40,8 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'postgres'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'coolify'),
-            'username' => env('DB_USERNAME', 'coolify'),
+            'database' => env('DB_DATABASE', 'devlab'),
+            'username' => env('DB_USERNAME', 'devlab'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
@@ -86,7 +86,7 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', 'coolify-redis'),
+            'host' => env('REDIS_HOST', 'devlab-redis'),
             'username' => env('REDIS_USERNAME'),
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),
@@ -95,7 +95,7 @@ return [
 
         'cache' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', 'coolify-redis'),
+            'host' => env('REDIS_HOST', 'devlab-redis'),
             'username' => env('REDIS_USERNAME'),
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),

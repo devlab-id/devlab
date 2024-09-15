@@ -158,7 +158,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
 
     private ?string $branch = null;
 
-    private ?string $coolify_variables = null;
+    private ?string $devlab_variables = null;
 
     private bool $preserveRepository = false;
 
@@ -250,7 +250,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                     $allContainers = collect($allContainers)->sort()->values();
                     foreach ($allContainers as $container) {
                         $containerName = data_get($container, 'Name');
-                        if ($containerName === 'coolify-proxy') {
+                        if ($containerName === 'devlab-proxy') {
                             continue;
                         }
                         if (preg_match('/-(\d{12})/', $containerName)) {
@@ -490,7 +490,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 [executeInDocker($this->deployment_uuid, "cd {$this->basedir} && {$this->docker_compose_custom_build_command}"), 'hidden' => true],
             );
         } else {
-            $command = "{$this->coolify_variables} docker compose";
+            $command = "{$this->devlab_variables} docker compose";
             if ($this->env_filename) {
                 $command .= " --env-file {$this->workdir}/{$this->env_filename}";
             }
@@ -514,7 +514,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 'hidden' => true,
                 'ignore_errors' => true,
             ], [
-                "docker network connect {$networkId} coolify-proxy || true",
+                "docker network connect {$networkId} devlab-proxy || true",
                 'hidden' => true,
                 'ignore_errors' => true,
             ]);
@@ -532,7 +532,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 $this->write_deployment_configurations();
                 $this->docker_compose_location = '/docker-compose.yaml';
 
-                $command = "{$this->coolify_variables} docker compose";
+                $command = "{$this->devlab_variables} docker compose";
                 if ($this->env_filename) {
                     $command .= " --env-file {$server_workdir}/{$this->env_filename}";
                 }
@@ -548,7 +548,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                     [executeInDocker($this->deployment_uuid, "cd {$this->basedir} && {$this->docker_compose_custom_start_command}"), 'hidden' => true],
                 );
             } else {
-                $command = "{$this->coolify_variables} docker compose";
+                $command = "{$this->devlab_variables} docker compose";
                 if ($this->preserveRepository) {
                     if ($this->env_filename) {
                         $command .= " --env-file {$server_workdir}/{$this->env_filename}";
@@ -926,7 +926,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 }
             }
 
-            add_coolify_default_environment_variables($this->application, $envs, $this->application->environment_variables_preview);
+            add_devlab_default_environment_variables($this->application, $envs, $this->application->environment_variables_preview);
 
             foreach ($sorted_environment_variables_preview as $env) {
                 $real_value = $env->real_value;
@@ -985,7 +985,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 }
             }
 
-            add_coolify_default_environment_variables($this->application, $envs, $this->application->environment_variables);
+            add_devlab_default_environment_variables($this->application, $envs, $this->application->environment_variables);
 
             foreach ($sorted_environment_variables as $env) {
                 $real_value = $env->real_value;
@@ -1335,7 +1335,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
     private function prepare_builder_image()
     {
         $settings = InstanceSettings::get();
-        $helperImage = config('coolify.helper_image');
+        $helperImage = config('devlab.helper_image');
         $helperImage = "{$helperImage}:{$settings->helper_version}";
         // Get user home directory
         $this->serverUserHomeDir = instant_remote_process(['echo $HOME'], $this->server);
@@ -1417,21 +1417,21 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
         }
     }
 
-    private function set_coolify_variables()
+    private function set_devlab_variables()
     {
-        $this->coolify_variables = "SOURCE_COMMIT={$this->commit} ";
+        $this->devlab_variables = "SOURCE_COMMIT={$this->commit} ";
         if ($this->pull_request_id === 0) {
             $fqdn = $this->application->fqdn;
         } else {
             $fqdn = $this->preview->fqdn;
         }
         if (isset($fqdn)) {
-            $this->coolify_variables .= "COOLIFY_FQDN={$fqdn} ";
+            $this->devlab_variables .= "COOLIFY_FQDN={$fqdn} ";
             $url = str($fqdn)->replace('http://', '')->replace('https://', '');
-            $this->coolify_variables .= "COOLIFY_URL={$url} ";
+            $this->devlab_variables .= "COOLIFY_URL={$url} ";
         }
         if (isset($this->application->git_branch)) {
-            $this->coolify_variables .= "COOLIFY_BRANCH={$this->application->git_branch} ";
+            $this->devlab_variables .= "COOLIFY_BRANCH={$this->application->git_branch} ";
         }
     }
 
@@ -1475,7 +1475,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             $this->application_deployment_queue->commit = $this->commit;
             $this->application_deployment_queue->save();
         }
-        $this->set_coolify_variables();
+        $this->set_devlab_variables();
     }
 
     private function clone_repository()
@@ -1661,7 +1661,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             $this->application->parseContainerLabels();
             $labels = collect(preg_split("/\r\n|\n|\r/", base64_decode($this->application->custom_labels)));
             $labels = $labels->filter(function ($value, $key) {
-                return ! Str::startsWith($value, 'coolify.');
+                return ! Str::startsWith($value, 'devlab.');
             });
             $found_caddy_labels = $labels->filter(function ($value, $key) {
                 return Str::startsWith($value, 'caddy_');
@@ -1979,7 +1979,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
 
     private function build_image()
     {
-        // Add Coolify related variables to the build args
+        // Add Devlab related variables to the build args
         $this->environment_variables->filter(function ($key, $value) {
             return str($key)->startsWith('COOLIFY_');
         })->each(function ($key, $value) {
@@ -2004,7 +2004,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             if ($this->application->build_pack === 'static') {
                 $dockerfile = base64_encode("FROM {$this->application->static_image}
 WORKDIR /usr/share/nginx/html/
-LABEL coolify.deploymentId={$this->deployment_uuid}
+LABEL devlab.deploymentId={$this->deployment_uuid}
 COPY . .
 RUN rm -f /usr/share/nginx/html/nginx.conf
 RUN rm -f /usr/share/nginx/html/Dockerfile
@@ -2076,7 +2076,7 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
                 }
                 $dockerfile = base64_encode("FROM {$this->application->static_image}
 WORKDIR /usr/share/nginx/html/
-LABEL coolify.deploymentId={$this->deployment_uuid}
+LABEL devlab.deploymentId={$this->deployment_uuid}
 COPY --from=$this->build_image_name /app/{$this->application->publish_directory} .
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
 
@@ -2226,7 +2226,7 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
         } else {
             if ($this->application->dockerfile || $this->application->build_pack === 'dockerfile' || $this->application->build_pack === 'dockerimage') {
                 $this->application_deployment_queue->addLogEntry('----------------------------------------');
-                $this->application_deployment_queue->addLogEntry("WARNING: Dockerfile or Docker Image based deployment detected. The healthcheck needs a curl or wget command to check the health of the application. Please make sure that it is available in the image or turn off healthcheck on Coolify's UI.");
+                $this->application_deployment_queue->addLogEntry("WARNING: Dockerfile or Docker Image based deployment detected. The healthcheck needs a curl or wget command to check the health of the application. Please make sure that it is available in the image or turn off healthcheck on Devlab's UI.");
                 $this->application_deployment_queue->addLogEntry('----------------------------------------');
             }
             $this->application_deployment_queue->addLogEntry('New container is not healthy, rolling back to the old container.');
@@ -2243,16 +2243,16 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf");
             $this->application_deployment_queue->addLogEntry('Pulling latest images from the registry.');
             $this->execute_remote_command(
                 [executeInDocker($this->deployment_uuid, "docker compose --project-name {$this->application->uuid} --project-directory {$this->workdir} pull"), 'hidden' => true],
-                [executeInDocker($this->deployment_uuid, "{$this->coolify_variables} docker compose --project-name {$this->application->uuid} --project-directory {$this->workdir} up --build -d"), 'hidden' => true],
+                [executeInDocker($this->deployment_uuid, "{$this->devlab_variables} docker compose --project-name {$this->application->uuid} --project-directory {$this->workdir} up --build -d"), 'hidden' => true],
             );
         } else {
             if ($this->use_build_server) {
                 $this->execute_remote_command(
-                    ["{$this->coolify_variables} docker compose --project-name {$this->application->uuid} --project-directory {$this->configuration_dir} -f {$this->configuration_dir}{$this->docker_compose_location} up --build -d", 'hidden' => true],
+                    ["{$this->devlab_variables} docker compose --project-name {$this->application->uuid} --project-directory {$this->configuration_dir} -f {$this->configuration_dir}{$this->docker_compose_location} up --build -d", 'hidden' => true],
                 );
             } else {
                 $this->execute_remote_command(
-                    [executeInDocker($this->deployment_uuid, "{$this->coolify_variables} docker compose --project-name {$this->application->uuid} --project-directory {$this->workdir} -f {$this->workdir}{$this->docker_compose_location} up --build -d"), 'hidden' => true],
+                    [executeInDocker($this->deployment_uuid, "{$this->devlab_variables} docker compose --project-name {$this->application->uuid} --project-directory {$this->workdir} -f {$this->workdir}{$this->docker_compose_location} up --build -d"), 'hidden' => true],
                 );
             }
         }

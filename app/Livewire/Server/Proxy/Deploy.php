@@ -96,11 +96,11 @@ class Deploy extends Component
         try {
             if ($this->server->isSwarm()) {
                 instant_remote_process([
-                    'docker service rm coolify-proxy_traefik',
+                    'docker service rm devlab-proxy_traefik',
                 ], $this->server);
             } else {
                 instant_remote_process([
-                    'docker rm -f coolify-proxy',
+                    'docker rm -f devlab-proxy',
                 ], $this->server);
             }
             $this->server->proxy->status = 'exited';

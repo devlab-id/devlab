@@ -1,14 +1,14 @@
 # This is an example dynamic configuration.
 http:
   routers:
-    coolify-http:
+    devlab-http:
       entryPoints:
         - http
-      service: coolify
-      rule: Host(`coolify.io`)
+      service: devlab
+      rule: Host(`devlab.id`)
   services:
-    coolify:
+    devlab:
       loadBalancer:
         servers:
           -
-            url: 'http://coolify:80'
+            url: 'http://devlab:80'

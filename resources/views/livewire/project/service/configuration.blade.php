@@ -1,6 +1,6 @@
 <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'service-stack' }" x-init="$wire.check_status">
     <x-slot:title>
-        {{ data_get_str($service, 'name')->limit(10) }} > Configuration | Coolify
+        {{ data_get_str($service, 'name')->limit(10) }} > Configuration | Devlab
     </x-slot>
     <livewire:project.service.navbar :service="$service" :parameters="$parameters" :query="$query" />
     <div class="flex flex-col h-full gap-8 pt-6 sm:flex-row">
@@ -60,7 +60,7 @@
                                 $application->status)->contains(['running']),
                             'border-l border-dashed border-warning' => str(
                                 $application->status)->contains(['starting']),
-                            'flex gap-2 box-without-bg-without-border dark:bg-coolgray-100 bg-white dark:hover:text-neutral-300 group',
+                            'flex gap-2 box-without-bg-without-border dark:bg-devgray-100 bg-white dark:hover:text-neutral-300 group',
                         ])>
                             <div class="flex flex-row w-full">
                                 <div class="flex flex-col flex-1">
@@ -84,7 +84,7 @@
                                                 <x-slot:content>
                                                     <span class="cursor-pointer">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="w-4 h-4 dark:text-warning text-coollabs"
+                                                            class="w-4 h-4 dark:text-warning text-devlab"
                                                             viewBox="0 0 24 24">
                                                             <g fill="none" stroke="currentColor"
                                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -129,7 +129,7 @@
                                 ['running']),
                             'border-l border-dashed border-warning' => str($database->status)->contains(
                                 ['restarting']),
-                            'flex gap-2 box-without-bg-without-border dark:bg-coolgray-100 bg-white dark:hover:text-neutral-300 group',
+                            'flex gap-2 box-without-bg-without-border dark:bg-devgray-100 bg-white dark:hover:text-neutral-300 group',
                         ])>
                             <div class="flex flex-row w-full">
                                 <div class="flex flex-col flex-1">
@@ -172,7 +172,7 @@
                     <h2>Storages</h2>
                 </div>
                 <div class="pb-4">Persistent storage to preserve data between deployments.</div>
-                <div class="pb-4 dark:text-warning text-coollabs">If you would like to add a volume, you must add it to
+                <div class="pb-4 dark:text-warning text-devlab">If you would like to add a volume, you must add it to
                     your compose file (General tab).</div>
                 @foreach ($applications as $application)
                     <livewire:project.service.storage wire:key="application-{{ $application->id }}" :resource="$application"

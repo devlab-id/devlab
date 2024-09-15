@@ -386,7 +386,7 @@
                     class="absolute w-full duration-100 ease-out sm:max-w-xs "
                     :class="{ 'toast-no-description': !toast.description }">
                     <span
-                        class="relative flex flex-col items-start shadow-[0_5px_15px_-3px_rgb(0_0_0_/_0.08)] w-full transition-all duration-100 ease-out dark:bg-coolgray-100 bg-white dark:border dark:border-coolgray-200 rounded sm:max-w-xs group"
+                        class="relative flex flex-col items-start shadow-[0_5px_15px_-3px_rgb(0_0_0_/_0.08)] w-full transition-all duration-100 ease-out dark:bg-devgray-100 bg-white dark:border dark:border-devgray-200 rounded sm:max-w-xs group"
                         :class="{ 'p-4': !toast.html, 'p-0': toast.html }">
                         <template x-if="!toast.html">
                             <div class="relative w-full">
@@ -438,7 +438,7 @@
                             Copied
                         </span>
                         <span @click="copyToClipboard()"
-                            class="absolute right-7 p-1.5 mr-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-400 hover:bg-neutral-300  duration-100 ease-in-out rounded-full opacity-0 cursor-pointer dark:hover:bg-coolgray-400 dark:hover:text-neutral-300"
+                            class="absolute right-7 p-1.5 mr-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-400 hover:bg-neutral-300  duration-100 ease-in-out rounded-full opacity-0 cursor-pointer dark:hover:bg-devgray-400 dark:hover:text-neutral-300"
                             :class="{
                                 'top-1/2 -translate-y-1/2': !toast.description && !toast.html,
                                 'top-0 mt-3': (toast
@@ -455,7 +455,7 @@
                             </svg>
                         </span>
                         <span @click="burnToast(toast.id)"
-                            class="absolute right-0 p-1.5 mr-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-400 duration-100 ease-in-out rounded-full opacity-0 cursor-pointer hover:bg-neutral-300 dark:hover:bg-coolgray-400 dark:hover:text-neutral-300"
+                            class="absolute right-0 p-1.5 mr-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-400 duration-100 ease-in-out rounded-full opacity-0 cursor-pointer hover:bg-neutral-300 dark:hover:bg-devgray-400 dark:hover:text-neutral-300"
                             :class="{
                                 'top-1/2 -translate-y-1/2': !toast.description && !toast.html,
                                 'top-0 mt-3.5': (toast

@@ -8,13 +8,13 @@
                 class="grid grid-cols-2 p-1 text-xs font-semibold leading-5 text-center rounded dark:text-white gap-x-1 bg-white/5">
                 <legend class="sr-only">Payment frequency</legend>
                 <label class="cursor-pointer rounded px-2.5 py-1"
-                    :class="selected === 'monthly' ? 'bg-coollabs-100 text-white' : ''">
+                    :class="selected === 'monthly' ? 'bg-devlab-100 text-white' : ''">
                     <input type="radio" x-on:click="selected = 'monthly'" name="frequency" value="monthly"
                         class="sr-only">
                     <span>Monthly</span>
                 </label>
                 <label class="cursor-pointer rounded px-2.5 py-1"
-                    :class="selected === 'yearly' ? 'bg-coollabs-100 text-white' : ''">
+                    :class="selected === 'yearly' ? 'bg-devlab-100 text-white' : ''">
                     <input type="radio" x-on:click="selected = 'yearly'" name="frequency" value="annually"
                         class="sr-only">
                     <span>Annually</span>
@@ -34,10 +34,10 @@
             <div>
             </div>
         </div>
-        <div class="p-4 rounded bg-coolgray-400">
+        <div class="p-4 rounded bg-devgray-400">
             <h2 id="tier-hobby" class="flex items-start gap-4 text-4xl font-bold tracking-tight">Unlimited Trial
                 <x-forms.button><a class="font-bold dark:text-white hover:no-underline"
-                        href="https://github.com/coollabsio/coolify">Get Started</a></x-forms.button>
+                        href="https://github.com/coollabsio/devlab">Get Started</a></x-forms.button>
             </h2>
             <p class="mt-4 text-sm leading-6">Start self-hosting <span class="dark:text-warning">without limits</span>
                 with
@@ -47,9 +47,9 @@
 
         <div class="flow-root mt-12">
             <div class="pb-10 text-xl text-center">For the detailed list of features, please visit our landing page: <a
-                    class="font-bold underline dark:text-white" href="https://coolify.io">coolify.io</a></div>
+                    class="font-bold underline dark:text-white" href="https://devlab.id">devlab.id</a></div>
             <div
-                class="grid max-w-sm grid-cols-1 -mt-16 divide-y divide-neutral-200 dark:divide-coolgray-500 isolate gap-y-16 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4">
+                class="grid max-w-sm grid-cols-1 -mt-16 divide-y divide-neutral-200 dark:divide-devgray-500 isolate gap-y-16 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4">
 
                 <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
                     <h3 id="tier-basic" class="text-base font-semibold leading-7 dark:text-white">Basic</h3>
@@ -262,7 +262,7 @@
                     your self-hosted instance?
                     <x-forms.button>
                         <a class="font-bold dark:text-white hover:no-underline"
-                            href="{{ config('coolify.contact') }}">Contact
+                            href="{{ config('devlab.contact') }}">Contact
                             Us</a>
                     </x-forms.button>
                 </div>
@@ -273,7 +273,7 @@
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 gap-y-28">
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg width="512" height="512" class="icon" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -290,7 +290,7 @@
             </div>
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg width="512" height="512" class="icon" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"
@@ -306,14 +306,14 @@
                     <div class="text-2xl font-semibold dark:text-white">Server Automations</div>
                 </div>
                 <div class="mt-1 text-base leading-7 text-gray-300">
-                    Once you connected your server, Coolify will start managing it and do a
+                    Once you connected your server, Devlab will start managing it and do a
                     lot of administrative tasks for you. You can also write your own scripts to
                     automate your server<span class="dark:text-warning">*</span>.
                 </div>
             </div>
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg width="512" height="512" viewBox="0 0 24 24" class="icon"
                             xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -329,14 +329,14 @@
                 </div>
                 <div class="mt-1 text-base leading-7 text-gray-300">
                     You own your own data. All configurations saved on your own servers, so if
-                    you decide to stop using Coolify, you can still continue to manage your
+                    you decide to stop using Devlab, you can still continue to manage your
                     deployed resources.
                 </div>
             </div>
 
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -351,14 +351,14 @@
                     <div class="text-2xl font-semibold dark:text-white">Monitoring</div>
                 </div>
                 <div class="mt-1 text-base leading-7 text-gray-300">
-                    Coolify will automatically monitor your configured servers and deployed
+                    Devlab will automatically monitor your configured servers and deployed
                     resources. Notifies you if something goes wrong on your favourite
                     channels, like Discord, Telegram, via Email and more...
                 </div>
             </div>
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg width="512" height="512" class="icon" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -377,7 +377,7 @@
             </div>
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -396,7 +396,7 @@
             </div>
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg width="512" height="512" class="icon" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -419,7 +419,7 @@
             </div>
             <div>
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-coolgray-500">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-lg dark:text-white bg-devgray-500">
                         <svg width="512" height="512" class="icon" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill="none" stroke="currentColor" stroke-linecap="round"
