@@ -1,7 +1,7 @@
 ![Latest Release Version](https://img.shields.io/badge/dynamic/json?labelColor=grey&color=6366f1&label=Latest_released_version&url=https%3A%2F%2Fcdn.coollabs.io%2Fdevlab%2Fversions.json&query=devlab.v4.version&style=for-the-badge
 )
 
-[![Bounty Issues](https://img.shields.io/static/v1?labelColor=grey&color=6366f1&label=Algora&message=%F0%9F%92%8E+Bounty+issues&style=for-the-badge)](https://console.algora.io/org/coollabsio/bounties/new)
+[![Bounty Issues](https://img.shields.io/static/v1?labelColor=grey&color=6366f1&label=Algora&message=%F0%9F%92%8E+Bounty+issues&style=for-the-badge)](https://console.algora.io/org/devlab-id/bounties/new)
 
 # About the Project
 
@@ -18,7 +18,7 @@ For more information, take a look at our landing page at [devlab.id](https://dev
 # Installation
 
 ```bash
-curl -fsSL https://cdn.coollabs.io/devlab/install.sh | bash
+curl -fsSL https://cdn.devlab.id/devlab/install.sh | bash
 ```
 You can find the installation script source [here](./scripts/install.sh).
 
@@ -90,21 +90,21 @@ Special thanks to our biggest sponsors!
 <a href="https://x.com/adithsuhas17?utm_source=devlab.id"><img src="https://github.com/adith-suhas-sv.png" width="60px" alt="Adith Suhas" /></a>
 
 ## Organizations
-<a href="https://opencollective.com/coollabsio/organization/0/website"><img src="https://opencollective.com/coollabsio/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/1/website"><img src="https://opencollective.com/coollabsio/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/2/website"><img src="https://opencollective.com/coollabsio/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/3/website"><img src="https://opencollective.com/coollabsio/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/4/website"><img src="https://opencollective.com/coollabsio/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/5/website"><img src="https://opencollective.com/coollabsio/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/6/website"><img src="https://opencollective.com/coollabsio/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/7/website"><img src="https://opencollective.com/coollabsio/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/8/website"><img src="https://opencollective.com/coollabsio/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/coollabsio/organization/9/website"><img src="https://opencollective.com/coollabsio/organization/9/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/0/website"><img src="https://opencollective.com/devlab-id/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/1/website"><img src="https://opencollective.com/devlab-id/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/2/website"><img src="https://opencollective.com/devlab-id/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/3/website"><img src="https://opencollective.com/devlab-id/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/4/website"><img src="https://opencollective.com/devlab-id/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/5/website"><img src="https://opencollective.com/devlab-id/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/6/website"><img src="https://opencollective.com/devlab-id/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/7/website"><img src="https://opencollective.com/devlab-id/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/8/website"><img src="https://opencollective.com/devlab-id/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/devlab-id/organization/9/website"><img src="https://opencollective.com/devlab-id/organization/9/avatar.svg"></a>
 
 
 ## Individuals
 
-<a href="https://opencollective.com/coollabsio"><img src="https://opencollective.com/coollabsio/individuals.svg?width=890"></a>
+<a href="https://opencollective.com/devlab-id"><img src="https://opencollective.com/devlab-id/individuals.svg?width=890"></a>
 
 # Cloud
 
@@ -136,7 +136,7 @@ By subscribing to the cloud version, you get the Devlab server for the same pric
 
 <a href="https://www.producthunt.com/posts/devlab?ref=badge-featured&utm_medium=badge&utm_souce=badge-devlab" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=338273&theme=light" alt="Devlab - An&#0032;open&#0045;source&#0032;&#0038;&#0032;self&#0045;hostable&#0032;Heroku&#0044;&#0032;Netlify&#0032;alternative | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-<a href="https://trendshift.io/repositories/634" target="_blank"><img src="https://trendshift.io/api/badge/repositories/634" alt="coollabsio%2Fdevlab | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/634" target="_blank"><img src="https://trendshift.io/api/badge/repositories/634" alt="devlab-id%2Fdevlab | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
 # Repo Activity
 
@@ -144,4 +144,4 @@ By subscribing to the cloud version, you get the Devlab server for the same pric
 
 # Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=coollabsio/devlab&type=Date)](https://star-history.com/#coollabsio/devlab&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=devlab-id/devlab&type=Date)](https://star-history.com/#devlab-id/devlab&Date)
